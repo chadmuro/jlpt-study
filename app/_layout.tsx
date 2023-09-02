@@ -6,7 +6,7 @@ import {
   ThemeProvider
 } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import { SplashScreen, Stack } from "expo-router";
+import { SplashScreen, Stack, Tabs } from "expo-router";
 import { TamaguiProvider, Text, Theme } from "tamagui";
 
 import { MySafeAreaView } from "../components/MySafeAreaView";
@@ -33,17 +33,23 @@ export default function Layout() {
   return (
     <TamaguiProvider config={config}>
       <Suspense fallback={<Text>Loading...</Text>}>
-        <Theme name={colorScheme}>
+        <Theme name="dark">
           <ThemeProvider
             value={colorScheme === "light" ? DefaultTheme : DarkTheme}
           >
-            <MySafeAreaView>
-              <Stack
-                screenOptions={{
-                  headerShown: false
+            {/* <MySafeAreaView> */}
+            <Tabs>
+              <Tabs.Screen name="index" />
+              <Tabs.Screen name="account" />
+              <Tabs.Screen
+                // Name of the route to hide.
+                name="users/[user]"
+                options={{
+                  // This tab will no longer show up in the tab bar.
+                  href: null
                 }}
               />
-            </MySafeAreaView>
+            </Tabs>
           </ThemeProvider>
         </Theme>
       </Suspense>
