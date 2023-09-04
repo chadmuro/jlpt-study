@@ -5,11 +5,12 @@ import {
   DefaultTheme,
   ThemeProvider
 } from "@react-navigation/native";
+import { Edit3, List, User } from "@tamagui/lucide-icons";
 import { useFonts } from "expo-font";
-import { SplashScreen, Stack, Tabs } from "expo-router";
+import { SplashScreen, Tabs } from "expo-router";
 import { TamaguiProvider, Text, Theme } from "tamagui";
 
-import { MySafeAreaView } from "../components/MySafeAreaView";
+import { SessionProvider } from "../contexts/sessionContext";
 import config from "../tamagui.config";
 
 SplashScreen.preventAutoHideAsync();
@@ -37,19 +38,41 @@ export default function Layout() {
           <ThemeProvider
             value={colorScheme === "light" ? DefaultTheme : DarkTheme}
           >
-            {/* <MySafeAreaView> */}
-            <Tabs>
-              <Tabs.Screen name="index" />
-              <Tabs.Screen name="account" />
-              <Tabs.Screen
-                // Name of the route to hide.
-                name="users/[user]"
-                options={{
-                  // This tab will no longer show up in the tab bar.
-                  href: null
-                }}
-              />
-            </Tabs>
+            <SessionProvider>
+              <Tabs>
+                <Tabs.Screen
+                  name="(index)"
+                  options={{
+                    title: "Study",
+                    tabBarIcon: ({ focused }) => (
+                      <Edit3 color={focused ? "red" : "white"} />
+                    ),
+                    tabBarActiveTintColor: "red",
+                    headerShown: false
+                  }}
+                />
+                <Tabs.Screen
+                  name="vocabulary"
+                  options={{
+                    title: "Vocabulary",
+                    tabBarIcon: ({ focused }) => (
+                      <List color={focused ? "red" : "white"} />
+                    ),
+                    tabBarActiveTintColor: "red"
+                  }}
+                />
+                <Tabs.Screen
+                  name="account"
+                  options={{
+                    title: "Account",
+                    tabBarIcon: ({ focused }) => (
+                      <User color={focused ? "red" : "white"} />
+                    ),
+                    tabBarActiveTintColor: "red"
+                  }}
+                />
+              </Tabs>
+            </SessionProvider>
           </ThemeProvider>
         </Theme>
       </Suspense>
