@@ -4,6 +4,7 @@ import { formatJapanese } from "../utils/formatJapanese";
 
 interface Props {
   cardData: {
+    id: number;
     kanji: string;
     japanese: string;
     english: string;
