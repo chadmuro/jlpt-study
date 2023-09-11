@@ -1,12 +1,12 @@
 import { Link } from "expo-router";
 import { Button, H2, Text } from "tamagui";
 
-import { MySafeAreaView } from "../../components/MySafeAreaView";
 import { MyStack } from "../../components/MyStack";
+import { SafeAreaView } from "../../components/SafeAreaView";
 
 export default function Home() {
   return (
-    <MySafeAreaView>
+    <SafeAreaView>
       <MyStack justifyContent="flex-start">
         <H2>Today&apos;s Cards</H2>
         <Text>20 new cards</Text>
@@ -25,6 +25,6 @@ export default function Home() {
           <Button>Start review</Button>
         </Link>
       </MyStack>
-    </MySafeAreaView>
+    </SafeAreaView>
   );
 }

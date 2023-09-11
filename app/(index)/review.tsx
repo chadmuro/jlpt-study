@@ -2,14 +2,14 @@ import { ArrowLeft } from "@tamagui/lucide-icons";
 import { useRouter } from "expo-router";
 import { Button, H3, XStack } from "tamagui";
 
-import { MySafeAreaView } from "../../components/MySafeAreaView";
 import { MyStack } from "../../components/MyStack";
+import { SafeAreaView } from "../../components/SafeAreaView";
 
 export default function Review() {
   const router = useRouter();
 
   return (
-    <MySafeAreaView>
+    <SafeAreaView>
       <MyStack justifyContent="flex-start">
         <XStack
           alignItems="center"
@@ -22,6 +22,6 @@ export default function Review() {
           <H3>Review</H3>
         </XStack>
       </MyStack>
-    </MySafeAreaView>
+    </SafeAreaView>
   );
 }

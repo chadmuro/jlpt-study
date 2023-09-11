@@ -1,4 +1,4 @@
-import { Suspense, useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import { useColorScheme } from "react-native";
 import {
   DarkTheme,
@@ -43,7 +43,8 @@ export default function Layout() {
               <VocabularyProvider>
                 <Tabs
                   screenOptions={{
-                    headerShown: false
+                    headerShown: false,
+                    tabBarActiveTintColor: "red"
                   }}
                 >
                   <Tabs.Screen
@@ -52,8 +53,7 @@ export default function Layout() {
                       title: "Study",
                       tabBarIcon: ({ focused }) => (
                         <Edit3 color={focused ? "red" : "white"} />
-                      ),
-                      tabBarActiveTintColor: "red"
+                      )
                     }}
                   />
                   <Tabs.Screen
@@ -62,8 +62,7 @@ export default function Layout() {
                       title: "Vocabulary",
                       tabBarIcon: ({ focused }) => (
                         <List color={focused ? "red" : "white"} />
-                      ),
-                      tabBarActiveTintColor: "red"
+                      )
                     }}
                   />
                   <Tabs.Screen
@@ -72,8 +71,7 @@ export default function Layout() {
                       title: "Account",
                       tabBarIcon: ({ focused }) => (
                         <User color={focused ? "red" : "white"} />
-                      ),
-                      tabBarActiveTintColor: "red"
+                      )
                     }}
                   />
                 </Tabs>

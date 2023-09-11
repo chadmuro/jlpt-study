@@ -3,8 +3,8 @@ import { FlatList, Pressable } from "react-native";
 import { Link } from "expo-router";
 import { H2, Input, ListItem, Separator } from "tamagui";
 
-import { MySafeAreaView } from "../../components/MySafeAreaView";
 import { MyStack } from "../../components/MyStack";
+import { SafeAreaView } from "../../components/SafeAreaView";
 import { useVocabulary } from "../../contexts/vocabularyContext";
 import { formatJapanese } from "../../utils/formatJapanese";
 
@@ -27,7 +27,7 @@ export default function Vocabulary() {
   }
 
   return (
-    <MySafeAreaView>
+    <SafeAreaView>
       <MyStack justifyContent="flex-start">
         <H2>Vocabulary</H2>
         <Input
@@ -55,6 +55,6 @@ export default function Vocabulary() {
           showsVerticalScrollIndicator={false}
         />
       </MyStack>
-    </MySafeAreaView>
+    </SafeAreaView>
   );
 }
