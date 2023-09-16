@@ -21,8 +21,6 @@ export default function Details() {
     setShowAnswer(false);
   }, [cardData]);
 
-  console.log(vocabulary.length);
-
   return (
     <SafeAreaView>
       <MyStack justifyContent="flex-start">
