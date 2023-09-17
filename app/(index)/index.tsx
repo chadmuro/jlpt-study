@@ -1,14 +1,29 @@
 import { useState } from "react";
 import { X } from "@tamagui/lucide-icons";
 import { router, useNavigation } from "expo-router";
-import { Button, Dialog, H2, Text, Unspaced, XStack } from "tamagui";
+import {
+  Button,
+  Dialog,
+  H2,
+  H3,
+  Separator,
+  Spinner,
+  Text,
+  Unspaced,
+  XStack,
+  YStack
+} from "tamagui";
 
 import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
+import StudyCard from "../../components/study/StudyCard";
 import { useSession } from "../../contexts/sessionContext";
+import { useVocabulary } from "../../contexts/vocabularyContext";
 
 export default function Home() {
   const [open, setOpen] = useState(false);
+  const [showAnswer, setShowAnswer] = useState(false);
+  const { vocabulary } = useVocabulary();
   const { session } = useSession();
   const navigation = useNavigation();
 
@@ -24,12 +39,30 @@ export default function Home() {
     <SafeAreaView>
       <MyStack justifyContent="flex-start">
         <H2>Today&apos;s Cards</H2>
-        <Text>20 new cards</Text>
-        <Button onPress={() => handlePress("study")}>Start study</Button>
-
-        <Text>15 review cards</Text>
-
-        <Button onPress={() => handlePress("review")}>Start review</Button>
+        <YStack gap="$2">
+          <Text>20 new cards</Text>
+          <Button onPress={() => handlePress("study")}>Start study</Button>
+        </YStack>
+        <YStack gap="$2">
+          <Text>0 review cards</Text>
+          <Button onPress={() => handlePress("review")}>Start review</Button>
+        </YStack>
+        <Separator marginVertical={15} />
+        <YStack gap="$2">
+          <H3>Word of the day</H3>
+          {vocabulary ? (
+            <StudyCard
+              cardData={vocabulary[100]}
+              showAnswer={showAnswer}
+              setShowAnswer={setShowAnswer}
+            />
+          ) : (
+            <Spinner
+              size="large"
+              color="$red10"
+            />
+          )}
+        </YStack>
       </MyStack>
 
       <Dialog

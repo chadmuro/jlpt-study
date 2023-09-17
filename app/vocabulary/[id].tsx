@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { ArrowLeft } from "@tamagui/lucide-icons";
 import { Link, useGlobalSearchParams, useRouter } from "expo-router";
-import { Button, H3, XStack } from "tamagui";
+import { Button, H3, View, XStack } from "tamagui";
 
 import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
-import StudyCard from "../../components/StudyCard";
+import StudyCard from "../../components/study/StudyCard";
 import { useVocabulary } from "../../contexts/vocabularyContext";
 
 export default function Details() {
@@ -41,22 +41,26 @@ export default function Details() {
             setShowAnswer={setShowAnswer}
           />
         )}
-        <XStack>
-          {Number(id) > 1 && (
+        <XStack justifyContent="space-between">
+          {Number(id) > 1 ? (
             <Link
               href={`/vocabulary/${Number(id) - 1}`}
               asChild
             >
               <Button>Prev</Button>
             </Link>
+          ) : (
+            <View />
           )}
-          {Number(id) < vocabulary.length && (
+          {Number(id) < vocabulary.length ? (
             <Link
               href={`/vocabulary/${Number(id) + 1}`}
               asChild
             >
               <Button>Next</Button>
             </Link>
+          ) : (
+            <View />
           )}
         </XStack>
       </MyStack>

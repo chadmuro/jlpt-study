@@ -1,6 +1,6 @@
 import { Card, H1, H2 } from "tamagui";
 
-import { formatJapanese } from "../utils/formatJapanese";
+import { formatJapanese } from "../../utils/formatJapanese";
 
 interface Props {
   cardData: {

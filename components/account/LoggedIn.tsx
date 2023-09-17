@@ -7,7 +7,9 @@ import {
 import {
   Button,
   H2,
+  H3,
   Input,
+  ListItem,
   Separator,
   SizableText,
   Spinner,
@@ -65,9 +67,9 @@ export default function LoggedIn({ session }: Props) {
 
   return (
     <SafeAreaView>
-      <MyStack>
-        <YStack space="$true">
-          <H2>{`Welcome back, ${displayName}`}</H2>
+      <MyStack justifyContent="flex-start">
+        <H2>{`Welcome back, ${displayName}`}</H2>
+        <YStack>
           <YStack gap="$2">
             <YStack>
               <Input
@@ -95,9 +97,9 @@ export default function LoggedIn({ session }: Props) {
             </YStack>
             <Button onPress={handleUsernameSave}>Update user name</Button>
           </YStack>
-          <Separator marginVertical={15} />
-          <Button onPress={() => supabase.auth.signOut()}>Logout</Button>
         </YStack>
+        <Separator marginVertical={15} />
+        <Button onPress={() => supabase.auth.signOut()}>Logout</Button>
       </MyStack>
     </SafeAreaView>
   );

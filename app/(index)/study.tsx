@@ -5,7 +5,8 @@ import { Button, H3, XStack } from "tamagui";
 
 import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
-import StudyCard from "../../components/StudyCard";
+import StudyButtons from "../../components/study/StudyButtons";
+import StudyCard from "../../components/study/StudyCard";
 import { testData } from "../../testData";
 
 export default function Study() {
@@ -32,20 +33,7 @@ export default function Study() {
           setShowAnswer={setShowAnswer}
         />
 
-        <XStack gap="$2">
-          <Button backgroundColor="$red10">Hard</Button>
-          <Button>Mid</Button>
-          <Button>Medium</Button>
-          <Button
-            backgroundColor="$green10"
-            onPress={() => {
-              setCardNumber((prev) => prev + 1);
-              setShowAnswer(false);
-            }}
-          >
-            Easy
-          </Button>
-        </XStack>
+        <StudyButtons />
       </MyStack>
     </SafeAreaView>
   );
