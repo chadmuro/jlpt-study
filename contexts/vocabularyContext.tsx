@@ -35,7 +35,7 @@ const VocabularyProvider = ({ children }: PropsWithChildren<unknown>) => {
 const useVocabulary = () => {
   const context = useContext(VocabularyContext);
   if (context === undefined) {
-    throw new Error("useVocabulary must be used within a SessionProvider");
+    throw new Error("useVocabulary must be used within a VocabularyProvider");
   }
   return context;
 };

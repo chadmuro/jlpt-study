@@ -18,6 +18,7 @@ import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
 import StudyCard from "../../components/study/StudyCard";
 import { useSession } from "../../contexts/sessionContext";
+import { useStudy } from "../../contexts/studyContext";
 import { useVocabulary } from "../../contexts/vocabularyContext";
 
 export default function Home() {
@@ -26,6 +27,7 @@ export default function Home() {
   const { vocabulary } = useVocabulary();
   const { session } = useSession();
   const navigation = useNavigation();
+  const { todaysStudyCards, todaysReviewCards } = useStudy();
 
   function handlePress(route: string) {
     if (!session) {
@@ -40,11 +42,11 @@ export default function Home() {
       <MyStack justifyContent="flex-start">
         <H2>Today&apos;s Cards</H2>
         <YStack gap="$2">
-          <Text>20 new cards</Text>
+          <Text>{todaysStudyCards.length} new cards</Text>
           <Button onPress={() => handlePress("study")}>Start study</Button>
         </YStack>
         <YStack gap="$2">
-          <Text>0 review cards</Text>
+          <Text>{todaysReviewCards?.length} review cards</Text>
           <Button onPress={() => handlePress("review")}>Start review</Button>
         </YStack>
         <Separator marginVertical={15} />

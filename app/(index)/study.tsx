@@ -1,18 +1,65 @@
 import { useState } from "react";
+import { useUpsertMutation } from "@supabase-cache-helpers/postgrest-swr";
 import { ArrowLeft } from "@tamagui/lucide-icons";
-import { useRouter } from "expo-router";
-import { Button, H3, XStack } from "tamagui";
+import dayjs from "dayjs";
+import { Link, useRouter } from "expo-router";
+import { Button, H3, Text, View, XStack } from "tamagui";
 
 import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
-import StudyButtons from "../../components/study/StudyButtons";
-import StudyCard from "../../components/study/StudyCard";
-import { testData } from "../../testData";
+import StudyComponent from "../../components/study/StudyComponent";
+import { useSession } from "../../contexts/sessionContext";
+import { useStudy } from "../../contexts/studyContext";
+import { useVocabulary } from "../../contexts/vocabularyContext";
+import { supabase } from "../../utils/supabase";
+import { supermemo, SuperMemoGrade } from "../../utils/supermemo";
 
 export default function Study() {
   const router = useRouter();
   const [showAnswer, setShowAnswer] = useState(false);
-  const [cardNumber, setCardNumber] = useState(1);
+  const { todaysStudyCards, updateTodaysStudy } = useStudy();
+  const { vocabulary } = useVocabulary();
+  const { session } = useSession();
+
+  const studyCard = vocabulary.find(
+    (vocab) => vocab.id === todaysStudyCards[0]
+  );
+
+  const { trigger: upsert } = useUpsertMutation(
+    supabase.from("study"),
+    ["vocabulary_id"],
+    "user_id, vocabulary_id, due_date, interval, repetition, efactor, updated_at",
+    {
+      onSuccess: () => console.log("Success!")
+    }
+  );
+
+  async function updateStudy(grade: SuperMemoGrade) {
+    const { interval, repetition, efactor } = supermemo(
+      {
+        interval: 0,
+        repetition: 0,
+        efactor: 2.5
+      },
+      grade
+    );
+
+    const dueDate = dayjs(Date.now()).add(interval, "day").format("YYYY-MM-DD");
+
+    const res = await upsert([
+      {
+        user_id: session?.user.id,
+        vocabulary_id: studyCard.id,
+        due_date: dueDate,
+        interval,
+        repetition,
+        efactor
+      }
+    ]);
+
+    await updateTodaysStudy(studyCard.id);
+    setShowAnswer(false);
+  }
 
   return (
     <SafeAreaView>
@@ -27,13 +74,24 @@ export default function Study() {
           />
           <H3>Study</H3>
         </XStack>
-        <StudyCard
-          cardData={testData[cardNumber]}
-          showAnswer={showAnswer}
-          setShowAnswer={setShowAnswer}
-        />
-
-        <StudyButtons />
+        {studyCard ? (
+          <StudyComponent
+            cardData={studyCard}
+            showAnswer={showAnswer}
+            setShowAnswer={setShowAnswer}
+            updateStudy={updateStudy}
+          />
+        ) : (
+          <View>
+            <Text>Study completed for the day</Text>
+            <Link
+              href="/review"
+              asChild
+            >
+              <Button>Go to review</Button>
+            </Link>
+          </View>
+        )}
       </MyStack>
     </SafeAreaView>
   );

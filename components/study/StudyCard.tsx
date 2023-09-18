@@ -24,7 +24,7 @@ export default function StudyCard({
       size="$4"
       bordered
       width="100%"
-      height="50%"
+      height={300}
       animation="bouncy"
       scale={0.9}
       alignItems="center"
