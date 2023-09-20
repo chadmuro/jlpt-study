@@ -3,7 +3,7 @@ import { useUpsertMutation } from "@supabase-cache-helpers/postgrest-swr";
 import { ArrowLeft } from "@tamagui/lucide-icons";
 import dayjs from "dayjs";
 import { Link, useRouter } from "expo-router";
-import { Button, H3, Text, View, XStack } from "tamagui";
+import { Button, H3, H4, Text, XStack, YStack } from "tamagui";
 
 import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
@@ -74,6 +74,7 @@ export default function Study() {
           />
           <H3>Study</H3>
         </XStack>
+        <Text>{todaysStudyCards.length} cards remaining</Text>
         {studyCard ? (
           <StudyComponent
             cardData={studyCard}
@@ -82,7 +83,8 @@ export default function Study() {
             updateStudy={updateStudy}
           />
         ) : (
-          <View>
+          <YStack>
+            <H4>Great job!</H4>
             <Text>Study completed for the day</Text>
             <Link
               href="/review"
@@ -90,7 +92,7 @@ export default function Study() {
             >
               <Button>Go to review</Button>
             </Link>
-          </View>
+          </YStack>
         )}
       </MyStack>
     </SafeAreaView>
