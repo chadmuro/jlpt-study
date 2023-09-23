@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { X } from "@tamagui/lucide-icons";
-import { router, useNavigation } from "expo-router";
+import { Info, X } from "@tamagui/lucide-icons";
+import { Link, router, useNavigation } from "expo-router";
 import {
   Button,
   Dialog,
@@ -20,6 +20,7 @@ import StudyCard from "../../components/study/StudyCard";
 import { useSession } from "../../contexts/sessionContext";
 import { useStudy } from "../../contexts/studyContext";
 import { useVocabulary } from "../../contexts/vocabularyContext";
+import { useReview } from "../../hooks/useReview";
 
 export default function Home() {
   const [open, setOpen] = useState(false);
@@ -27,7 +28,8 @@ export default function Home() {
   const { vocabulary } = useVocabulary();
   const { session } = useSession();
   const navigation = useNavigation();
-  const { todaysStudyCards, todaysReviewCards } = useStudy();
+  const { todaysStudyCards } = useStudy();
+  const { data } = useReview();
 
   function handlePress(route: string) {
     if (!session) {
@@ -40,13 +42,21 @@ export default function Home() {
   return (
     <SafeAreaView>
       <MyStack justifyContent="flex-start">
-        <H2>Today&apos;s Cards</H2>
+        <XStack
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <H2>Today&apos;s Cards</H2>
+          <Link href="/info">
+            <Info />
+          </Link>
+        </XStack>
         <YStack gap="$2">
-          <Text>{todaysStudyCards.length} new cards</Text>
+          <Text>{todaysStudyCards.length ?? 0} new cards</Text>
           <Button onPress={() => handlePress("study")}>Start study</Button>
         </YStack>
         <YStack gap="$2">
-          <Text>{todaysReviewCards?.length} review cards</Text>
+          <Text>{data?.length ?? 0} review cards</Text>
           <Button onPress={() => handlePress("review")}>Start review</Button>
         </YStack>
         <Separator marginVertical={15} />
@@ -54,7 +64,7 @@ export default function Home() {
           <H3>Word of the day</H3>
           {vocabulary ? (
             <StudyCard
-              cardData={vocabulary[100]}
+              cardData={vocabulary[2237]}
               showAnswer={showAnswer}
               setShowAnswer={setShowAnswer}
             />

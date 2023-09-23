@@ -1,45 +1,40 @@
 import { useState } from "react";
-import { useUpsertMutation } from "@supabase-cache-helpers/postgrest-swr";
 import { ArrowLeft } from "@tamagui/lucide-icons";
 import dayjs from "dayjs";
-import { Link, useRouter } from "expo-router";
+import { Link, useFocusEffect, useRouter } from "expo-router";
 import { Button, H3, H4, Text, XStack, YStack } from "tamagui";
 
 import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
 import StudyComponent from "../../components/study/StudyComponent";
 import { useSession } from "../../contexts/sessionContext";
-import { useStudy } from "../../contexts/studyContext";
 import { useVocabulary } from "../../contexts/vocabularyContext";
-import { supabase } from "../../utils/supabase";
+import { useReview } from "../../hooks/useReview";
 import { supermemo, SuperMemoGrade } from "../../utils/supermemo";
 
 export default function Review() {
   const router = useRouter();
   const [showAnswer, setShowAnswer] = useState(false);
-  const { todaysReviewCards } = useStudy();
+  // const { todaysReviewCards } = useStudy();
   const { vocabulary } = useVocabulary();
   const { session } = useSession();
+  const { data, isLoading, update } = useReview();
+
+  useFocusEffect(() => {
+    if (!session) router.push("/");
+  });
+
+  if (isLoading) return null;
 
   const studyCard = vocabulary.find(
-    (vocab) => vocab.id === todaysReviewCards[0]?.vocabulary_id
+    (vocab) => vocab.id === data[0]?.vocabulary_id
   );
-
-  const { trigger: upsert } = useUpsertMutation(
-    supabase.from("study"),
-    ["vocabulary_id"],
-    "user_id, vocabulary_id, due_date, interval, repetition, efactor, updated_at",
-    {
-      onSuccess: () => console.log("Success!")
-    }
-  );
-
   async function updateReview(grade: SuperMemoGrade) {
     const { interval, repetition, efactor } = supermemo(
       {
-        interval: todaysReviewCards[0].interval,
-        repetition: todaysReviewCards[0].repetition,
-        efactor: todaysReviewCards[0].efactor
+        interval: data[0].interval,
+        repetition: data[0].repetition,
+        efactor: data[0].efactor
       },
       grade
     );
@@ -47,16 +42,16 @@ export default function Review() {
     const dueDate = dayjs(Date.now()).add(interval, "day").format("YYYY-MM-DD");
 
     if (studyCard) {
-      const res = await upsert([
-        {
-          user_id: session?.user.id,
-          vocabulary_id: studyCard.id,
-          due_date: dueDate,
-          interval,
-          repetition,
-          efactor
-        }
-      ]);
+      const res = await update({
+        user_id: session?.user.id,
+        vocabulary_id: studyCard.id,
+        due_date: dueDate,
+        interval,
+        repetition,
+        efactor,
+        updated_at: dayjs(Date.now()).format("YYYY-MM-DD")
+      });
+      console.log(res);
 
       setShowAnswer(false);
     }
@@ -75,7 +70,7 @@ export default function Review() {
           />
           <H3>Review</H3>
         </XStack>
-        <Text>{todaysReviewCards.length} cards remaining</Text>
+        <Text>{data.length} cards remaining</Text>
         {studyCard ? (
           <StudyComponent
             cardData={studyCard}

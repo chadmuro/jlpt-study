@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useUpsertMutation } from "@supabase-cache-helpers/postgrest-swr";
 import { ArrowLeft } from "@tamagui/lucide-icons";
 import dayjs from "dayjs";
-import { Link, useRouter } from "expo-router";
+import { Link, useFocusEffect, useRouter } from "expo-router";
 import { Button, H3, H4, Text, XStack, YStack } from "tamagui";
 
 import { MyStack } from "../../components/MyStack";
@@ -21,14 +21,18 @@ export default function Study() {
   const { vocabulary } = useVocabulary();
   const { session } = useSession();
 
+  useFocusEffect(() => {
+    if (!session) router.push("/");
+  });
+
   const studyCard = vocabulary.find(
     (vocab) => vocab.id === todaysStudyCards[0]
   );
 
   const { trigger: upsert } = useUpsertMutation(
-    supabase.from("study"),
+    supabase.from("review"),
     ["vocabulary_id"],
-    "user_id, vocabulary_id, due_date, interval, repetition, efactor, updated_at",
+    "vocabulary_id, due_date, updated_at",
     {
       onSuccess: () => console.log("Success!")
     }

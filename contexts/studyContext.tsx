@@ -6,10 +6,7 @@ import {
   useState
 } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {
-  useQuery,
-  useUpsertMutation
-} from "@supabase-cache-helpers/postgrest-swr";
+import { useQuery } from "@supabase-cache-helpers/postgrest-swr";
 import dayjs from "dayjs";
 
 import { generateRandomNumbers } from "../utils/generateNumbers";
@@ -20,12 +17,6 @@ import { useSession } from "./sessionContext";
 type StudyContextType = {
   today: string;
   todaysStudyCards: number[];
-  todaysReviewCards: {
-    vocabulary_id: number;
-    interval: number;
-    repetition: number;
-    efactor: number;
-  }[];
   updateTodaysStudy: (id: number) => Promise<void>;
 };
 
@@ -35,20 +26,8 @@ export const StudyContext = createContext<StudyContextType | undefined>(
 
 const StudyProvider = ({ children }: PropsWithChildren<unknown>) => {
   const { session } = useSession();
-  const [today, setToday] = useState(dayjs().format("YYYY-MM-DD"));
+  const today = dayjs().format("YYYY-MM-DD");
   const [todaysStudyCards, setTodaysStudyCards] = useState<number[]>([]);
-  const { data, error, isLoading } = useQuery(
-    supabase
-      .from("study")
-      .select("vocabulary_id, interval, repetition, efactor,updated_at")
-      .eq("user_id", session?.user.id)
-      .lte("due_date", today)
-      .order("updated_at", { ascending: true }),
-    {
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false
-    }
-  );
 
   useEffect(() => {
     async function getPersistedData() {
@@ -84,7 +63,6 @@ const StudyProvider = ({ children }: PropsWithChildren<unknown>) => {
   const value = {
     todaysStudyCards,
     today,
-    todaysReviewCards: data,
     updateTodaysStudy
   };
 

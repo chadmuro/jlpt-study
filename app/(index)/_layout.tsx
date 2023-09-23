@@ -10,6 +10,10 @@ export default function Layout() {
       <Stack.Screen name="index" />
       <Stack.Screen name="study" />
       <Stack.Screen name="review" />
+      <Stack.Screen
+        name="info"
+        options={{ presentation: "modal", navigationBarColor: "white" }}
+      />
     </Stack>
   );
 }
