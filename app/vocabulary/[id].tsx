@@ -6,11 +6,10 @@ import { Button, H3, View, XStack } from "tamagui";
 import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
 import StudyCard from "../../components/study/StudyCard";
-import { useVocabulary } from "../../contexts/vocabularyContext";
+import vocabulary from "../../data/vocabulary.json";
 
 export default function Details() {
   const [showAnswer, setShowAnswer] = useState(false);
-  const { vocabulary } = useVocabulary();
   const router = useRouter();
 
   const { id } = useGlobalSearchParams();

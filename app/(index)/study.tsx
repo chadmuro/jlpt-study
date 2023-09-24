@@ -8,7 +8,7 @@ import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
 import StudyComponent from "../../components/study/StudyComponent";
 import { useSession } from "../../contexts/sessionContext";
-import { useVocabulary } from "../../contexts/vocabularyContext";
+import vocabulary from "../../data/vocabulary.json";
 import { useReview } from "../../hooks/useReview";
 import { useStudy } from "../../hooks/useStudy";
 import { supermemo, SuperMemoGrade } from "../../utils/supermemo";
@@ -18,7 +18,7 @@ export default function Study() {
   const [showAnswer, setShowAnswer] = useState(false);
   const { studyData, isLoading, deleteStudy } = useStudy();
   const { insert } = useReview();
-  const { vocabulary } = useVocabulary();
+
   const { session } = useSession();
 
   useFocusEffect(() => {

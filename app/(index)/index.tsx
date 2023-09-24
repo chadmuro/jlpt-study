@@ -18,14 +18,13 @@ import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
 import StudyCard from "../../components/study/StudyCard";
 import { useSession } from "../../contexts/sessionContext";
-import { useVocabulary } from "../../contexts/vocabularyContext";
+import vocabulary from "../../data/vocabulary.json";
 import { useReview } from "../../hooks/useReview";
 import { useStudy } from "../../hooks/useStudy";
 
 export default function Home() {
   const [open, setOpen] = useState(false);
   const [showAnswer, setShowAnswer] = useState(false);
-  const { vocabulary } = useVocabulary();
   const { session } = useSession();
   const navigation = useNavigation();
   // const { todaysStudyCards } = useStudy();

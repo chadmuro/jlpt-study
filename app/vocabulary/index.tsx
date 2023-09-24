@@ -5,11 +5,10 @@ import { H2, Input, ListItem, Separator } from "tamagui";
 
 import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
-import { useVocabulary } from "../../contexts/vocabularyContext";
+import vocabulary from "../../data/vocabulary.json";
 import { formatJapanese } from "../../utils/formatJapanese";
 
 export default function Vocabulary() {
-  const { vocabulary } = useVocabulary();
   const [searchVocabulary, setSearchVocabulary] = useState(vocabulary);
   const [search, setSearch] = useState("");
 
