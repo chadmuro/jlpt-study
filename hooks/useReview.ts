@@ -1,4 +1,5 @@
 import {
+  useInsertMutation,
   useQuery,
   useUpdateMutation
 } from "@supabase-cache-helpers/postgrest-swr";
@@ -33,5 +34,12 @@ export function useReview() {
     }
   );
 
-  return { data, isLoading, update };
+  const { trigger: insert } = useInsertMutation(
+    supabase.from("review"),
+    ["vocabulary_id"],
+    "vocabulary_id, due_date, updated_at",
+    {}
+  );
+
+  return { data, isLoading, update, insert };
 }

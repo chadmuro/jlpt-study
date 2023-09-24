@@ -11,7 +11,6 @@ import { SplashScreen, Tabs } from "expo-router";
 import { TamaguiProvider, Text, Theme } from "tamagui";
 
 import { SessionProvider } from "../contexts/sessionContext";
-import { StudyProvider } from "../contexts/studyContext";
 import { VocabularyProvider } from "../contexts/vocabularyContext";
 import config from "../tamagui.config";
 
@@ -42,42 +41,40 @@ export default function Layout() {
           >
             <SessionProvider>
               <VocabularyProvider>
-                <StudyProvider>
-                  <Tabs
-                    screenOptions={{
-                      headerShown: false,
-                      tabBarActiveTintColor: "red"
+                <Tabs
+                  screenOptions={{
+                    headerShown: false,
+                    tabBarActiveTintColor: "red"
+                  }}
+                >
+                  <Tabs.Screen
+                    name="(index)"
+                    options={{
+                      title: "Study",
+                      tabBarIcon: ({ focused }) => (
+                        <Edit3 color={focused ? "red" : "white"} />
+                      )
                     }}
-                  >
-                    <Tabs.Screen
-                      name="(index)"
-                      options={{
-                        title: "Study",
-                        tabBarIcon: ({ focused }) => (
-                          <Edit3 color={focused ? "red" : "white"} />
-                        )
-                      }}
-                    />
-                    <Tabs.Screen
-                      name="vocabulary"
-                      options={{
-                        title: "Vocabulary",
-                        tabBarIcon: ({ focused }) => (
-                          <List color={focused ? "red" : "white"} />
-                        )
-                      }}
-                    />
-                    <Tabs.Screen
-                      name="account"
-                      options={{
-                        title: "Account",
-                        tabBarIcon: ({ focused }) => (
-                          <User color={focused ? "red" : "white"} />
-                        )
-                      }}
-                    />
-                  </Tabs>
-                </StudyProvider>
+                  />
+                  <Tabs.Screen
+                    name="vocabulary"
+                    options={{
+                      title: "Vocabulary",
+                      tabBarIcon: ({ focused }) => (
+                        <List color={focused ? "red" : "white"} />
+                      )
+                    }}
+                  />
+                  <Tabs.Screen
+                    name="account"
+                    options={{
+                      title: "Account",
+                      tabBarIcon: ({ focused }) => (
+                        <User color={focused ? "red" : "white"} />
+                      )
+                    }}
+                  />
+                </Tabs>
               </VocabularyProvider>
             </SessionProvider>
           </ThemeProvider>

@@ -18,9 +18,9 @@ import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
 import StudyCard from "../../components/study/StudyCard";
 import { useSession } from "../../contexts/sessionContext";
-import { useStudy } from "../../contexts/studyContext";
 import { useVocabulary } from "../../contexts/vocabularyContext";
 import { useReview } from "../../hooks/useReview";
+import { useStudy } from "../../hooks/useStudy";
 
 export default function Home() {
   const [open, setOpen] = useState(false);
@@ -28,8 +28,11 @@ export default function Home() {
   const { vocabulary } = useVocabulary();
   const { session } = useSession();
   const navigation = useNavigation();
-  const { todaysStudyCards } = useStudy();
+  // const { todaysStudyCards } = useStudy();
   const { data } = useReview();
+  const { studyData, isLoading } = useStudy();
+
+  // if (isLoading || !studyData) return null;
 
   function handlePress(route: string) {
     if (!session) {
@@ -52,7 +55,7 @@ export default function Home() {
           </Link>
         </XStack>
         <YStack gap="$2">
-          <Text>{todaysStudyCards.length ?? 0} new cards</Text>
+          <Text>{studyData.length ?? 0} new cards</Text>
           <Button onPress={() => handlePress("study")}>Start study</Button>
         </YStack>
         <YStack gap="$2">

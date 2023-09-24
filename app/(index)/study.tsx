@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useUpsertMutation } from "@supabase-cache-helpers/postgrest-swr";
 import { ArrowLeft } from "@tamagui/lucide-icons";
 import dayjs from "dayjs";
 import { Link, useFocusEffect, useRouter } from "expo-router";
@@ -9,15 +8,16 @@ import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
 import StudyComponent from "../../components/study/StudyComponent";
 import { useSession } from "../../contexts/sessionContext";
-import { useStudy } from "../../contexts/studyContext";
 import { useVocabulary } from "../../contexts/vocabularyContext";
-import { supabase } from "../../utils/supabase";
+import { useReview } from "../../hooks/useReview";
+import { useStudy } from "../../hooks/useStudy";
 import { supermemo, SuperMemoGrade } from "../../utils/supermemo";
 
 export default function Study() {
   const router = useRouter();
   const [showAnswer, setShowAnswer] = useState(false);
-  const { todaysStudyCards, updateTodaysStudy } = useStudy();
+  const { studyData, isLoading, deleteStudy } = useStudy();
+  const { insert } = useReview();
   const { vocabulary } = useVocabulary();
   const { session } = useSession();
 
@@ -25,18 +25,7 @@ export default function Study() {
     if (!session) router.push("/");
   });
 
-  const studyCard = vocabulary.find(
-    (vocab) => vocab.id === todaysStudyCards[0]
-  );
-
-  const { trigger: upsert } = useUpsertMutation(
-    supabase.from("review"),
-    ["vocabulary_id"],
-    "vocabulary_id, due_date, updated_at",
-    {
-      onSuccess: () => console.log("Success!")
-    }
-  );
+  const studyCard = vocabulary.find((vocab) => vocab.id === studyData[0]);
 
   async function updateStudy(grade: SuperMemoGrade) {
     const { interval, repetition, efactor } = supermemo(
@@ -50,7 +39,7 @@ export default function Study() {
 
     const dueDate = dayjs(Date.now()).add(interval, "day").format("YYYY-MM-DD");
 
-    const res = await upsert([
+    await insert([
       {
         user_id: session?.user.id,
         vocabulary_id: studyCard.id,
@@ -61,7 +50,11 @@ export default function Study() {
       }
     ]);
 
-    await updateTodaysStudy(studyCard.id);
+    await deleteStudy({
+      user_id: session?.user.id,
+      vocabulary_id: studyCard.id
+    });
+
     setShowAnswer(false);
   }
 
@@ -78,7 +71,7 @@ export default function Study() {
           />
           <H3>Study</H3>
         </XStack>
-        <Text>{todaysStudyCards.length} cards remaining</Text>
+        <Text>{studyData.length} cards remaining</Text>
         {studyCard ? (
           <StudyComponent
             cardData={studyCard}
