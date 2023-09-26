@@ -8,7 +8,7 @@ import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
 import StudyComponent from "../../components/study/StudyComponent";
 import { useSession } from "../../contexts/sessionContext";
-import vocabulary from "../../data/vocabulary.json";
+import { vocabulary } from "../../data/vocabulary";
 import { useReview } from "../../hooks/useReview";
 import { supermemo, SuperMemoGrade } from "../../utils/supermemo";
 

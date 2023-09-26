@@ -18,7 +18,7 @@ import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
 import StudyCard from "../../components/study/StudyCard";
 import { useSession } from "../../contexts/sessionContext";
-import vocabulary from "../../data/vocabulary.json";
+import { vocabulary } from "../../data/vocabulary";
 import { useReview } from "../../hooks/useReview";
 import { useStudy } from "../../hooks/useStudy";
 

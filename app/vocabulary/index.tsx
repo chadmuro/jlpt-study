@@ -5,7 +5,7 @@ import { H2, Input, ListItem, Separator } from "tamagui";
 
 import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
-import vocabulary from "../../data/vocabulary.json";
+import { vocabulary } from "../../data/vocabulary";
 import { formatJapanese } from "../../utils/formatJapanese";
 
 export default function Vocabulary() {
