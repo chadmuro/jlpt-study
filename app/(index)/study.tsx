@@ -17,7 +17,7 @@ export default function Study() {
   const router = useRouter();
   const [showAnswer, setShowAnswer] = useState(false);
   const { studyData, isLoading, deleteStudy } = useStudy();
-  const { insert } = useReview();
+  const { insert, isMutatingInsert } = useReview();
 
   const { session } = useSession();
 
@@ -78,6 +78,7 @@ export default function Study() {
             showAnswer={showAnswer}
             setShowAnswer={setShowAnswer}
             updateStudy={updateStudy}
+            isMutating={isMutatingInsert}
           />
         ) : (
           <YStack>

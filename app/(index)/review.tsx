@@ -16,7 +16,7 @@ export default function Review() {
   const router = useRouter();
   const [showAnswer, setShowAnswer] = useState(false);
   const { session } = useSession();
-  const { data, isLoading, update } = useReview();
+  const { data, isLoading, update, isMutatingUpdate } = useReview();
 
   useFocusEffect(() => {
     if (!session) router.push("/");
@@ -75,6 +75,7 @@ export default function Review() {
             showAnswer={showAnswer}
             setShowAnswer={setShowAnswer}
             updateStudy={updateReview}
+            isMutating={isMutatingUpdate}
           />
         ) : (
           <YStack>

@@ -24,9 +24,11 @@ export function useStudy() {
       .select("study_updated_at")
       .eq("id", session?.user.id);
 
-    if (profileData[0].study_updated_at == today) {
+    if (profileData[0].study_updated_at === today) {
       return;
     }
+
+    await supabase.from("study").delete().eq("user_id", session?.user.id);
 
     await supabase
       .from("profiles")
@@ -82,7 +84,7 @@ export function useStudy() {
     }
   );
 
-  if (!isLoading && studyData && !studyData[0]) {
+  if (!isLoading && studyData.length !== 20) {
     if (!isAddingStudy) {
       console.log("insert to study");
       createNewStudy();

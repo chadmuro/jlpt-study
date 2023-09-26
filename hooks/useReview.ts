@@ -25,7 +25,7 @@ export function useReview() {
     }
   );
 
-  const { trigger: update } = useUpdateMutation(
+  const { trigger: update, isMutating: isMutatingUpdate } = useUpdateMutation(
     supabase.from("review"),
     ["vocabulary_id"],
     "vocabulary_id, due_date, updated_at",
@@ -34,12 +34,19 @@ export function useReview() {
     }
   );
 
-  const { trigger: insert } = useInsertMutation(
+  const { trigger: insert, isMutating: isMutatingInsert } = useInsertMutation(
     supabase.from("review"),
     ["vocabulary_id"],
     "vocabulary_id, due_date, updated_at",
     {}
   );
 
-  return { data, isLoading, update, insert };
+  return {
+    data,
+    isLoading,
+    update,
+    insert,
+    isMutatingUpdate,
+    isMutatingInsert
+  };
 }
