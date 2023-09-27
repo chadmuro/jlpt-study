@@ -84,7 +84,7 @@ export function useStudy() {
     }
   );
 
-  if (!isLoading && studyData.length !== 20) {
+  if (session && !isLoading && studyData && studyData.length !== 20) {
     if (!isAddingStudy) {
       console.log("insert to study");
       createNewStudy();
