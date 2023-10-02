@@ -10,8 +10,21 @@
     "icon": "./assets/icon.png",
     "name": "jlpt-study",
     "slug": "jlpt-study",
+    "version": "1.0.0",
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "f58f1b3c-295d-4015-9685-0aee6d1b850e"
+      }
+    },
+    "ios": {
+      "bundleIdentifier": "com.chadmuro.jlptstudy",
+      "buildNumber": "3"
+    }
   }
 }
