@@ -11,9 +11,9 @@ import { SplashScreen, Tabs } from "expo-router";
 import { TamaguiProvider, Text, Theme } from "tamagui";
 
 import { DatabaseProvider } from "../contexts/databaseContext";
+import { StudyProvider } from "../contexts/studyContext";
 // import { SessionProvider } from "../contexts/sessionContext";
 import config from "../tamagui.config";
-// import Post from './model/Post' // ⬅️ You'll import your Models here
 
 SplashScreen.preventAutoHideAsync();
 
@@ -42,41 +42,43 @@ export default function Layout() {
           >
             {/* <SessionProvider> */}
             <DatabaseProvider>
-              <Tabs
-                screenOptions={{
-                  headerShown: false,
-                  tabBarActiveTintColor: "red"
-                }}
-              >
-                <Tabs.Screen
-                  name="(index)"
-                  options={{
-                    title: "Study",
-                    tabBarIcon: ({ focused }) => (
-                      <Edit3 color={focused ? "red" : "white"} />
-                    )
+              <StudyProvider>
+                <Tabs
+                  screenOptions={{
+                    headerShown: false,
+                    tabBarActiveTintColor: "red"
                   }}
-                />
-                <Tabs.Screen
-                  name="vocabulary"
-                  options={{
-                    title: "Vocabulary",
-                    tabBarIcon: ({ focused }) => (
-                      <List color={focused ? "red" : "white"} />
-                    )
-                  }}
-                />
-                <Tabs.Screen
-                  name="account"
-                  options={{
-                    href: null,
-                    title: "Account",
-                    tabBarIcon: ({ focused }) => (
-                      <User color={focused ? "red" : "white"} />
-                    )
-                  }}
-                />
-              </Tabs>
+                >
+                  <Tabs.Screen
+                    name="(index)"
+                    options={{
+                      title: "Study",
+                      tabBarIcon: ({ focused }) => (
+                        <Edit3 color={focused ? "red" : "white"} />
+                      )
+                    }}
+                  />
+                  <Tabs.Screen
+                    name="vocabulary"
+                    options={{
+                      title: "Vocabulary",
+                      tabBarIcon: ({ focused }) => (
+                        <List color={focused ? "red" : "white"} />
+                      )
+                    }}
+                  />
+                  <Tabs.Screen
+                    name="account"
+                    options={{
+                      href: null,
+                      title: "Account",
+                      tabBarIcon: ({ focused }) => (
+                        <User color={focused ? "red" : "white"} />
+                      )
+                    }}
+                  />
+                </Tabs>
+              </StudyProvider>
             </DatabaseProvider>
             {/* </SessionProvider> */}
           </ThemeProvider>

@@ -17,39 +17,22 @@ import {
 import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
 import StudyCard from "../../components/study/StudyCard";
-import { useDatabase } from "../../contexts/databaseContext";
+import StudyTitle from "../../components/study/StudyTitle";
+import { useStudy } from "../../contexts/studyContext";
 import { vocabulary } from "../../data/vocabulary";
-import { useStudy } from "../../hooks/useStudy2";
 import Review from "../../model/Review";
 
 export default function Home() {
   const [open, setOpen] = useState(false);
   const [showAnswer, setShowAnswer] = useState(false);
   const navigation = useNavigation();
-  const { getTodaysStudy, studyIds } = useStudy();
+  const { study, reviewCards } = useStudy();
 
-  useEffect(() => {
-    getTodaysStudy();
-  }, []);
+  // add loading state to wait for study and review to load
+  if (!study) return;
 
-  console.log(studyIds);
-
-  const { database } = useDatabase();
-
-  async function handlePress(route: string) {
-    await database.write(async () => {
-      const newReview = await database
-        .get<Review>("reviews")
-        .create((review) => {
-          review.vocabularyId = 1;
-          review.dueDate = "2023-10-03";
-          review.interval = 1;
-          review.repetition = 1;
-          review.efactor = 1;
-        });
-      console.log(newReview);
-    });
-    // }
+  function handlePress(route: string) {
+    router.push(`/${route}`);
   }
 
   return (
@@ -65,11 +48,14 @@ export default function Home() {
           </Link>
         </XStack>
         <YStack gap="$2">
-          <Text>{[].length ?? 0} new cards</Text>
+          <StudyTitle
+            study={study}
+            text="new cards"
+          />
           <Button onPress={() => handlePress("study")}>Start study</Button>
         </YStack>
         <YStack gap="$2">
-          <Text>{[].length ?? 0} review cards</Text>
+          <Text>{reviewCards.length ?? 0} review cards</Text>
           <Button onPress={() => handlePress("review")}>Start review</Button>
         </YStack>
         <Separator marginVertical={15} />

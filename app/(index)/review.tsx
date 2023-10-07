@@ -7,24 +7,18 @@ import { Button, H3, H4, Text, XStack, YStack } from "tamagui";
 import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
 import StudyComponent from "../../components/study/StudyComponent";
-// import { useSession } from "../../contexts/sessionContext";
+import { useStudy } from "../../contexts/studyContext";
 import { vocabulary } from "../../data/vocabulary";
-// import { useReview } from "../../hooks/useReview";
 import { supermemo, SuperMemoGrade } from "../../utils/supermemo";
 
 export default function Review() {
   const router = useRouter();
   const [showAnswer, setShowAnswer] = useState(false);
-  // const { session } = useSession();
-  // const { data, isLoading, update, isMutatingUpdate } = useReview();
+  const { reviewCards } = useStudy();
 
-  // useFocusEffect(() => {
-  //   if (!session) router.push("/");
-  // });
-
-  // if (isLoading) return null;
-
-  const studyCard = vocabulary.find((vocab) => vocab.id === 1);
+  const studyCard = vocabulary.find(
+    (vocab) => vocab.id === reviewCards[0]?.vocabularyId
+  );
   async function updateReview(grade: SuperMemoGrade) {
     const { interval, repetition, efactor } = supermemo(
       {
