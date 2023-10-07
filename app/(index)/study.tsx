@@ -7,25 +7,25 @@ import { Button, H3, H4, Text, XStack, YStack } from "tamagui";
 import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
 import StudyComponent from "../../components/study/StudyComponent";
-import { useSession } from "../../contexts/sessionContext";
+// import { useSession } from "../../contexts/sessionContext";
 import { vocabulary } from "../../data/vocabulary";
-import { useReview } from "../../hooks/useReview";
-import { useStudy } from "../../hooks/useStudy";
+// import { useReview } from "../../hooks/useReview";
+// import { useStudy } from "../../hooks/useStudy";
 import { supermemo, SuperMemoGrade } from "../../utils/supermemo";
 
 export default function Study() {
   const router = useRouter();
   const [showAnswer, setShowAnswer] = useState(false);
-  const { studyData, isLoading, deleteStudy } = useStudy();
-  const { insert, isMutatingInsert } = useReview();
+  // const { studyData, isLoading, deleteStudy } = useStudy();
+  // const { insert, isMutatingInsert } = useReview();
 
-  const { session } = useSession();
+  // const { session } = useSession();
 
-  useFocusEffect(() => {
-    if (!session) router.push("/");
-  });
+  // useFocusEffect(() => {
+  //   if (!session) router.push("/");
+  // });
 
-  const studyCard = vocabulary.find((vocab) => vocab.id === studyData[0]);
+  const studyCard = vocabulary.find((vocab) => vocab.id === null);
 
   async function updateStudy(grade: SuperMemoGrade) {
     const { interval, repetition, efactor } = supermemo(
@@ -39,21 +39,21 @@ export default function Study() {
 
     const dueDate = dayjs(Date.now()).add(interval, "day").format("YYYY-MM-DD");
 
-    await insert([
-      {
-        user_id: session?.user.id,
-        vocabulary_id: studyCard.id,
-        due_date: dueDate,
-        interval,
-        repetition,
-        efactor
-      }
-    ]);
+    // await insert([
+    //   {
+    //     user_id: session?.user.id,
+    //     vocabulary_id: studyCard.id,
+    //     due_date: dueDate,
+    //     interval,
+    //     repetition,
+    //     efactor
+    //   }
+    // ]);
 
-    await deleteStudy({
-      user_id: session?.user.id,
-      vocabulary_id: studyCard.id
-    });
+    // await deleteStudy({
+    //   user_id: session?.user.id,
+    //   vocabulary_id: studyCard.id
+    // });
 
     setShowAnswer(false);
   }
@@ -71,14 +71,14 @@ export default function Study() {
           />
           <H3>Study</H3>
         </XStack>
-        <Text>{studyData.length} cards remaining</Text>
+        <Text>{[].length} cards remaining</Text>
         {studyCard ? (
           <StudyComponent
             cardData={studyCard}
             showAnswer={showAnswer}
             setShowAnswer={setShowAnswer}
             updateStudy={updateStudy}
-            isMutating={isMutatingInsert}
+            isMutating={false}
           />
         ) : (
           <YStack>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Info, X } from "@tamagui/lucide-icons";
 import { Link, router, useNavigation } from "expo-router";
 import {
@@ -17,28 +17,39 @@ import {
 import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
 import StudyCard from "../../components/study/StudyCard";
-import { useSession } from "../../contexts/sessionContext";
+import { useDatabase } from "../../contexts/databaseContext";
 import { vocabulary } from "../../data/vocabulary";
-import { useReview } from "../../hooks/useReview";
-import { useStudy } from "../../hooks/useStudy";
+import { useStudy } from "../../hooks/useStudy2";
+import Review from "../../model/Review";
 
 export default function Home() {
   const [open, setOpen] = useState(false);
   const [showAnswer, setShowAnswer] = useState(false);
-  const { session } = useSession();
   const navigation = useNavigation();
-  // const { todaysStudyCards } = useStudy();
-  const { data } = useReview();
-  const { studyData, isLoading } = useStudy();
+  const { getTodaysStudy, studyIds } = useStudy();
 
-  // if (isLoading || !studyData) return null;
+  useEffect(() => {
+    getTodaysStudy();
+  }, []);
 
-  function handlePress(route: string) {
-    if (!session) {
-      setOpen(true);
-    } else {
-      router.push(`/${route}`);
-    }
+  console.log(studyIds);
+
+  const { database } = useDatabase();
+
+  async function handlePress(route: string) {
+    await database.write(async () => {
+      const newReview = await database
+        .get<Review>("reviews")
+        .create((review) => {
+          review.vocabularyId = 1;
+          review.dueDate = "2023-10-03";
+          review.interval = 1;
+          review.repetition = 1;
+          review.efactor = 1;
+        });
+      console.log(newReview);
+    });
+    // }
   }
 
   return (
@@ -54,11 +65,11 @@ export default function Home() {
           </Link>
         </XStack>
         <YStack gap="$2">
-          <Text>{studyData.length ?? 0} new cards</Text>
+          <Text>{[].length ?? 0} new cards</Text>
           <Button onPress={() => handlePress("study")}>Start study</Button>
         </YStack>
         <YStack gap="$2">
-          <Text>{data?.length ?? 0} review cards</Text>
+          <Text>{[].length ?? 0} review cards</Text>
           <Button onPress={() => handlePress("review")}>Start review</Button>
         </YStack>
         <Separator marginVertical={15} />

@@ -7,32 +7,30 @@ import { Button, H3, H4, Text, XStack, YStack } from "tamagui";
 import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
 import StudyComponent from "../../components/study/StudyComponent";
-import { useSession } from "../../contexts/sessionContext";
+// import { useSession } from "../../contexts/sessionContext";
 import { vocabulary } from "../../data/vocabulary";
-import { useReview } from "../../hooks/useReview";
+// import { useReview } from "../../hooks/useReview";
 import { supermemo, SuperMemoGrade } from "../../utils/supermemo";
 
 export default function Review() {
   const router = useRouter();
   const [showAnswer, setShowAnswer] = useState(false);
-  const { session } = useSession();
-  const { data, isLoading, update, isMutatingUpdate } = useReview();
+  // const { session } = useSession();
+  // const { data, isLoading, update, isMutatingUpdate } = useReview();
 
-  useFocusEffect(() => {
-    if (!session) router.push("/");
-  });
+  // useFocusEffect(() => {
+  //   if (!session) router.push("/");
+  // });
 
-  if (isLoading) return null;
+  // if (isLoading) return null;
 
-  const studyCard = vocabulary.find(
-    (vocab) => vocab.id === data[0]?.vocabulary_id
-  );
+  const studyCard = vocabulary.find((vocab) => vocab.id === 1);
   async function updateReview(grade: SuperMemoGrade) {
     const { interval, repetition, efactor } = supermemo(
       {
-        interval: data[0].interval,
-        repetition: data[0].repetition,
-        efactor: data[0].efactor
+        interval: 1,
+        repetition: 1,
+        efactor: 1
       },
       grade
     );
@@ -40,16 +38,16 @@ export default function Review() {
     const dueDate = dayjs(Date.now()).add(interval, "day").format("YYYY-MM-DD");
 
     if (studyCard) {
-      const res = await update({
-        user_id: session?.user.id,
-        vocabulary_id: studyCard.id,
-        due_date: dueDate,
-        interval,
-        repetition,
-        efactor,
-        updated_at: dayjs(Date.now()).format("YYYY-MM-DD")
-      });
-      console.log(res);
+      // const res = await update({
+      //   user_id: session?.user.id,
+      //   vocabulary_id: studyCard.id,
+      //   due_date: dueDate,
+      //   interval,
+      //   repetition,
+      //   efactor,
+      //   updated_at: dayjs(Date.now()).format("YYYY-MM-DD")
+      // });
+      // console.log(res);
 
       setShowAnswer(false);
     }
@@ -68,14 +66,14 @@ export default function Review() {
           />
           <H3>Review</H3>
         </XStack>
-        <Text>{data.length} cards remaining</Text>
+        <Text>{[].length} cards remaining</Text>
         {studyCard ? (
           <StudyComponent
             cardData={studyCard}
             showAnswer={showAnswer}
             setShowAnswer={setShowAnswer}
             updateStudy={updateReview}
-            isMutating={isMutatingUpdate}
+            isMutating={false}
           />
         ) : (
           <YStack>

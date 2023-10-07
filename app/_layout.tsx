@@ -10,8 +10,10 @@ import { useFonts } from "expo-font";
 import { SplashScreen, Tabs } from "expo-router";
 import { TamaguiProvider, Text, Theme } from "tamagui";
 
-import { SessionProvider } from "../contexts/sessionContext";
+import { DatabaseProvider } from "../contexts/databaseContext";
+// import { SessionProvider } from "../contexts/sessionContext";
 import config from "../tamagui.config";
+// import Post from './model/Post' // ⬅️ You'll import your Models here
 
 SplashScreen.preventAutoHideAsync();
 
@@ -38,7 +40,8 @@ export default function Layout() {
           <ThemeProvider
             value={colorScheme === "light" ? DefaultTheme : DarkTheme}
           >
-            <SessionProvider>
+            {/* <SessionProvider> */}
+            <DatabaseProvider>
               <Tabs
                 screenOptions={{
                   headerShown: false,
@@ -66,6 +69,7 @@ export default function Layout() {
                 <Tabs.Screen
                   name="account"
                   options={{
+                    href: null,
                     title: "Account",
                     tabBarIcon: ({ focused }) => (
                       <User color={focused ? "red" : "white"} />
@@ -73,7 +77,8 @@ export default function Layout() {
                   }}
                 />
               </Tabs>
-            </SessionProvider>
+            </DatabaseProvider>
+            {/* </SessionProvider> */}
           </ThemeProvider>
         </Theme>
       </Suspense>
