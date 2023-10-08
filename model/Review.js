@@ -1,5 +1,5 @@
 import { Model } from "@nozbe/watermelondb";
-import { date, field } from "@nozbe/watermelondb/decorators";
+import { date, field, writer } from "@nozbe/watermelondb/decorators";
 
 export default class Review extends Model {
   static table = "reviews";
@@ -10,4 +10,13 @@ export default class Review extends Model {
   @field("interval") interval;
   @field("repetition") repetition;
   @field("efactor") efactor;
+
+  @writer async updateReview(dueDate, interval, repetition, efactor) {
+    await this.update((review) => {
+      review.dueDate = dueDate;
+      review.interval = interval;
+      review.repetition = repetition;
+      review.efactor = efactor;
+    });
+  }
 }

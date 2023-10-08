@@ -1,76 +1,62 @@
 import { useState } from "react";
-import { withObservables } from "@nozbe/watermelondb/react";
 import dayjs from "dayjs";
 import { Link } from "expo-router";
 import { Button, H4, Text, YStack } from "tamagui";
 
 import { useStudy } from "../../contexts/studyContext";
 import { vocabulary } from "../../data/vocabulary";
-import Study from "../../model/Study";
+import Review from "../../model/Review";
 import { supermemo, SuperMemoGrade } from "../../utils/supermemo";
 
 import StudyComponent from "./StudyComponent";
 
-const enhance = withObservables(["study"], ({ study }) => ({
-  study
-}));
-
 interface Props {
-  study: Study;
-  isMutating: boolean;
+  reviews: Review[];
 }
 
-function StudyComponentContainer({ study, isMutating }: Props) {
-  const { updateStudyCard } = useStudy();
+export default function ReviewComponentContainer({ reviews }: Props) {
   const [showAnswer, setShowAnswer] = useState(false);
+  const { updateReviewCard } = useStudy();
 
-  const ids: number[] = JSON.parse(study.vocabularyIds);
-  const studyCard = vocabulary.find((vocab) => vocab.id === ids[0]);
-
-  if (!studyCard) {
+  if (reviews.length === 0) {
     return (
       <YStack>
         <H4>Great job!</H4>
-        <Text>Study completed for the day</Text>
+        <Text>Review completed for the day</Text>
         <Link
-          href="/review"
+          href="/"
           asChild
         >
-          <Button>Go to review</Button>
+          <Button>Go to home</Button>
         </Link>
       </YStack>
     );
   }
 
+  const reviewCard = vocabulary.find(
+    (vocab) => vocab.id === reviews[0].vocabularyId
+  );
+
   async function updateStudy(grade: SuperMemoGrade) {
     const { interval, repetition, efactor } = supermemo(
       {
-        interval: 0,
-        repetition: 0,
-        efactor: 2.5
+        interval: reviews[0].interval,
+        repetition: reviews[0].repetition,
+        efactor: reviews[0].efactor
       },
       grade
     );
 
     const dueDate = dayjs(Date.now()).add(interval, "day").format("YYYY-MM-DD");
 
-    const updatedStudyIds = ids.filter((id) => id !== studyCard.id);
-
-    await updateStudyCard(
-      updatedStudyIds,
-      studyCard.id,
-      dueDate,
-      interval,
-      repetition,
-      efactor
-    );
+    await updateReviewCard(reviews[0], dueDate, interval, repetition, efactor);
 
     setShowAnswer(false);
   }
 
   return (
     <StudyComponent
-      cardData={studyCard}
+      cardData={reviewCard}
       showAnswer={showAnswer}
       setShowAnswer={setShowAnswer}
       updateStudy={updateStudy}
@@ -78,6 +64,3 @@ function StudyComponentContainer({ study, isMutating }: Props) {
     />
   );
 }
-
-const EnhancedStudyComponent = enhance(StudyComponentContainer);
-export default EnhancedStudyComponent;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Info, X } from "@tamagui/lucide-icons";
 import { Link, router, useNavigation } from "expo-router";
 import {
@@ -20,7 +20,6 @@ import StudyCard from "../../components/study/StudyCard";
 import StudyTitle from "../../components/study/StudyTitle";
 import { useStudy } from "../../contexts/studyContext";
 import { vocabulary } from "../../data/vocabulary";
-import Review from "../../model/Review";
 
 export default function Home() {
   const [open, setOpen] = useState(false);

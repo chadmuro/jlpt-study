@@ -17,8 +17,22 @@ import { useDatabase } from "./databaseContext";
 type StudyContextType = {
   study: Study;
   studyIds: number[];
-  reviewCards: any[];
-  updateStudyCard: (newStudyIds: number[]) => Promise<void>;
+  reviewCards: Review[];
+  updateStudyCard: (
+    newStudyIds: number[],
+    vocabularyId: number,
+    dueDate: string,
+    interval: number,
+    repetition: number,
+    efactor: number
+  ) => Promise<void>;
+  updateReviewCard: (
+    review: Review,
+    dueDate: string,
+    interval: number,
+    repetition: number,
+    efactor: number
+  ) => Promise<void>;
 };
 
 export const StudyContext = createContext<StudyContextType | undefined>(
@@ -28,7 +42,7 @@ export const StudyContext = createContext<StudyContextType | undefined>(
 const StudyProvider = ({ children }: PropsWithChildren<unknown>) => {
   const { database } = useDatabase();
   const [study, setStudy] = useState<Study | null>(null);
-  const [reviewCards, setReviewCards] = useState<any[]>([]);
+  const [reviewCards, setReviewCards] = useState<Review[]>([]);
   const today = dayjs().format("YYYY-MM-DD");
 
   useEffect(() => {
@@ -64,15 +78,40 @@ const StudyProvider = ({ children }: PropsWithChildren<unknown>) => {
   async function getTodaysReview() {
     const todaysReview = await database
       .get<Review>("reviews")
-      .query(Q.where("due_date", Q.lt(today)))
+      .query(Q.where("due_date", Q.lte(today)), Q.sortBy("updated_at", Q.asc))
       .fetch();
 
     setReviewCards(todaysReview);
   }
 
-  async function updateStudyCard(newStudyIds: number[]) {
-    console.log(newStudyIds);
-    study.updateStudy(newStudyIds);
+  async function updateStudyCard(
+    newStudyIds: number[],
+    vocabularyId: number,
+    dueDate: string,
+    interval: number,
+    repetition: number,
+    efactor: number
+  ) {
+    await study.updateStudy(
+      newStudyIds,
+      vocabularyId,
+      dueDate,
+      interval,
+      repetition,
+      efactor
+    );
+    await getTodaysReview();
+  }
+
+  async function updateReviewCard(
+    review: Review,
+    dueDate: string,
+    interval: number,
+    repetition: number,
+    efactor: number
+  ) {
+    await review.updateReview(dueDate, interval, repetition, efactor);
+    await getTodaysReview();
   }
 
   const studyIds = study ? JSON.parse(study?.vocabularyIds) : [];
@@ -81,7 +120,8 @@ const StudyProvider = ({ children }: PropsWithChildren<unknown>) => {
     study,
     studyIds,
     reviewCards,
-    updateStudyCard
+    updateStudyCard,
+    updateReviewCard
   };
 
   return (
