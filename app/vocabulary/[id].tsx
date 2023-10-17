@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ArrowLeft } from "@tamagui/lucide-icons";
 import { Link, useGlobalSearchParams, useRouter } from "expo-router";
 import { Button, H3, View, XStack } from "tamagui";
@@ -15,10 +15,6 @@ export default function Details() {
   const { id } = useGlobalSearchParams();
 
   const cardData = vocabulary.find((vocab) => vocab.id === Number(id));
-
-  useEffect(() => {
-    setShowAnswer(false);
-  }, [cardData]);
 
   return (
     <SafeAreaView>
@@ -46,7 +42,7 @@ export default function Details() {
               href={`/vocabulary/${Number(id) - 1}`}
               asChild
             >
-              <Button>Prev</Button>
+              <Button onPress={() => setShowAnswer(false)}>Prev</Button>
             </Link>
           ) : (
             <View />
@@ -56,7 +52,7 @@ export default function Details() {
               href={`/vocabulary/${Number(id) + 1}`}
               asChild
             >
-              <Button>Next</Button>
+              <Button onPress={() => setShowAnswer(false)}>Next</Button>
             </Link>
           ) : (
             <View />

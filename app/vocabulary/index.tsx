@@ -51,7 +51,6 @@ export default function Vocabulary() {
           )}
           keyExtractor={(item) => String(item.id)}
           ItemSeparatorComponent={() => <Separator />}
-          showsVerticalScrollIndicator={false}
         />
       </MyStack>
     </SafeAreaView>
