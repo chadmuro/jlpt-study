@@ -3,7 +3,7 @@
     "scheme": "tamagui-app",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "backgroundColor": "#ddffe2",
+      "backgroundColor": "#ED1703",
       "image": "./assets/splash.png",
       "resizeMode": "contain"
     },
@@ -26,7 +26,7 @@
     },
     "ios": {
       "bundleIdentifier": "com.chadmuro.jlptstudy",
-      "buildNumber": "4"
+      "buildNumber": "5"
     }
   }
 }
