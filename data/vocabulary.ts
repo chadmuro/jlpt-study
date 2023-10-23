@@ -663,7 +663,7 @@ export const vocabulary = [
     id: 111,
     kanji: "抱く、抱く",
     japanese: "抱[いだ]く、 抱[だ]く",
-    english: "抱[いだ]く：to have, to cherish 抱[だ]く：to hold/hug"
+    english: "to have, to cherish, to hold/hug"
   },
   {
     id: 112,
@@ -1455,7 +1455,7 @@ export const vocabulary = [
     id: 243,
     kanji: "大～、大～",
     japanese: "大[おお]～、 大[だい]～",
-    english: "大[おお]～：big/great/extreme ～ 大[だい]～：big/major ～"
+    english: "big/great/extreme ～, big/major ～"
   },
   {
     id: 244,
@@ -2294,7 +2294,7 @@ export const vocabulary = [
   {
     id: 383,
     kanji: "風邪気味",
-    japanese: "風邪[かぜ] 気[ぎ] 味[み]",
+    japanese: "かぜぎみ",
     english: "slight cold"
   },
   {
@@ -4322,7 +4322,7 @@ export const vocabulary = [
   {
     id: 721,
     kanji: "紅葉、紅葉",
-    japanese: "紅[こう] 葉[よう]、 紅葉[もみじ]",
+    japanese: "こうよう, もみじ",
     english: "autumn colour of leaves"
   },
   {
@@ -8534,7 +8534,7 @@ export const vocabulary = [
   {
     id: 1423,
     kanji: "梅雨",
-    japanese: "梅雨[つゆ]",
+    japanese: "つゆ",
     english: "rainy season"
   },
   {
@@ -9771,13 +9771,13 @@ export const vocabulary = [
   {
     id: 1629,
     kanji: "日本産",
-    japanese: "日本[にほん] 産[さん]",
+    japanese: "にほんさん",
     english: "made in Japan"
   },
   {
     id: 1630,
     kanji: "日本列島",
-    japanese: "日本[にほん] 列[れっ] 島[とう]",
+    japanese: "にほんれっとう",
     english: "Japanese archipelago"
   },
   {
@@ -10557,7 +10557,7 @@ export const vocabulary = [
   {
     id: 1760,
     kanji: "反時計回り",
-    japanese: "反[はん] 時計[とけい] 回[まわ]り",
+    japanese: "はんとけいまわり",
     english: "anti-clockwise"
   },
   {
@@ -10876,13 +10876,13 @@ export const vocabulary = [
   {
     id: 1813,
     kanji: "一人暮らし",
-    japanese: "一人[ひとり] 暮[ぐ]らし",
+    japanese: "ひとりぐらし",
     english: "living alone"
   },
   {
     id: 1814,
     kanji: "一人っ子",
-    japanese: "一人[ひとり]っ 子[こ]",
+    japanese: "ひとりっこ",
     english: "only child"
   },
   {
@@ -11075,7 +11075,7 @@ export const vocabulary = [
     id: 1846,
     kanji: "不～、不～",
     japanese: "不[ふ]～、 不[ぶ]～",
-    english: "不[ふ]～：un/dis/im- 不[ぶ]～：un/im-"
+    english: "un/dis/im-, un/im-"
   },
   {
     id: 1847,
@@ -11356,7 +11356,7 @@ export const vocabulary = [
   {
     id: 1893,
     kanji: "吹雪",
-    japanese: "吹雪[ふぶき]",
+    japanese: "ふぶき",
     english: "snowstorm"
   },
   {
@@ -13072,7 +13072,7 @@ export const vocabulary = [
   {
     id: 2179,
     kanji: "行方",
-    japanese: "行方[ゆくえ]",
+    japanese: "ゆくえ",
     english: "whereabouts"
   },
   {
