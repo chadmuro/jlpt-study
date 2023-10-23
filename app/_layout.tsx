@@ -12,7 +12,6 @@ import { TamaguiProvider, Text, Theme } from "tamagui";
 
 import { DatabaseProvider } from "../contexts/databaseContext";
 import { StudyProvider } from "../contexts/studyContext";
-// import { SessionProvider } from "../contexts/sessionContext";
 import config from "../tamagui.config";
 
 SplashScreen.preventAutoHideAsync();
@@ -40,7 +39,6 @@ export default function Layout() {
           <ThemeProvider
             value={colorScheme === "light" ? DefaultTheme : DarkTheme}
           >
-            {/* <SessionProvider> */}
             <DatabaseProvider>
               <StudyProvider>
                 <Tabs
@@ -67,20 +65,9 @@ export default function Layout() {
                       )
                     }}
                   />
-                  <Tabs.Screen
-                    name="account"
-                    options={{
-                      href: null,
-                      title: "Account",
-                      tabBarIcon: ({ focused }) => (
-                        <User color={focused ? "red" : "white"} />
-                      )
-                    }}
-                  />
                 </Tabs>
               </StudyProvider>
             </DatabaseProvider>
-            {/* </SessionProvider> */}
           </ThemeProvider>
         </Theme>
       </Suspense>

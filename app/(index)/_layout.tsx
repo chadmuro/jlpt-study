@@ -12,7 +12,9 @@ export default function Layout() {
       <Stack.Screen name="review" />
       <Stack.Screen
         name="info"
-        options={{ presentation: "modal", navigationBarColor: "white" }}
+        options={{
+          presentation: "modal"
+        }}
       />
     </Stack>
   );
