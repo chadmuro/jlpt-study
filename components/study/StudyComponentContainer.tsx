@@ -17,10 +17,10 @@ const enhance = withObservables(["study"], ({ study }) => ({
 
 interface Props {
   study: Study;
-  isMutating: boolean;
+  isUpdating: boolean;
 }
 
-function StudyComponentContainer({ study, isMutating }: Props) {
+function StudyComponentContainer({ study, isUpdating }: Props) {
   const { updateStudyCard } = useStudy();
   const [showAnswer, setShowAnswer] = useState(false);
 
@@ -74,7 +74,7 @@ function StudyComponentContainer({ study, isMutating }: Props) {
       showAnswer={showAnswer}
       setShowAnswer={setShowAnswer}
       updateStudy={updateStudy}
-      isMutating={false}
+      isUpdating={isUpdating}
     />
   );
 }

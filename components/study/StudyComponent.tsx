@@ -15,7 +15,7 @@ interface Props {
   showAnswer: boolean;
   setShowAnswer: React.Dispatch<React.SetStateAction<boolean>>;
   updateStudy: (grade: SuperMemoGrade) => Promise<void>;
-  isMutating: boolean;
+  isUpdating: boolean;
 }
 
 export default function StudyComponent({
@@ -23,7 +23,7 @@ export default function StudyComponent({
   showAnswer,
   setShowAnswer,
   updateStudy,
-  isMutating
+  isUpdating
 }: Props) {
   return (
     <View gap="$4">
@@ -34,7 +34,7 @@ export default function StudyComponent({
       />
       <StudyButtons
         updateStudy={updateStudy}
-        isMutating={isMutating}
+        isUpdating={isUpdating}
       />
     </View>
   );

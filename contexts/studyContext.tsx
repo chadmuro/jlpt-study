@@ -34,6 +34,7 @@ type StudyContextType = {
     efactor: number
   ) => Promise<void>;
   loading: boolean;
+  updating: boolean;
 };
 
 export const StudyContext = createContext<StudyContextType | undefined>(
@@ -45,6 +46,7 @@ const StudyProvider = ({ children }: PropsWithChildren<unknown>) => {
   const [study, setStudy] = useState<Study | null>(null);
   const [reviewCards, setReviewCards] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
+  const [updating, setUpdating] = useState(false);
   const today = dayjs().format("YYYY-MM-DD");
 
   useEffect(() => {
@@ -99,6 +101,7 @@ const StudyProvider = ({ children }: PropsWithChildren<unknown>) => {
     repetition: number,
     efactor: number
   ) {
+    setUpdating(true);
     await study.updateStudy(
       newStudyIds,
       vocabularyId,
@@ -108,6 +111,7 @@ const StudyProvider = ({ children }: PropsWithChildren<unknown>) => {
       efactor
     );
     await getTodaysReview();
+    setUpdating(false);
   }
 
   async function updateReviewCard(
@@ -117,8 +121,10 @@ const StudyProvider = ({ children }: PropsWithChildren<unknown>) => {
     repetition: number,
     efactor: number
   ) {
+    setUpdating(true);
     await review.updateReview(dueDate, interval, repetition, efactor);
     await getTodaysReview();
+    setUpdating(false);
   }
 
   const studyIds = study ? JSON.parse(study?.vocabularyIds) : [];
@@ -129,7 +135,8 @@ const StudyProvider = ({ children }: PropsWithChildren<unknown>) => {
     reviewCards,
     updateStudyCard,
     updateReviewCard,
-    loading
+    loading,
+    updating
   };
 
   return (

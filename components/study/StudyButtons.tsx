@@ -4,35 +4,36 @@ import { SuperMemoGrade } from "../../utils/supermemo";
 
 interface Props {
   updateStudy: (grade: SuperMemoGrade) => Promise<void>;
-  isMutating: boolean;
+  isUpdating: boolean;
 }
 
-export default function StudyButtons({ updateStudy, isMutating }: Props) {
+export default function StudyButtons({ updateStudy, isUpdating }: Props) {
+  console.log(isUpdating);
   return (
     <XStack justifyContent="space-between">
       <Button
         backgroundColor="$red10"
         onPress={() => updateStudy(0)}
-        disabled={isMutating}
+        disabled={isUpdating}
       >
         Again
       </Button>
       <Button
         onPress={() => updateStudy(3)}
-        disabled={isMutating}
+        disabled={isUpdating}
       >
         Hard
       </Button>
       <Button
         onPress={() => updateStudy(4)}
-        disabled={isMutating}
+        disabled={isUpdating}
       >
         Good
       </Button>
       <Button
         backgroundColor="$green10"
         onPress={() => updateStudy(5)}
-        disabled={isMutating}
+        disabled={isUpdating}
       >
         Easy
       </Button>

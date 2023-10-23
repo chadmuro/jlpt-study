@@ -16,7 +16,7 @@ interface Props {
 
 export default function ReviewComponentContainer({ reviews }: Props) {
   const [showAnswer, setShowAnswer] = useState(false);
-  const { updateReviewCard } = useStudy();
+  const { updateReviewCard, updating } = useStudy();
 
   if (reviews.length === 0) {
     return (
@@ -60,7 +60,7 @@ export default function ReviewComponentContainer({ reviews }: Props) {
       showAnswer={showAnswer}
       setShowAnswer={setShowAnswer}
       updateStudy={updateStudy}
-      isMutating={false}
+      isUpdating={updating}
     />
   );
 }

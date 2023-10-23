@@ -10,7 +10,7 @@ import { useStudy } from "../../contexts/studyContext";
 
 export default function Study() {
   const router = useRouter();
-  const { study } = useStudy();
+  const { study, updating } = useStudy();
 
   return (
     <SafeAreaView>
@@ -31,7 +31,7 @@ export default function Study() {
         />
         <StudyComponent
           study={study}
-          isMutating={false}
+          isUpdating={updating}
         />
       </MyStack>
     </SafeAreaView>
