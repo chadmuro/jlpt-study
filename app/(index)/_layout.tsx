@@ -1,6 +1,17 @@
-import { Stack } from "expo-router";
+import { useEffect } from "react";
+import { SplashScreen, Stack } from "expo-router";
+
+import { useStudy } from "../../contexts/studyContext";
 
 export default function Layout() {
+  const { loading } = useStudy();
+
+  useEffect(() => {
+    if (!loading) {
+      SplashScreen.hideAsync();
+    }
+  }, [loading]);
+
   return (
     <Stack
       screenOptions={{

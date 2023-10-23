@@ -1,11 +1,11 @@
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense } from "react";
 import { useColorScheme } from "react-native";
 import {
   DarkTheme,
   DefaultTheme,
   ThemeProvider
 } from "@react-navigation/native";
-import { Edit3, List, User } from "@tamagui/lucide-icons";
+import { Edit3, List } from "@tamagui/lucide-icons";
 import { useFonts } from "expo-font";
 import { SplashScreen, Tabs } from "expo-router";
 import { TamaguiProvider, Text, Theme } from "tamagui";
@@ -23,12 +23,6 @@ export default function Layout() {
     Inter: require("@tamagui/font-inter/otf/Inter-Medium.otf"),
     InterBold: require("@tamagui/font-inter/otf/Inter-Bold.otf")
   });
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
 
   if (!loaded) return null;
 

@@ -33,6 +33,7 @@ type StudyContextType = {
     repetition: number,
     efactor: number
   ) => Promise<void>;
+  loading: boolean;
 };
 
 export const StudyContext = createContext<StudyContextType | undefined>(
@@ -43,11 +44,17 @@ const StudyProvider = ({ children }: PropsWithChildren<unknown>) => {
   const { database } = useDatabase();
   const [study, setStudy] = useState<Study | null>(null);
   const [reviewCards, setReviewCards] = useState<Review[]>([]);
+  const [loading, setLoading] = useState(true);
   const today = dayjs().format("YYYY-MM-DD");
 
   useEffect(() => {
-    getTodaysStudy();
-    getTodaysReview();
+    async function getInitialLoad() {
+      setLoading(true);
+      await getTodaysStudy();
+      await getTodaysReview();
+      setLoading(false);
+    }
+    getInitialLoad();
   }, []);
 
   async function getTodaysStudy() {
@@ -121,7 +128,8 @@ const StudyProvider = ({ children }: PropsWithChildren<unknown>) => {
     studyIds,
     reviewCards,
     updateStudyCard,
-    updateReviewCard
+    updateReviewCard,
+    loading
   };
 
   return (
