@@ -1,6 +1,14 @@
-import { Card, H1, H2 } from "tamagui";
+import { useEffect, useState } from "react";
+import { StyleSheet } from "react-native";
+import Animated, {
+  interpolate,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming
+} from "react-native-reanimated";
+import { View } from "tamagui";
 
-import { formatJapanese } from "../../utils/formatJapanese";
+import { StudyCardDetails } from "./StudyCardDetails";
 
 interface Props {
   cardData: {
@@ -18,34 +26,88 @@ export default function StudyCard({
   showAnswer,
   setShowAnswer
 }: Props) {
+  const [hiddenText, setHiddenText] = useState(false);
+  const rotate = useSharedValue(0);
+  const frontAnimatedStyles = useAnimatedStyle(() => {
+    const rotateValue = interpolate(rotate.value, [0, 1], [0, 180]);
+    return {
+      transform: [
+        {
+          rotateY: withTiming(`${rotateValue}deg`, { duration: 600 })
+        }
+      ]
+    };
+  });
+
+  const backAnimatedStyles = useAnimatedStyle(() => {
+    const rotateValue = interpolate(rotate.value, [0, 1], [180, 360]);
+    return {
+      transform: [
+        {
+          rotateY: withTiming(`${rotateValue}deg`, { duration: 600 })
+        }
+      ]
+    };
+  });
+
+  useEffect(() => {
+    if (cardData) {
+      if (rotate.value === 1) {
+        setHiddenText(true);
+        rotate.value = 0;
+        setTimeout(() => {
+          setHiddenText(false);
+        }, 300);
+      }
+    }
+  }, [cardData]);
+
+  function flipShowAnswer() {
+    rotate.value = 1;
+    setShowAnswer(true);
+  }
+
+  function flipHideAnswer() {
+    rotate.value = 0;
+    setShowAnswer(false);
+  }
+
   return (
-    <Card
-      elevate
-      size="$4"
-      bordered
-      width="100%"
-      height={300}
-      animation="bouncy"
-      scale={0.9}
-      alignItems="center"
-      hoverStyle={{ scale: 0.925 }}
-      pressStyle={{ scale: 0.875 }}
-      onPressOut={() => setShowAnswer(!showAnswer)}
-    >
-      <Card.Header
-        padded
-        justifyContent="center"
-        height="100%"
-      >
-        {showAnswer ? (
-          <>
-            <H2>{formatJapanese(cardData.japanese)}</H2>
-            <H2>{cardData.english}</H2>
-          </>
-        ) : (
-          <H1>{cardData.kanji}</H1>
-        )}
-      </Card.Header>
-    </Card>
+    <View style={styles.container}>
+      <Animated.View style={[styles.frontCard, frontAnimatedStyles]}>
+        <StudyCardDetails
+          hiddenText={hiddenText}
+          flipCard={showAnswer ? flipHideAnswer : flipShowAnswer}
+          cardData={cardData}
+          isFront={true}
+        />
+      </Animated.View>
+      <Animated.View style={[styles.backCard, backAnimatedStyles]}>
+        <StudyCardDetails
+          hiddenText={hiddenText}
+          flipCard={showAnswer ? flipHideAnswer : flipShowAnswer}
+          cardData={cardData}
+          isFront={false}
+        />
+      </Animated.View>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    position: "relative"
+  },
+  frontCard: {
+    position: "absolute",
+    backfaceVisibility: "hidden",
+    width: "100%"
+  },
+  backCard: {
+    position: "absolute",
+    backfaceVisibility: "hidden",
+    width: "100%"
+  }
+});
