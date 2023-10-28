@@ -1,4 +1,4 @@
-import { Card, H1, H2 } from "tamagui";
+import { Card, H1, H2, Separator, View } from "tamagui";
 
 import { formatJapanese } from "../../utils/formatJapanese";
 
@@ -25,25 +25,33 @@ export default function StudyCard({
       bordered
       width="100%"
       height={300}
-      animation="bouncy"
-      scale={0.9}
       alignItems="center"
-      hoverStyle={{ scale: 0.925 }}
-      pressStyle={{ scale: 0.875 }}
-      onPressOut={() => setShowAnswer(!showAnswer)}
+      onPress={() => setShowAnswer(!showAnswer)}
     >
       <Card.Header
         padded
-        justifyContent="center"
+        justifyContent="flex-start"
+        alignItems="center"
         height="100%"
+        width="100%"
       >
-        {showAnswer ? (
-          <>
+        <H1>{cardData.kanji}</H1>
+        <Separator
+          alignSelf="stretch"
+          marginVertical={15}
+        />
+        {showAnswer && (
+          <View
+            enterStyle={{
+              opacity: 0,
+              y: 10,
+              scale: 0.9
+            }}
+            animation="bouncy"
+          >
             <H2>{formatJapanese(cardData.japanese)}</H2>
             <H2>{cardData.english}</H2>
-          </>
-        ) : (
-          <H1>{cardData.kanji}</H1>
+          </View>
         )}
       </Card.Header>
     </Card>

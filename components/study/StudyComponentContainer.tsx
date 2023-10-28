@@ -56,6 +56,7 @@ function StudyComponentContainer({ study, isUpdating }: Props) {
 
     const updatedStudyIds = ids.filter((id) => id !== studyCard.id);
 
+    setShowAnswer(false);
     await updateStudyCard(
       updatedStudyIds,
       studyCard.id,
@@ -64,8 +65,6 @@ function StudyComponentContainer({ study, isUpdating }: Props) {
       repetition,
       efactor
     );
-
-    setShowAnswer(false);
   }
 
   return (

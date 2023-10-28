@@ -62,7 +62,7 @@ export default function Home() {
           <H3>Word of the day</H3>
           {vocabulary ? (
             <StudyCard
-              cardData={vocabulary[2237]}
+              cardData={vocabulary[402]}
               showAnswer={showAnswer}
               setShowAnswer={setShowAnswer}
             />
