@@ -8,11 +8,9 @@ interface Props {
 }
 
 export default function StudyButtons({ updateStudy, isUpdating }: Props) {
+  console.log(isUpdating);
   return (
-    <XStack
-      justifyContent="space-between"
-      marginTop={300}
-    >
+    <XStack justifyContent="space-between">
       <Button
         backgroundColor="$red10"
         onPress={() => updateStudy(0)}
