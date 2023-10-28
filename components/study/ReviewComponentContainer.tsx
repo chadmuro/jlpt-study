@@ -7,6 +7,7 @@ import { useStudy } from "../../contexts/studyContext";
 import { vocabulary } from "../../data/vocabulary";
 import Review from "../../model/Review";
 import { supermemo, SuperMemoGrade } from "../../utils/supermemo";
+import Completed from "../Completed";
 
 import StudyComponent from "./StudyComponent";
 
@@ -20,16 +21,11 @@ export default function ReviewComponentContainer({ reviews }: Props) {
 
   if (reviews.length === 0) {
     return (
-      <YStack>
-        <H4>Great job!</H4>
-        <Text>Review completed for the day</Text>
-        <Link
-          href="/"
-          asChild
-        >
-          <Button>Go to home</Button>
-        </Link>
-      </YStack>
+      <Completed
+        text="Review completed for the day"
+        link="/"
+        buttonText="Go to home"
+      />
     );
   }
 

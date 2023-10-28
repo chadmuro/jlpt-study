@@ -8,6 +8,7 @@ import { useStudy } from "../../contexts/studyContext";
 import { vocabulary } from "../../data/vocabulary";
 import Study from "../../model/Study";
 import { supermemo, SuperMemoGrade } from "../../utils/supermemo";
+import Completed from "../Completed";
 
 import StudyComponent from "./StudyComponent";
 
@@ -29,16 +30,11 @@ function StudyComponentContainer({ study, isUpdating }: Props) {
 
   if (!studyCard) {
     return (
-      <YStack>
-        <H4>Great job!</H4>
-        <Text>Study completed for the day</Text>
-        <Link
-          href="/review"
-          asChild
-        >
-          <Button>Go to review</Button>
-        </Link>
-      </YStack>
+      <Completed
+        text="Study completed for the day"
+        link="/review"
+        buttonText="Go to review"
+      />
     );
   }
 

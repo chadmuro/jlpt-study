@@ -1,20 +1,26 @@
-import { H3, Text } from "tamagui";
+import { H2, Separator, Text } from "tamagui";
 
 import { MyStack } from "../../components/MyStack";
 
 export default function Info() {
   return (
     <MyStack justifyContent="flex-start">
-      <H3>Welcome to JLPT N2 Study</H3>
-      <Text>
-        Study over 2200 vocabulary words you will need to know to pass the JLPT
-        N2 exam
+      <H2 textAlign="center">Welcome to JLPT N2 Study 🇯🇵</H2>
+      <Separator
+        alignSelf="stretch"
+        marginVertical={10}
+      />
+      <Text fontSize={16}>
+        Vocabulary list includes over 2200 words that you will need to know to
+        pass the JLPT N2 exam.
       </Text>
-      <Text>
-        There are 20 new cards per day along with spaced repetition reviews
-        following the supermemo algorithm
+      <Text fontSize={16}>
+        You will study 20 new cards per day along with review cards.
       </Text>
-      <Text>Good luck with your study!</Text>
+      <Text fontSize={16}>
+        This application uses the supermemo spaced repetition algorithm.
+      </Text>
+      <Text fontSize={16}>Good luck with your study!</Text>
     </MyStack>
   );
 }
