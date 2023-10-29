@@ -8,7 +8,7 @@
       "resizeMode": "contain"
     },
     "icon": "./assets/icon.png",
-    "name": "jlpt-study",
+    "name": "JLPT Study",
     "slug": "jlpt-study",
     "version": "1.0.0",
     "plugins": [
@@ -24,9 +24,11 @@
         "projectId": "f58f1b3c-295d-4015-9685-0aee6d1b850e"
       }
     },
+    "orientation": "portrait",
     "ios": {
       "bundleIdentifier": "com.chadmuro.jlptstudy",
-      "buildNumber": "5"
+      "buildNumber": "8",
+      "supportsTable": false
     }
   }
 }

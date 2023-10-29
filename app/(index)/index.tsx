@@ -57,12 +57,12 @@ export default function Home() {
           <Text>{reviewCards.length ?? 0} review cards</Text>
           <Button onPress={() => handlePress("review")}>Start review</Button>
         </YStack>
-        <Separator marginVertical={15} />
+        {/* <Separator marginVertical={15} />
         <YStack gap="$2">
           <H3>Word of the day</H3>
           {vocabulary ? (
             <StudyCard
-              cardData={vocabulary[402]}
+              cardData={vocabulary[2068]}
               showAnswer={showAnswer}
               setShowAnswer={setShowAnswer}
             />
@@ -72,7 +72,7 @@ export default function Home() {
               color="$red10"
             />
           )}
-        </YStack>
+        </YStack> */}
       </MyStack>
 
       <Dialog

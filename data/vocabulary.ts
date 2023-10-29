@@ -11368,7 +11368,7 @@ export const vocabulary = [
   {
     id: 1895,
     kanji: "不真面目",
-    japanese: "不[ふ] 真[ま] 面目[じめ]",
+    japanese: "ふまじめ",
     english: "frivolous"
   },
   {

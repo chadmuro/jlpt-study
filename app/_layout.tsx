@@ -1,13 +1,14 @@
 import React, { Suspense } from "react";
-import { useColorScheme } from "react-native";
+// import { useColorScheme } from "react-native";
 import {
   DarkTheme,
-  DefaultTheme,
+  // DefaultTheme,
   ThemeProvider
 } from "@react-navigation/native";
 import { Edit3, List } from "@tamagui/lucide-icons";
 import { useFonts } from "expo-font";
 import { SplashScreen, Tabs } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import { TamaguiProvider, Text, Theme } from "tamagui";
 
 import { DatabaseProvider } from "../contexts/databaseContext";
@@ -17,7 +18,7 @@ import config from "../tamagui.config";
 SplashScreen.preventAutoHideAsync();
 
 export default function Layout() {
-  const colorScheme = useColorScheme();
+  // const colorScheme = useColorScheme();
 
   const [loaded] = useFonts({
     Inter: require("@tamagui/font-inter/otf/Inter-Medium.otf"),
@@ -30,9 +31,7 @@ export default function Layout() {
     <TamaguiProvider config={config}>
       <Suspense fallback={<Text>Loading...</Text>}>
         <Theme name="dark">
-          <ThemeProvider
-            value={colorScheme === "light" ? DefaultTheme : DarkTheme}
-          >
+          <ThemeProvider value={DarkTheme}>
             <DatabaseProvider>
               <StudyProvider>
                 <Tabs
@@ -60,6 +59,7 @@ export default function Layout() {
                     }}
                   />
                 </Tabs>
+                <StatusBar style="light" />
               </StudyProvider>
             </DatabaseProvider>
           </ThemeProvider>
