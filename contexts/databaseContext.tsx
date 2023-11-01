@@ -5,6 +5,7 @@ import SQLiteAdapter from "@nozbe/watermelondb/adapters/sqlite";
 import migrations from "../model/migrations";
 import Review from "../model/Review";
 import schema from "../model/schema";
+import Settings from "../model/Settings";
 import Study from "../model/Study";
 
 type DatabaseContextType = {
@@ -35,7 +36,7 @@ const DatabaseProvider = ({ children }: PropsWithChildren<unknown>) => {
   // Then, make a Watermelon database from it!
   const database = new Database({
     adapter,
-    modelClasses: [Review, Study]
+    modelClasses: [Review, Study, Settings]
   });
   const value = { database };
 

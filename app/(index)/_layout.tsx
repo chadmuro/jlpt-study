@@ -1,15 +1,42 @@
 import { useEffect } from "react";
-import { SplashScreen, Stack } from "expo-router";
+import { Q } from "@nozbe/watermelondb";
+import { SplashScreen, Stack, useRouter } from "expo-router";
 
+import { useDatabase } from "../../contexts/databaseContext";
 import { useStudy } from "../../contexts/studyContext";
+import Settings from "../../model/Settings";
 
 export default function Layout() {
   const { loading } = useStudy();
+  const router = useRouter();
+  const { database } = useDatabase();
 
   useEffect(() => {
-    if (!loading) {
-      SplashScreen.hideAsync();
+    async function initialLoad() {
+      if (!loading) {
+        const settings = await database
+          .get<Settings>("settings")
+          .query(Q.where("user_id", 1))
+          .fetch();
+
+        if (!settings.length) {
+          SplashScreen.hideAsync();
+          // if first load show info screen
+          router.push("/info");
+          await database.write(async () => {
+            await database.get<Settings>("settings").create((setting) => {
+              setting.userId = 1;
+              setting.theme = "system";
+              setting.notificationTime = null;
+            });
+          });
+        } else {
+          SplashScreen.hideAsync();
+        }
+      }
     }
+
+    initialLoad();
   }, [loading]);
 
   return (

@@ -20,6 +20,14 @@ export default appSchema({
         { name: "date", type: "string", isOptional: false },
         { name: "vocabulary_ids", type: "string" }
       ]
+    }),
+    tableSchema({
+      name: "settings",
+      columns: [
+        { name: "user_id", type: "number", isOptional: false },
+        { name: "theme", type: "string" },
+        { name: "notification_time", type: "string" }
+      ]
     })
   ]
 });

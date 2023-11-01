@@ -5,7 +5,7 @@ import {
   // DefaultTheme,
   ThemeProvider
 } from "@react-navigation/native";
-import { Edit3, List } from "@tamagui/lucide-icons";
+import { Edit3, List, Settings } from "@tamagui/lucide-icons";
 import { useFonts } from "expo-font";
 import { SplashScreen, Tabs } from "expo-router";
 import { StatusBar } from "expo-status-bar";
@@ -55,6 +55,16 @@ export default function Layout() {
                       title: "Vocabulary",
                       tabBarIcon: ({ focused }) => (
                         <List color={focused ? "red" : "white"} />
+                      )
+                    }}
+                  />
+                  <Tabs.Screen
+                    name="settings"
+                    options={{
+                      href: null,
+                      title: "Settings",
+                      tabBarIcon: ({ focused }) => (
+                        <Settings color={focused ? "red" : "white"} />
                       )
                     }}
                   />

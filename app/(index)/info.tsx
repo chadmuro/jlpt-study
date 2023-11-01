@@ -1,4 +1,5 @@
-import { H2, Separator, Text } from "tamagui";
+import { Link } from "expo-router";
+import { Button, H2, Separator, Text } from "tamagui";
 
 import { MyStack } from "../../components/MyStack";
 
@@ -21,6 +22,12 @@ export default function Info() {
         This application uses the supermemo spaced repetition algorithm.
       </Text>
       <Text fontSize={16}>Good luck with your study!</Text>
+      <Link
+        href="/"
+        asChild
+      >
+        <Button>Got it!</Button>
+      </Link>
     </MyStack>
   );
 }
