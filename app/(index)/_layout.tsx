@@ -1,15 +1,15 @@
 import { useEffect } from "react";
 import { Q } from "@nozbe/watermelondb";
+import { useDatabase } from "@nozbe/watermelondb/react";
 import { SplashScreen, Stack, useRouter } from "expo-router";
 
-import { useDatabase } from "../../contexts/databaseContext";
 import { useStudy } from "../../contexts/studyContext";
 import Settings from "../../model/Settings";
 
 export default function Layout() {
   const { loading } = useStudy();
   const router = useRouter();
-  const { database } = useDatabase();
+  const database = useDatabase();
 
   useEffect(() => {
     async function initialLoad() {

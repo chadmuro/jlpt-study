@@ -6,13 +6,12 @@ import {
   useState
 } from "react";
 import { Q } from "@nozbe/watermelondb";
+import { useDatabase } from "@nozbe/watermelondb/react";
 import dayjs from "dayjs";
 
 import Review from "../model/Review";
 import Study from "../model/Study";
 import { generateRandomNumbers } from "../utils/generateNumbers";
-
-import { useDatabase } from "./databaseContext";
 
 type StudyContextType = {
   study: Study;
@@ -42,7 +41,7 @@ export const StudyContext = createContext<StudyContextType | undefined>(
 );
 
 const StudyProvider = ({ children }: PropsWithChildren<unknown>) => {
-  const { database } = useDatabase();
+  const database = useDatabase();
   const [study, setStudy] = useState<Study | null>(null);
   const [reviewCards, setReviewCards] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
