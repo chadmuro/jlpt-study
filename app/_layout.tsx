@@ -67,6 +67,7 @@ function ThemeLayoutWrapper() {
             setting.notificationTime = null;
           });
         });
+        await getSettings();
       }
       SplashScreen.hideAsync();
     }
