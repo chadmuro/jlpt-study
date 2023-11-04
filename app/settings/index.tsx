@@ -1,3 +1,4 @@
+import { Alert, Linking } from "react-native";
 import {
   AlarmClock,
   ChevronRight,
@@ -7,6 +8,7 @@ import {
   Pencil,
   X
 } from "@tamagui/lucide-icons";
+import * as Clipboard from "expo-clipboard";
 import { H2, ListItem, Separator, YGroup } from "tamagui";
 
 import SettingsDialog from "../../components/Dialog";
@@ -18,6 +20,14 @@ import { useSettings } from "../../contexts/settingsContext";
 
 export default function Settings() {
   const { settings } = useSettings();
+
+  const copyToClipboard = async () => {
+    await Clipboard.setStringAsync("chadmurodev@gmail.com");
+    Alert.alert(
+      "Email copied to clipboard",
+      "👋 Looking forward to hearing from you soon!"
+    );
+  };
 
   return (
     <SafeAreaView>
@@ -62,6 +72,7 @@ export default function Settings() {
               title="Open default mail app"
               icon={Mail}
               iconAfter={ChevronRight}
+              onPress={() => Linking.openURL("mailto:chadmurodev@gmail.com")}
             />
           </YGroup.Item>
           <YGroup.Item>
@@ -71,6 +82,7 @@ export default function Settings() {
               title="Copy email to clipboard"
               icon={ClipboardCopy}
               iconAfter={ChevronRight}
+              onPress={copyToClipboard}
             />
           </YGroup.Item>
           {/* <YGroup.Item>
