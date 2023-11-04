@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { withObservables } from "@nozbe/watermelondb/react";
 import dayjs from "dayjs";
-import { Link } from "expo-router";
-import { Button, H4, Text, YStack } from "tamagui";
 
 import { useStudy } from "../../contexts/studyContext";
 import { vocabulary } from "../../data/vocabulary";

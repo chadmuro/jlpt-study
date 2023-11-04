@@ -1,6 +1,10 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import { useColorScheme } from "react-native";
-import { DatabaseProvider, useDatabase } from "@nozbe/watermelondb/react";
+import {
+  DatabaseProvider,
+  useDatabase,
+  withObservables
+} from "@nozbe/watermelondb/react";
 import {
   DarkTheme,
   DefaultTheme,
@@ -12,7 +16,9 @@ import { SplashScreen, Tabs } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { TamaguiProvider, Text, Theme } from "tamagui";
 
-import { StudyProvider } from "../contexts/studyContext";
+import { SettingsProvider, useSettings } from "../contexts/settingsContext";
+import { StudyProvider, useStudy } from "../contexts/studyContext";
+import SettingsModel from "../model/Settings";
 import config from "../tamagui.config";
 import databaseProvider from "../utils/database";
 
@@ -31,7 +37,9 @@ export default function Layout() {
       <Suspense fallback={<Text>Loading...</Text>}>
         <DatabaseProvider database={databaseProvider}>
           <StudyProvider>
-            <ThemeLayout />
+            <SettingsProvider>
+              <ThemeLayoutWrapper />
+            </SettingsProvider>
           </StudyProvider>
         </DatabaseProvider>
       </Suspense>
@@ -39,13 +47,57 @@ export default function Layout() {
   );
 }
 
-function ThemeLayout() {
+function ThemeLayoutWrapper() {
+  const { settings, getSettings } = useSettings();
+  const { getTodaysReview, getTodaysStudy } = useStudy();
+
   const database = useDatabase();
+
+  useEffect(() => {
+    async function initialLoad() {
+      await getSettings();
+      await getTodaysReview();
+      await getTodaysStudy();
+
+      if (!settings) {
+        await database.write(async () => {
+          await database.get<SettingsModel>("settings").create((setting) => {
+            setting.userId = 1;
+            setting.theme = "system";
+            setting.notificationTime = null;
+          });
+        });
+      }
+      SplashScreen.hideAsync();
+    }
+
+    initialLoad();
+  }, []);
+
+  if (!settings) return null;
+
+  return <EnhancedThemeLayoutComponent settings={settings} />;
+}
+
+const enhance = withObservables(["settings"], ({ settings }) => ({
+  settings
+}));
+
+function ThemeLayout({ settings }: { settings: SettingsModel }) {
   const colorScheme = useColorScheme();
 
+  let theme = "light";
+  if (settings?.theme === "dark") {
+    theme = "dark";
+  } else if (settings?.theme === "light") {
+    theme = "light";
+  } else if (settings?.theme === "system") {
+    theme = colorScheme;
+  }
+
   return (
-    <Theme name="dark">
-      <ThemeProvider value={DarkTheme}>
+    <Theme name={theme === "dark" ? "dark" : "light"}>
+      <ThemeProvider value={theme === "dark" ? DarkTheme : DefaultTheme}>
         <Tabs
           screenOptions={{
             headerShown: false,
@@ -81,8 +133,10 @@ function ThemeLayout() {
             }}
           />
         </Tabs>
-        <StatusBar style="light" />
+        <StatusBar style={theme === "dark" ? "light" : "dark"} />
       </ThemeProvider>
     </Theme>
   );
 }
+
+const EnhancedThemeLayoutComponent = enhance(ThemeLayout);

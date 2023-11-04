@@ -1,10 +1,4 @@
-import {
-  createContext,
-  PropsWithChildren,
-  useContext,
-  useEffect,
-  useState
-} from "react";
+import { createContext, PropsWithChildren, useContext, useState } from "react";
 import { Q } from "@nozbe/watermelondb";
 import { useDatabase } from "@nozbe/watermelondb/react";
 import dayjs from "dayjs";
@@ -32,8 +26,9 @@ type StudyContextType = {
     repetition: number,
     efactor: number
   ) => Promise<void>;
-  loading: boolean;
   updating: boolean;
+  getTodaysStudy: () => Promise<void>;
+  getTodaysReview: () => Promise<void>;
 };
 
 export const StudyContext = createContext<StudyContextType | undefined>(
@@ -44,19 +39,8 @@ const StudyProvider = ({ children }: PropsWithChildren<unknown>) => {
   const database = useDatabase();
   const [study, setStudy] = useState<Study | null>(null);
   const [reviewCards, setReviewCards] = useState<Review[]>([]);
-  const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
   const today = dayjs().format("YYYY-MM-DD");
-
-  useEffect(() => {
-    async function getInitialLoad() {
-      setLoading(true);
-      await getTodaysStudy();
-      await getTodaysReview();
-      setLoading(false);
-    }
-    getInitialLoad();
-  }, []);
 
   async function getTodaysStudy() {
     const todaysStudy = await database
@@ -134,8 +118,9 @@ const StudyProvider = ({ children }: PropsWithChildren<unknown>) => {
     reviewCards,
     updateStudyCard,
     updateReviewCard,
-    loading,
-    updating
+    updating,
+    getTodaysStudy,
+    getTodaysReview
   };
 
   return (
