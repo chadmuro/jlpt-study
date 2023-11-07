@@ -1,6 +1,7 @@
 import { Database } from "@nozbe/watermelondb";
 import SQLiteAdapter from "@nozbe/watermelondb/adapters/sqlite";
 
+import Log from "../model/Log";
 import migrations from "../model/migrations";
 import Review from "../model/Review";
 import schema from "../model/schema";
@@ -25,7 +26,7 @@ const adapter = new SQLiteAdapter({
 // Then, make a Watermelon database from it!
 const database = new Database({
   adapter,
-  modelClasses: [Review, Study, Settings]
+  modelClasses: [Review, Study, Settings, Log]
 });
 
 export default database;

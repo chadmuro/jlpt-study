@@ -26,8 +26,16 @@ export default appSchema({
       columns: [
         { name: "user_id", type: "number", isOptional: false },
         { name: "theme", type: "string" },
+        { name: "notification_time", type: "string" },
         { name: "first_open", type: "boolean" }
-        { name: "notification_time", type: "string" }
+      ]
+    }),
+    tableSchema({
+      name: "logs",
+      columns: [
+        { name: "date", type: "string", isOptional: false },
+        { name: "study_count", type: "number" },
+        { name: "review_count", type: "number" }
       ]
     })
   ]
