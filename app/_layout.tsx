@@ -88,11 +88,11 @@ function ThemeLayout({ settings }: { settings: SettingsModel }) {
   const colorScheme = useColorScheme();
 
   let theme = "light";
-  if (settings?.theme === "dark") {
+  if (settings.theme === "dark") {
     theme = "dark";
-  } else if (settings?.theme === "light") {
+  } else if (settings.theme === "light") {
     theme = "light";
-  } else if (settings?.theme === "system") {
+  } else if (settings.theme === "system") {
     theme = colorScheme;
   }
 

@@ -5,13 +5,14 @@ import { Button, H2, Text, XStack, YStack } from "tamagui";
 import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
 import StudyTitle from "../../components/study/StudyTitle";
+import { useSettings } from "../../contexts/settingsContext";
 import { useStudy } from "../../contexts/studyContext";
 
 export default function Home() {
   const { study, reviewCards } = useStudy();
+  const { settings } = useSettings();
   const router = useRouter();
 
-  // add loading state to wait for study and review to load
   if (!study) return;
 
   function handlePress(route: string) {
@@ -19,7 +20,13 @@ export default function Home() {
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView
+      onLayout={() => {
+        if (!settings.firstOpen) {
+          router.push("/info");
+        }
+      }}
+    >
       <MyStack justifyContent="flex-start">
         <XStack
           alignItems="center"

@@ -8,6 +8,7 @@ type SettingsContextType = {
   settings: Settings | null;
   getSettings: () => Promise<void>;
   updateTheme: (value: "system" | "dark" | "light") => Promise<void>;
+  updateFirstOpen: () => Promise<void>;
 };
 
 export const SettingsContext = createContext<SettingsContextType | undefined>(
@@ -33,10 +34,17 @@ const SettingsProvider = ({ children }: PropsWithChildren<unknown>) => {
     }
   }
 
+  async function updateFirstOpen() {
+    if (settings) {
+      await settings.updateSetting("firstOpen", true);
+    }
+  }
+
   const value = {
     settings,
     getSettings,
-    updateTheme
+    updateTheme,
+    updateFirstOpen
   };
 
   return (
