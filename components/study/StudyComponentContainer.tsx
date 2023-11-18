@@ -57,7 +57,8 @@ function StudyComponentContainer({ study, isUpdating }: Props) {
       dueDate,
       interval,
       repetition,
-      efactor
+      efactor,
+      grade
     );
   }
 

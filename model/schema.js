@@ -33,8 +33,13 @@ export default appSchema({
     tableSchema({
       name: "logs",
       columns: [
-        { name: "date", type: "string", isOptional: false, isIndexed: true },
-        { name: "vocabulary_id", type: "number", isOptional: false },
+        { name: "date", type: "string", isOptional: false },
+        {
+          name: "vocabulary_id",
+          type: "number",
+          isOptional: false,
+          isIndexed: true
+        },
         { name: "study_type", type: "string" },
         { name: "grade", type: "number" }
       ]

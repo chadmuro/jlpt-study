@@ -44,7 +44,14 @@ export default function ReviewComponentContainer({ reviews }: Props) {
     const dueDate = dayjs(Date.now()).add(interval, "day").format("YYYY-MM-DD");
 
     setShowAnswer(false);
-    await updateReviewCard(reviews[0], dueDate, interval, repetition, efactor);
+    await updateReviewCard(
+      reviews[0],
+      dueDate,
+      interval,
+      repetition,
+      efactor,
+      grade
+    );
   }
 
   return (

@@ -3,9 +3,11 @@ import { Q } from "@nozbe/watermelondb";
 import { useDatabase } from "@nozbe/watermelondb/react";
 import dayjs from "dayjs";
 
+import Log from "../model/Log";
 import Review from "../model/Review";
 import Study from "../model/Study";
 import { generateRandomNumbers } from "../utils/generateNumbers";
+import { SuperMemoGrade } from "../utils/supermemo";
 
 type StudyContextType = {
   study: Study;
@@ -17,14 +19,16 @@ type StudyContextType = {
     dueDate: string,
     interval: number,
     repetition: number,
-    efactor: number
+    efactor: number,
+    grade: SuperMemoGrade
   ) => Promise<void>;
   updateReviewCard: (
     review: Review,
     dueDate: string,
     interval: number,
     repetition: number,
-    efactor: number
+    efactor: number,
+    grade: SuperMemoGrade
   ) => Promise<void>;
   updating: boolean;
   getTodaysStudy: () => Promise<void>;
@@ -82,7 +86,8 @@ const StudyProvider = ({ children }: PropsWithChildren<unknown>) => {
     dueDate: string,
     interval: number,
     repetition: number,
-    efactor: number
+    efactor: number,
+    grade: SuperMemoGrade
   ) {
     setUpdating(true);
     await study.updateStudy(
@@ -94,6 +99,14 @@ const StudyProvider = ({ children }: PropsWithChildren<unknown>) => {
       efactor
     );
     await getTodaysReview();
+    await database.write(async () => {
+      await database.get<Log>("logs").create((log) => {
+        log.date = today;
+        log.vocabularyId = vocabularyId;
+        log.studyType = "study";
+        log.grade = grade;
+      });
+    });
     setUpdating(false);
   }
 
@@ -102,11 +115,20 @@ const StudyProvider = ({ children }: PropsWithChildren<unknown>) => {
     dueDate: string,
     interval: number,
     repetition: number,
-    efactor: number
+    efactor: number,
+    grade: SuperMemoGrade
   ) {
     setUpdating(true);
     await review.updateReview(dueDate, interval, repetition, efactor);
     await getTodaysReview();
+    await database.write(async () => {
+      await database.get<Log>("logs").create((log) => {
+        log.date = today;
+        log.vocabularyId = review.vocabularyId;
+        log.studyType = "review";
+        log.grade = grade;
+      });
+    });
     setUpdating(false);
   }
 
