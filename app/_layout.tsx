@@ -1,5 +1,5 @@
-import React, { Suspense, useEffect } from "react";
-import { useColorScheme } from "react-native";
+import React, { Suspense, useEffect, useState } from "react";
+import { Appearance, AppState, ColorSchemeName } from "react-native";
 import {
   DatabaseProvider,
   useDatabase,
@@ -85,13 +85,32 @@ const enhance = withObservables(["settings"], ({ settings }) => ({
 }));
 
 function ThemeLayout({ settings }: { settings: SettingsModel }) {
-  const colorScheme = useColorScheme();
+  const [currentTheme, setTheme] = useState<ColorSchemeName>(
+    Appearance.getColorScheme()
+  );
 
-  let theme = colorScheme;
-  if (settings.theme === "dark") {
-    theme = "dark";
-  } else if (settings.theme === "light") {
-    theme = "light";
+  useEffect(() => {
+    const eventSubscription = AppState.addEventListener(
+      "change",
+      (nextAppState) => {
+        if (nextAppState === "active") {
+          const theme = Appearance.getColorScheme();
+          setTheme(theme);
+        }
+      }
+    );
+
+    return () => {
+      eventSubscription.remove();
+    };
+  }, []);
+
+  let theme = "dark";
+
+  if (settings.theme === "system") {
+    theme = currentTheme ?? "dark";
+  } else {
+    theme = settings.theme;
   }
 
   return (
