@@ -18,7 +18,7 @@ export default function Details() {
 
   return (
     <SafeAreaView>
-      <MyStack justifyContent="flex-start">
+      <MyStack>
         <XStack
           alignItems="center"
           space="$2"

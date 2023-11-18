@@ -27,7 +27,7 @@ export default function Vocabulary() {
 
   return (
     <SafeAreaView>
-      <MyStack justifyContent="flex-start">
+      <MyStack>
         <H2>Vocabulary</H2>
         <Input
           autoCapitalize="none"

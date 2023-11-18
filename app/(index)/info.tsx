@@ -20,7 +20,7 @@ export default function Info() {
   }, []);
 
   return (
-    <MyStack justifyContent="flex-start">
+    <MyStack>
       <H2 textAlign="center">Welcome to JLPT N2 Study 🇯🇵</H2>
       <Separator
         alignSelf="stretch"

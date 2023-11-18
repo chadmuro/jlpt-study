@@ -13,7 +13,7 @@ export default function Review() {
 
   return (
     <SafeAreaView>
-      <MyStack justifyContent="flex-start">
+      <MyStack>
         <XStack
           alignItems="center"
           space="$2"

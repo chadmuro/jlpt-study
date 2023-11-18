@@ -108,7 +108,7 @@ function ThemeLayout({ settings }: { settings: SettingsModel }) {
             options={{
               title: "Study",
               tabBarIcon: ({ focused }) => (
-                <Edit3 color={focused ? "red" : "$red5"} />
+                <Edit3 color={focused ? "red" : "$color"} />
               )
             }}
           />
@@ -117,7 +117,7 @@ function ThemeLayout({ settings }: { settings: SettingsModel }) {
             options={{
               title: "Vocabulary",
               tabBarIcon: ({ focused }) => (
-                <List color={focused ? "red" : "$red5"} />
+                <List color={focused ? "red" : "$color"} />
               )
             }}
           />
@@ -127,7 +127,7 @@ function ThemeLayout({ settings }: { settings: SettingsModel }) {
               // href: null,
               title: "Settings",
               tabBarIcon: ({ focused }) => (
-                <Settings color={focused ? "red" : "$red5"} />
+                <Settings color={focused ? "red" : "$color"} />
               )
             }}
           />

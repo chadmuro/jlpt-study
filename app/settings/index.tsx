@@ -31,7 +31,7 @@ export default function Settings() {
 
   return (
     <SafeAreaView>
-      <MyStack justifyContent="flex-start">
+      <MyStack>
         <H2>Settings</H2>
         <YGroup
           alignSelf="center"
