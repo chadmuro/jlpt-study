@@ -1,7 +1,8 @@
 import { Info } from "@tamagui/lucide-icons";
 import { Link, useRouter } from "expo-router";
-import { Button, H2, Text, XStack, YStack } from "tamagui";
+import { Button, H2, Text, View, XStack, YStack } from "tamagui";
 
+import BarGraph from "../../components/BarGraph";
 import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
 import StudyTitle from "../../components/study/StudyTitle";
@@ -27,7 +28,7 @@ export default function Home() {
         }
       }}
     >
-      <MyStack justifyContent="flex-start">
+      <MyStack>
         <XStack
           alignItems="center"
           justifyContent="space-between"
@@ -48,6 +49,13 @@ export default function Home() {
           <Text>{reviewCards.length ?? 0} review cards</Text>
           <Button onPress={() => handlePress("review")}>Start review</Button>
         </YStack>
+        {/* <View
+          position="absolute"
+          bottom={20}
+          left={5}
+        >
+          <BarGraph />
+        </View> */}
       </MyStack>
     </SafeAreaView>
   );
