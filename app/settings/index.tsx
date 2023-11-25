@@ -9,6 +9,7 @@ import {
   X
 } from "@tamagui/lucide-icons";
 import * as Clipboard from "expo-clipboard";
+import * as Haptics from "expo-haptics";
 import { H2, ListItem, Separator, YGroup } from "tamagui";
 
 import SettingsDialog from "../../components/Dialog";
@@ -23,6 +24,7 @@ export default function Settings() {
 
   const copyToClipboard = async () => {
     await Clipboard.setStringAsync("chadmurodev@gmail.com");
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     Alert.alert(
       "Email copied to clipboard",
       "👋 Looking forward to hearing from you soon!"

@@ -1,3 +1,4 @@
+import * as Haptics from "expo-haptics";
 import { Button, XStack } from "tamagui";
 
 import { SuperMemoGrade } from "../../utils/supermemo";
@@ -12,7 +13,10 @@ export default function StudyButtons({ updateStudy, isUpdating }: Props) {
     <XStack justifyContent="space-between">
       <Button
         backgroundColor="$red10"
-        onPress={() => updateStudy(0)}
+        onPress={() => {
+          updateStudy(0);
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+        }}
         disabled={isUpdating}
         animation="bouncy"
         pressStyle={{ scale: 0.925, backgroundColor: "$red8" }}
@@ -20,7 +24,10 @@ export default function StudyButtons({ updateStudy, isUpdating }: Props) {
         Again
       </Button>
       <Button
-        onPress={() => updateStudy(3)}
+        onPress={() => {
+          updateStudy(3);
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+        }}
         disabled={isUpdating}
         animation="bouncy"
         pressStyle={{ scale: 0.925 }}
@@ -28,7 +35,10 @@ export default function StudyButtons({ updateStudy, isUpdating }: Props) {
         Hard
       </Button>
       <Button
-        onPress={() => updateStudy(4)}
+        onPress={() => {
+          updateStudy(4);
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+        }}
         disabled={isUpdating}
         animation="bouncy"
         pressStyle={{ scale: 0.925 }}
@@ -37,10 +47,13 @@ export default function StudyButtons({ updateStudy, isUpdating }: Props) {
       </Button>
       <Button
         backgroundColor="$green10"
-        onPress={() => updateStudy(5)}
+        onPress={() => {
+          updateStudy(5);
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+        }}
         disabled={isUpdating}
         animation="bouncy"
-        pressStyle={{ scale: 0.925, backgroundColor: "$green8" }}
+        pressStyle={{ scale: 0.925, backgroundColor: "$green3" }}
       >
         Easy
       </Button>
