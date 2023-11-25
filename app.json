@@ -27,7 +27,7 @@
     "orientation": "portrait",
     "ios": {
       "bundleIdentifier": "com.chadmuro.jlptstudy",
-      "buildNumber": "9",
+      "buildNumber": "10",
       "supportsTable": false
     }
   }
