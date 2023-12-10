@@ -74,7 +74,7 @@ const StudyProvider = ({ children }: PropsWithChildren<unknown>) => {
   async function getTodaysReview() {
     const todaysReview = await database
       .get<Review>("reviews")
-      .query(Q.where("due_date", Q.lte(today)), Q.sortBy("updated_at", Q.asc))
+      .query(Q.where("due_date", Q.lte(today)), Q.sortBy("id", Q.asc))
       .fetch();
 
     setReviewCards(todaysReview);

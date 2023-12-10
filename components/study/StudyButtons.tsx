@@ -25,7 +25,7 @@ export default function StudyButtons({ updateStudy, isUpdating }: Props) {
       </Button>
       <Button
         onPress={() => {
-          updateStudy(3);
+          updateStudy(2);
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
         }}
         disabled={isUpdating}
@@ -36,7 +36,7 @@ export default function StudyButtons({ updateStudy, isUpdating }: Props) {
       </Button>
       <Button
         onPress={() => {
-          updateStudy(4);
+          updateStudy(3);
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
         }}
         disabled={isUpdating}

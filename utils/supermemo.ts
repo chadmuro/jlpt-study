@@ -4,7 +4,7 @@ export type SuperMemoItem = {
   efactor: number;
 };
 
-export type SuperMemoGrade = 0 | 1 | 2 | 3 | 4 | 5;
+export type SuperMemoGrade = 0 | 2 | 3 | 5;
 
 export function supermemo(
   item: SuperMemoItem,
@@ -25,6 +25,9 @@ export function supermemo(
       nextInterval = Math.round(item.interval * item.efactor);
       nextRepetition = item.repetition + 1;
     }
+  } else if (grade === 2) {
+    nextInterval = 1;
+    nextRepetition = 0;
   } else {
     nextInterval = 0;
     nextRepetition = 0;
