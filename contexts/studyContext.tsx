@@ -7,6 +7,7 @@ import Log from "../model/Log";
 import Review from "../model/Review";
 import Study from "../model/Study";
 import { generateRandomNumbers } from "../utils/generateNumbers";
+import { shuffleArray } from "../utils/shuffleArray";
 import { SuperMemoGrade } from "../utils/supermemo";
 
 type StudyContextType = {
@@ -74,10 +75,12 @@ const StudyProvider = ({ children }: PropsWithChildren<unknown>) => {
   async function getTodaysReview() {
     const todaysReview = await database
       .get<Review>("reviews")
-      .query(Q.where("due_date", Q.lte(today)), Q.sortBy("id", Q.asc))
+      .query(Q.where("due_date", Q.lte(today)))
       .fetch();
 
-    setReviewCards(todaysReview);
+    const reviews = shuffleArray(todaysReview);
+
+    setReviewCards(reviews);
   }
 
   async function updateStudyCard(
