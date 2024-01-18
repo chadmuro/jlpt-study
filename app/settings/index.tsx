@@ -87,15 +87,20 @@ export default function Settings() {
               onPress={copyToClipboard}
             />
           </YGroup.Item>
-          {/* <YGroup.Item>
+          <YGroup.Item>
             <ListItem
               hoverTheme
               pressTheme
               title="Write a review"
               icon={Pencil}
               iconAfter={ChevronRight}
+              onPress={() =>
+                Linking.openURL(
+                  `itms-apps://itunes.apple.com/app/viewContentsUserReviews/id6467766242?action=write-review`
+                )
+              }
             />
-          </YGroup.Item> */}
+          </YGroup.Item>
         </YGroup>
       </MyStack>
     </SafeAreaView>

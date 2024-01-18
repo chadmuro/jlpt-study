@@ -3,14 +3,14 @@
     "scheme": "tamagui-app",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "backgroundColor": "#ED1703",
+      "backgroundColor": "#FF554E",
       "image": "./assets/splash.png",
       "resizeMode": "contain"
     },
     "icon": "./assets/icon.png",
     "name": "JLPT Study",
     "slug": "jlpt-study",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "plugins": [
       "expo-router",
       "expo-build-properties",
@@ -27,7 +27,7 @@
     "orientation": "portrait",
     "ios": {
       "bundleIdentifier": "com.chadmuro.jlptstudy",
-      "buildNumber": "2",
+      "buildNumber": "1",
       "supportsTable": false
     }
   }
