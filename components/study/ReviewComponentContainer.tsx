@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 
 import { useStudy } from "../../contexts/studyContext";
 import { vocabulary } from "../../data/vocabulary";
+import { useAskReview } from "../../hooks/useAskReview";
 import Review from "../../model/Review";
 import { supermemo, SuperMemoGrade } from "../../utils/supermemo";
 import Completed from "../Completed";
@@ -16,6 +17,7 @@ interface Props {
 export default function ReviewComponentContainer({ reviews }: Props) {
   const [showAnswer, setShowAnswer] = useState(false);
   const { updateReviewCard, updating } = useStudy();
+  const { askReview } = useAskReview();
 
   if (reviews.length === 0) {
     return (
@@ -52,6 +54,11 @@ export default function ReviewComponentContainer({ reviews }: Props) {
       efactor,
       grade
     );
+
+    // ask review when completing first review
+    if (grade !== 0 && reviews.length === 1) {
+      askReview();
+    }
   }
 
   return (
