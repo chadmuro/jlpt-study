@@ -6344,7 +6344,7 @@ export const vocabulary = [
   {
     id: 1058,
     kanji: "白髪",
-    japanese: "白髪[しらが]",
+    japanese: "しらが",
     english: "grey hair"
   },
   {
