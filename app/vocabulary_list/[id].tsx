@@ -39,7 +39,7 @@ export default function Details() {
         <XStack justifyContent="space-between">
           {Number(id) > 1 ? (
             <Link
-              href={`/vocabulary/${Number(id) - 1}`}
+              href={`/vocabulary_list/${Number(id) - 1}`}
               asChild
             >
               <Button onPress={() => setShowAnswer(false)}>Prev</Button>
@@ -49,7 +49,7 @@ export default function Details() {
           )}
           {Number(id) < vocabulary.length ? (
             <Link
-              href={`/vocabulary/${Number(id) + 1}`}
+              href={`/vocabulary_list/${Number(id) + 1}`}
               asChild
             >
               <Button onPress={() => setShowAnswer(false)}>Next</Button>

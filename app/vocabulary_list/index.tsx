@@ -41,7 +41,7 @@ export default function Vocabulary() {
           data={searchVocabulary}
           renderItem={({ item }) => (
             <Link
-              href={`/vocabulary/${item.id}`}
+              href={`/vocabulary_list/${item.id}`}
               asChild
             >
               <Pressable>

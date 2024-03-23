@@ -132,7 +132,7 @@ function ThemeLayout({ settings }: { settings: SettingsModel }) {
             }}
           />
           <Tabs.Screen
-            name="vocabulary"
+            name="vocabulary_list"
             options={{
               title: "Vocabulary",
               tabBarIcon: ({ focused }) => (
@@ -143,7 +143,6 @@ function ThemeLayout({ settings }: { settings: SettingsModel }) {
           <Tabs.Screen
             name="settings"
             options={{
-              // href: null,
               title: "Settings",
               tabBarIcon: ({ focused }) => (
                 <Settings color={focused ? "red" : "$color"} />

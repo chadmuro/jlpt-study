@@ -1,4 +1,6 @@
-export const vocabulary = [
+import { Vocabulary } from "../types";
+
+export const vocabulary: Vocabulary[] = [
   {
     id: 1,
     kanji: "相変わらず",

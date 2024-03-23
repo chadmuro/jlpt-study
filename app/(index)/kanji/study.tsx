@@ -1,12 +1,12 @@
 import { ArrowLeft } from "@tamagui/lucide-icons";
 import { useRouter } from "expo-router";
-import { Button, H3, XStack } from "tamagui";
+import { Button, H3, Text, XStack } from "tamagui";
 
-import { MyStack } from "../../components/MyStack";
-import { SafeAreaView } from "../../components/SafeAreaView";
-import StudyComponent from "../../components/study/StudyComponentContainer";
-import StudyTitle from "../../components/study/StudyTitle";
-import { useStudy } from "../../contexts/studyContext";
+import { MyStack } from "../../../components/MyStack";
+import { SafeAreaView } from "../../../components/SafeAreaView";
+import StudyComponent from "../../../components/study/StudyComponentContainer";
+import StudyTitle from "../../../components/study/StudyTitle";
+import { useStudy } from "../../../contexts/studyContext";
 
 export default function Study() {
   const router = useRouter();
@@ -15,7 +15,8 @@ export default function Study() {
   return (
     <SafeAreaView>
       <MyStack>
-        <XStack
+        <Text>Kanji study</Text>
+        {/* <XStack
           alignItems="center"
           space="$2"
         >
@@ -32,7 +33,7 @@ export default function Study() {
         <StudyComponent
           study={study}
           isUpdating={updating}
-        />
+        /> */}
       </MyStack>
     </SafeAreaView>
   );
