@@ -13,3 +13,13 @@ export type Kanji = {
   english: string;
   example: string;
 };
+
+export type Grammar = {
+  id: number;
+  grammar: string;
+  english: string;
+  background: string;
+  conjunction: string;
+  sentence: string;
+  sentence_english: string;
+};
