@@ -1,6 +1,6 @@
 import { ArrowLeft } from "@tamagui/lucide-icons";
 import { useRouter } from "expo-router";
-import { Button, H3, Text, XStack, YStack } from "tamagui";
+import { Button, H3, Paragraph, Text, XStack, YStack } from "tamagui";
 
 import { MyStack } from "../../../components/MyStack";
 import { SafeAreaView } from "../../../components/SafeAreaView";
@@ -30,8 +30,9 @@ export default function Grammar() {
           />
           <H3>Today&apos;s Grammar</H3>
         </XStack>
-        {/* <YStack gap="$2">
-          <StudyTitle
+        <YStack gap="$2">
+          <Paragraph>Coming soon...</Paragraph>
+          {/* <StudyTitle
             study={study}
             text="new cards"
           />
@@ -43,8 +44,8 @@ export default function Grammar() {
           <Text>{reviewCards.length ?? 0} review cards</Text>
           <Button onPress={() => handlePress("grammar/review")}>
             Start review
-          </Button>
-        </YStack> */}
+          </Button> */}
+        </YStack>
       </MyStack>
     </SafeAreaView>
   );
