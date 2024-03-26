@@ -58,13 +58,18 @@ export default function Home() {
             <Paragraph>{totalVocabularyCount}</Paragraph>
           </Circle>
         </View>
-        <Button
+        {/* <Button
           size="$6"
           onPress={() => handlePress("grammar")}
         >
           Grammar
-        </Button>
-        {/* <Button onPress={() => handlePress("kanji")}>Kanji</Button> */}
+        </Button> */}
+        {/* <Button
+          size="$6"
+          onPress={() => handlePress("kanji")}
+        >
+          Kanji
+        </Button> */}
         {/* <View
           position="absolute"
           bottom={20}

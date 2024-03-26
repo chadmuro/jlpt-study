@@ -2,7 +2,7 @@ export function generateRandomNumbers(
   count: number,
   excludeNumbers: number[]
 ): number[] {
-  if (excludeNumbers.length >= 40) {
+  if (excludeNumbers.length >= 2273) {
     return [];
   }
 
@@ -10,7 +10,7 @@ export function generateRandomNumbers(
   const availableNumbers: number[] = [];
 
   // Generate all available numbers within the range (1 to 2273)
-  for (let i = 1; i <= 40; i++) {
+  for (let i = 1; i <= 2273; i++) {
     availableNumbers.push(i);
   }
 
