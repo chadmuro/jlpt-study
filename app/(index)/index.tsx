@@ -45,18 +45,20 @@ export default function Home() {
           >
             Vocabulary
           </Button>
-          <Circle
-            position="absolute"
-            right={0}
-            top={-10}
-            backgroundColor="red"
-            display="flex"
-            size="$4"
-            justifyContent="center"
-            alignContent="center"
-          >
-            <Paragraph>{totalVocabularyCount}</Paragraph>
-          </Circle>
+          {totalVocabularyCount > 0 && (
+            <Circle
+              position="absolute"
+              right={0}
+              top={-10}
+              backgroundColor="red"
+              display="flex"
+              size="$4"
+              justifyContent="center"
+              alignContent="center"
+            >
+              <Paragraph>{totalVocabularyCount}</Paragraph>
+            </Circle>
+          )}
         </View>
         {/* <Button
           size="$6"
