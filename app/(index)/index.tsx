@@ -1,15 +1,20 @@
 import { Info } from "@tamagui/lucide-icons";
 import { Link, useRouter } from "expo-router";
-import { Button, H2, XStack } from "tamagui";
+import { Button, Circle, H2, Paragraph, View, XStack } from "tamagui";
 
 import BarGraph from "../../components/BarGraph";
 import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
 import { useSettings } from "../../contexts/settingsContext";
+import { useStudy } from "../../contexts/studyContext";
 
 export default function Home() {
   const { settings } = useSettings();
+  const { study, reviewCards } = useStudy();
   const router = useRouter();
+
+  const vocabularyIds = study ? JSON.parse(study.vocabularyIds) : [];
+  const totalVocabularyCount = vocabularyIds.length + reviewCards.length;
 
   function handlePress(route: string) {
     router.push(`/${route}`);
@@ -33,8 +38,33 @@ export default function Home() {
             <Info />
           </Link>
         </XStack>
-        <Button onPress={() => handlePress("vocabulary")}>Vocabulary</Button>
-        <Button onPress={() => handlePress("kanji")}>Kanji</Button>
+        <View>
+          <Button
+            size="$6"
+            onPress={() => handlePress("vocabulary")}
+          >
+            Vocabulary
+          </Button>
+          <Circle
+            position="absolute"
+            right={0}
+            top={-10}
+            backgroundColor="red"
+            display="flex"
+            size="$4"
+            justifyContent="center"
+            alignContent="center"
+          >
+            <Paragraph>{totalVocabularyCount}</Paragraph>
+          </Circle>
+        </View>
+        <Button
+          size="$6"
+          onPress={() => handlePress("grammar")}
+        >
+          Grammar
+        </Button>
+        {/* <Button onPress={() => handlePress("kanji")}>Kanji</Button> */}
         {/* <View
           position="absolute"
           bottom={20}

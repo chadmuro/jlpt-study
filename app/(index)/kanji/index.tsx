@@ -1,6 +1,6 @@
 import { ArrowLeft } from "@tamagui/lucide-icons";
 import { useRouter } from "expo-router";
-import { Button, H2, Text, XStack, YStack } from "tamagui";
+import { Button, H3, Text, XStack, YStack } from "tamagui";
 
 import { MyStack } from "../../../components/MyStack";
 import { SafeAreaView } from "../../../components/SafeAreaView";
@@ -28,9 +28,9 @@ export default function Kanji() {
             icon={ArrowLeft}
             onPress={router.back}
           />
-          <H2>Kanji</H2>
+          <H3>Today&apos;s Kanji</H3>
         </XStack>
-        <YStack gap="$2">
+        {/* <YStack gap="$2">
           <StudyTitle
             study={study}
             text="new cards"
@@ -44,7 +44,7 @@ export default function Kanji() {
           <Button onPress={() => handlePress("kanji/review")}>
             Start review
           </Button>
-        </YStack>
+        </YStack> */}
       </MyStack>
     </SafeAreaView>
   );

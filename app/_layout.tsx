@@ -10,7 +10,7 @@ import {
   DefaultTheme,
   ThemeProvider
 } from "@react-navigation/native";
-import { Edit3, List, Settings } from "@tamagui/lucide-icons";
+import { Edit3, LayoutList, List, Settings } from "@tamagui/lucide-icons";
 import { useFonts } from "expo-font";
 import { SplashScreen, Tabs } from "expo-router";
 import { StatusBar } from "expo-status-bar";
@@ -137,6 +137,15 @@ function ThemeLayout({ settings }: { settings: SettingsModel }) {
               title: "Vocabulary",
               tabBarIcon: ({ focused }) => (
                 <List color={focused ? "red" : "$color"} />
+              )
+            }}
+          />
+          <Tabs.Screen
+            name="grammar_list"
+            options={{
+              title: "Grammar",
+              tabBarIcon: ({ focused }) => (
+                <LayoutList color={focused ? "red" : "$color"} />
               )
             }}
           />

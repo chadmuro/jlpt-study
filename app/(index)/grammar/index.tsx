@@ -7,11 +7,11 @@ import { SafeAreaView } from "../../../components/SafeAreaView";
 import StudyTitle from "../../../components/study/StudyTitle";
 import { useStudy } from "../../../contexts/studyContext";
 
-export default function Kanji() {
-  const { study, reviewCards } = useStudy();
+export default function Grammar() {
+  // const { study, reviewCards } = useStudy();
   const router = useRouter();
 
-  if (!study) return;
+  // if (!study) return;
 
   function handlePress(route: string) {
     router.push(`/${route}`);
@@ -28,23 +28,23 @@ export default function Kanji() {
             icon={ArrowLeft}
             onPress={router.back}
           />
-          <H3>Today&apos;s Vocabulary</H3>
+          <H3>Today&apos;s Grammar</H3>
         </XStack>
-        <YStack gap="$2">
+        {/* <YStack gap="$2">
           <StudyTitle
             study={study}
             text="new cards"
           />
-          <Button onPress={() => handlePress("vocabulary/study")}>
+          <Button onPress={() => handlePress("grammar/study")}>
             Start study
           </Button>
         </YStack>
         <YStack gap="$2">
           <Text>{reviewCards.length ?? 0} review cards</Text>
-          <Button onPress={() => handlePress("vocabulary/review")}>
+          <Button onPress={() => handlePress("grammar/review")}>
             Start review
           </Button>
-        </YStack>
+        </YStack> */}
       </MyStack>
     </SafeAreaView>
   );
