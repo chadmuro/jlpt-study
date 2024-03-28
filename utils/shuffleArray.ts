@@ -1,6 +1,4 @@
-import Review from "../model/Review";
-
-export function shuffleArray(array: Review[]) {
+export function shuffleArray<T>(array: T[]) {
   const newArray = array.slice(); // Create a copy of the original array to avoid modifying it directly
 
   for (let i = newArray.length - 1; i > 0; i--) {

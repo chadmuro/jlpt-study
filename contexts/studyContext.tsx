@@ -60,7 +60,7 @@ const StudyProvider = ({ children }: PropsWithChildren<unknown>) => {
     const allReviews = await database.get<Review>("reviews").query().fetch();
     const allReviewIds = allReviews.map((review) => review.vocabularyId);
 
-    const newStudyIds = generateRandomNumbers(20, allReviewIds);
+    const newStudyIds = generateRandomNumbers(20, allReviewIds, 2273);
 
     await database.write(async () => {
       const newStudy = await database.get<Study>("study").create((study) => {

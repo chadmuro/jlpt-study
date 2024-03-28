@@ -1,16 +1,17 @@
 export function generateRandomNumbers(
   count: number,
-  excludeNumbers: number[]
+  excludeNumbers: number[],
+  total: number
 ): number[] {
-  if (excludeNumbers.length >= 2273) {
+  if (excludeNumbers.length >= total) {
     return [];
   }
 
   const remainingNumbers: number[] = [];
   const availableNumbers: number[] = [];
 
-  // Generate all available numbers within the range (1 to 2273)
-  for (let i = 1; i <= 2273; i++) {
+  // Generate all available numbers within the range (1 to total)
+  for (let i = 1; i <= total; i++) {
     availableNumbers.push(i);
   }
 

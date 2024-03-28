@@ -16,6 +16,7 @@ import { SplashScreen, Tabs } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { TamaguiProvider, Text, Theme } from "tamagui";
 
+import { GrammarProvider, useGrammar } from "../contexts/grammarContext";
 import { SettingsProvider, useSettings } from "../contexts/settingsContext";
 import { StudyProvider, useStudy } from "../contexts/studyContext";
 import SettingsModel from "../model/Settings";
@@ -37,9 +38,11 @@ export default function Layout() {
       <Suspense fallback={<Text>Loading...</Text>}>
         <DatabaseProvider database={databaseProvider}>
           <StudyProvider>
-            <SettingsProvider>
-              <ThemeLayoutWrapper />
-            </SettingsProvider>
+            <GrammarProvider>
+              <SettingsProvider>
+                <ThemeLayoutWrapper />
+              </SettingsProvider>
+            </GrammarProvider>
           </StudyProvider>
         </DatabaseProvider>
       </Suspense>
@@ -50,6 +53,7 @@ export default function Layout() {
 function ThemeLayoutWrapper() {
   const { settings, getSettings } = useSettings();
   const { getTodaysReview, getTodaysStudy } = useStudy();
+  const { getTodaysGrammarReview, getTodaysGrammarStudy } = useGrammar();
 
   const database = useDatabase();
 
@@ -58,6 +62,8 @@ function ThemeLayoutWrapper() {
       await getSettings();
       await getTodaysReview();
       await getTodaysStudy();
+      await getTodaysGrammarReview();
+      await getTodaysGrammarStudy();
 
       if (!settings) {
         await database.write(async () => {

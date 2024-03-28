@@ -2,19 +2,24 @@ import { Info } from "@tamagui/lucide-icons";
 import { Link, useRouter } from "expo-router";
 import { Button, Circle, H2, Paragraph, View, XStack } from "tamagui";
 
-import BarGraph from "../../components/BarGraph";
+// import BarGraph from "../../components/BarGraph";
 import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
+import { useGrammar } from "../../contexts/grammarContext";
 import { useSettings } from "../../contexts/settingsContext";
 import { useStudy } from "../../contexts/studyContext";
 
 export default function Home() {
   const { settings } = useSettings();
   const { study, reviewCards } = useStudy();
+  const { grammarStudy, grammarReviewCards } = useGrammar();
   const router = useRouter();
 
   const vocabularyIds = study ? JSON.parse(study.vocabularyIds) : [];
   const totalVocabularyCount = vocabularyIds.length + reviewCards.length;
+
+  const grammarIds = grammarStudy ? JSON.parse(grammarStudy.grammarIds) : [];
+  const totalGrammarCount = grammarIds.length + grammarReviewCards.length;
 
   function handlePress(route: string) {
     router.push(`/${route}`);
@@ -60,12 +65,29 @@ export default function Home() {
             </Circle>
           )}
         </View>
-        {/* <Button
-          size="$6"
-          onPress={() => handlePress("grammar")}
-        >
-          Grammar
-        </Button> */}
+        <View>
+          <Button
+            size="$6"
+            onPress={() => handlePress("grammar")}
+          >
+            Grammar
+          </Button>
+          {totalGrammarCount > 0 && (
+            <Circle
+              position="absolute"
+              right={0}
+              top={-10}
+              backgroundColor="red"
+              display="flex"
+              size="$4"
+              justifyContent="center"
+              alignContent="center"
+            >
+              <Paragraph>{totalGrammarCount}</Paragraph>
+            </Circle>
+          )}
+        </View>
+
         {/* <Button
           size="$6"
           onPress={() => handlePress("kanji")}
