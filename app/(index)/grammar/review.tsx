@@ -22,7 +22,7 @@ export default function GrammarReview() {
             icon={ArrowLeft}
             onPress={router.back}
           />
-          <H3>Review</H3>
+          <H3>Grammar Review</H3>
         </XStack>
         <Text>{grammarReviewCards.length} cards remaining</Text>
         <ReviewComponent reviews={grammarReviewCards} />

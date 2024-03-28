@@ -23,7 +23,7 @@ export default function Study() {
             icon={ArrowLeft}
             onPress={router.back}
           />
-          <H3>Study</H3>
+          <H3>Vocabulary Study</H3>
         </XStack>
         <StudyTitle
           study={study}

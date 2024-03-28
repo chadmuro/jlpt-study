@@ -23,7 +23,7 @@ export default function GrammarStudy() {
             icon={ArrowLeft}
             onPress={router.back}
           />
-          <H3>Study</H3>
+          <H3>Grammar Study</H3>
         </XStack>
         <GrammarTitle
           study={grammarStudy}

@@ -22,7 +22,7 @@ export default function Review() {
             icon={ArrowLeft}
             onPress={router.back}
           />
-          <H3>Review</H3>
+          <H3>Vocabulary Review</H3>
         </XStack>
         <Text>{reviewCards.length} cards remaining</Text>
         <ReviewComponent reviews={reviewCards} />
