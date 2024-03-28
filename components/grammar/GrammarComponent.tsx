@@ -1,13 +1,13 @@
 import { View } from "tamagui";
 
-import { Vocabulary } from "../../types";
+import { Grammar } from "../../types";
 import { SuperMemoGrade } from "../../utils/supermemo";
 import StudyButtons from "../StudyButtons";
 
-import StudyCard from "./StudyCard";
+import GrammarCard from "./GrammarCard";
 
 interface Props {
-  cardData: Vocabulary;
+  cardData: Grammar;
   showAnswer: boolean;
   setShowAnswer: React.Dispatch<React.SetStateAction<boolean>>;
   updateStudy: (grade: SuperMemoGrade) => Promise<void>;
@@ -22,8 +22,11 @@ export default function StudyComponent({
   isUpdating
 }: Props) {
   return (
-    <View gap="$4">
-      <StudyCard
+    <View
+      gap="$4"
+      flex={1}
+    >
+      <GrammarCard
         cardData={cardData}
         showAnswer={showAnswer}
         setShowAnswer={setShowAnswer}

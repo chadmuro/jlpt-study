@@ -1,7 +1,7 @@
 import * as Haptics from "expo-haptics";
 import { Button, XStack } from "tamagui";
 
-import { SuperMemoGrade } from "../../utils/supermemo";
+import { SuperMemoGrade } from "../utils/supermemo";
 
 interface Props {
   updateStudy: (grade: SuperMemoGrade) => Promise<void>;

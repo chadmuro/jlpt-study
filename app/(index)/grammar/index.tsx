@@ -1,17 +1,17 @@
 import { ArrowLeft } from "@tamagui/lucide-icons";
 import { useRouter } from "expo-router";
-import { Button, H3, Paragraph, Text, XStack, YStack } from "tamagui";
+import { Button, H3, Text, XStack, YStack } from "tamagui";
 
+import GrammarTitle from "../../../components/grammar/GrammarTitle";
 import { MyStack } from "../../../components/MyStack";
 import { SafeAreaView } from "../../../components/SafeAreaView";
-import StudyTitle from "../../../components/study/StudyTitle";
-import { useStudy } from "../../../contexts/studyContext";
+import { useGrammar } from "../../../contexts/grammarContext";
 
 export default function Grammar() {
-  // const { study, reviewCards } = useStudy();
+  const { grammarStudy, grammarReviewCards } = useGrammar();
   const router = useRouter();
 
-  // if (!study) return;
+  if (!grammarStudy) return;
 
   function handlePress(route: string) {
     router.push(`/${route}`);
@@ -31,9 +31,8 @@ export default function Grammar() {
           <H3>Today&apos;s Grammar</H3>
         </XStack>
         <YStack gap="$2">
-          <Paragraph>Coming soon...</Paragraph>
-          {/* <StudyTitle
-            study={study}
+          <GrammarTitle
+            study={grammarStudy}
             text="new cards"
           />
           <Button onPress={() => handlePress("grammar/study")}>
@@ -41,10 +40,10 @@ export default function Grammar() {
           </Button>
         </YStack>
         <YStack gap="$2">
-          <Text>{reviewCards.length ?? 0} review cards</Text>
+          <Text>{grammarReviewCards.length ?? 0} review cards</Text>
           <Button onPress={() => handlePress("grammar/review")}>
             Start review
-          </Button> */}
+          </Button>
         </YStack>
       </MyStack>
     </SafeAreaView>

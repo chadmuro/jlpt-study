@@ -3,9 +3,9 @@ import { ArrowLeft } from "@tamagui/lucide-icons";
 import { Link, useGlobalSearchParams, useRouter } from "expo-router";
 import { Button, H3, View, XStack } from "tamagui";
 
+import GrammarCard from "../../components/grammar/GrammarCard";
 import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
-import GrammarCard from "../../components/study/GrammarCard";
 import { grammar } from "../../data/grammar";
 
 export default function Details() {
