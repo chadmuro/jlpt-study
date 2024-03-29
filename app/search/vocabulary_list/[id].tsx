@@ -1,15 +1,13 @@
-import { ArrowLeft } from "@tamagui/lucide-icons";
-import { Link, useGlobalSearchParams, useRouter } from "expo-router";
-import { Button, H3, View, XStack } from "tamagui";
+import { Link, useGlobalSearchParams } from "expo-router";
+import { Button, View, XStack } from "tamagui";
 
-import { MyStack } from "../../components/MyStack";
-import { SafeAreaView } from "../../components/SafeAreaView";
-import StudyCard from "../../components/study/StudyCard";
-import { vocabulary } from "../../data/vocabulary";
+import TitleWithBack from "../../../components/common/TitleWIthBack";
+import { MyStack } from "../../../components/MyStack";
+import { SafeAreaView } from "../../../components/SafeAreaView";
+import StudyCard from "../../../components/study/StudyCard";
+import { vocabulary } from "../../../data/vocabulary";
 
 export default function Details() {
-  const router = useRouter();
-
   const { id } = useGlobalSearchParams();
 
   const cardData = vocabulary.find((vocab) => vocab.id === Number(id));
@@ -17,16 +15,7 @@ export default function Details() {
   return (
     <SafeAreaView>
       <MyStack>
-        <XStack
-          alignItems="center"
-          space="$2"
-        >
-          <Button
-            icon={ArrowLeft}
-            onPress={router.back}
-          />
-          <H3>Vocabulary</H3>
-        </XStack>
+        <TitleWithBack title="Vocabulary" />
         {cardData && (
           <StudyCard
             cardData={cardData}

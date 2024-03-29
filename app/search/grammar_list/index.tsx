@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { FlatList, Pressable } from "react-native";
 import { Link } from "expo-router";
-import { H2, ListItem, Separator } from "tamagui";
+import { ListItem, Separator } from "tamagui";
 
-import Search from "../../components/common/Search";
-import { MyStack } from "../../components/MyStack";
-import { SafeAreaView } from "../../components/SafeAreaView";
-import { grammar } from "../../data/grammar";
+import Search from "../../../components/common/Search";
+import TitleWithBack from "../../../components/common/TitleWIthBack";
+import { MyStack } from "../../../components/MyStack";
+import { SafeAreaView } from "../../../components/SafeAreaView";
+import { grammar } from "../../../data/grammar";
 
 export default function GrammarList() {
   const [searchGrammar, setSearchGrammar] = useState(grammar);
@@ -26,7 +27,7 @@ export default function GrammarList() {
   return (
     <SafeAreaView>
       <MyStack>
-        <H2>Grammar</H2>
+        <TitleWithBack title="Grammar" />
         <Search
           search={search}
           handleSearch={handleSearch}
@@ -35,7 +36,7 @@ export default function GrammarList() {
           data={searchGrammar}
           renderItem={({ item }) => (
             <Link
-              href={`/grammar_list/${item.id}`}
+              href={`/search/grammar_list/${item.id}`}
               asChild
             >
               <Pressable>

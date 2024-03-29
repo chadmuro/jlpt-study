@@ -2,6 +2,7 @@ import { ArrowLeft } from "@tamagui/lucide-icons";
 import { useRouter } from "expo-router";
 import { Button, H3, Text, XStack, YStack } from "tamagui";
 
+import TitleWithBack from "../../../components/common/TitleWIthBack";
 import { MyStack } from "../../../components/MyStack";
 import { SafeAreaView } from "../../../components/SafeAreaView";
 import StudyTitle from "../../../components/study/StudyTitle";
@@ -20,16 +21,7 @@ export default function Kanji() {
   return (
     <SafeAreaView>
       <MyStack>
-        <XStack
-          alignItems="center"
-          space="$2"
-        >
-          <Button
-            icon={ArrowLeft}
-            onPress={router.back}
-          />
-          <H3>Today&apos;s Vocabulary</H3>
-        </XStack>
+        <TitleWithBack title="Today's Vocabulary" />
         <YStack gap="$2">
           <StudyTitle
             study={study}

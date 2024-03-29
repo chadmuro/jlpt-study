@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { FlatList, Pressable } from "react-native";
 import { Link } from "expo-router";
-import { H2, ListItem, Separator } from "tamagui";
+import { ListItem, Separator } from "tamagui";
 
-import Search from "../../components/common/Search";
-import { MyStack } from "../../components/MyStack";
-import { SafeAreaView } from "../../components/SafeAreaView";
-import { vocabulary } from "../../data/vocabulary";
-import { formatJapanese } from "../../utils/formatJapanese";
+import Search from "../../../components/common/Search";
+import TitleWithBack from "../../../components/common/TitleWIthBack";
+import { MyStack } from "../../../components/MyStack";
+import { SafeAreaView } from "../../../components/SafeAreaView";
+import { vocabulary } from "../../../data/vocabulary";
+import { formatJapanese } from "../../../utils/formatJapanese";
 
 export default function Vocabulary() {
   const [searchVocabulary, setSearchVocabulary] = useState(vocabulary);
@@ -29,7 +30,7 @@ export default function Vocabulary() {
   return (
     <SafeAreaView>
       <MyStack>
-        <H2>Vocabulary</H2>
+        <TitleWithBack title="Vocabulary" />
         <Search
           search={search}
           handleSearch={handleSearch}
@@ -38,7 +39,7 @@ export default function Vocabulary() {
           data={searchVocabulary}
           renderItem={({ item }) => (
             <Link
-              href={`/vocabulary_list/${item.id}`}
+              href={`/search/vocabulary_list/${item.id}`}
               asChild
             >
               <Pressable>

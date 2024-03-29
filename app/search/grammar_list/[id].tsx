@@ -1,15 +1,13 @@
-import { ArrowLeft } from "@tamagui/lucide-icons";
-import { Link, useGlobalSearchParams, useRouter } from "expo-router";
-import { Button, H3, View, XStack } from "tamagui";
+import { Link, useGlobalSearchParams } from "expo-router";
+import { Button, View, XStack } from "tamagui";
 
-import GrammarCard from "../../components/grammar/GrammarCard";
-import { MyStack } from "../../components/MyStack";
-import { SafeAreaView } from "../../components/SafeAreaView";
-import { grammar } from "../../data/grammar";
+import TitleWithBack from "../../../components/common/TitleWIthBack";
+import GrammarCard from "../../../components/grammar/GrammarCard";
+import { MyStack } from "../../../components/MyStack";
+import { SafeAreaView } from "../../../components/SafeAreaView";
+import { grammar } from "../../../data/grammar";
 
 export default function Details() {
-  const router = useRouter();
-
   const { id } = useGlobalSearchParams();
 
   const cardData = grammar.find((vocab) => vocab.id === Number(id));
@@ -17,16 +15,7 @@ export default function Details() {
   return (
     <SafeAreaView>
       <MyStack marginBottom="$4">
-        <XStack
-          alignItems="center"
-          space="$2"
-        >
-          <Button
-            icon={ArrowLeft}
-            onPress={router.back}
-          />
-          <H3>Grammar</H3>
-        </XStack>
+        <TitleWithBack title="Grammar" />
         {cardData && (
           <GrammarCard
             cardData={cardData}
