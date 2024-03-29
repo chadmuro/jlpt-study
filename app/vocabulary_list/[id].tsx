@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { ArrowLeft } from "@tamagui/lucide-icons";
 import { Link, useGlobalSearchParams, useRouter } from "expo-router";
 import { Button, H3, View, XStack } from "tamagui";
@@ -9,7 +8,6 @@ import StudyCard from "../../components/study/StudyCard";
 import { vocabulary } from "../../data/vocabulary";
 
 export default function Details() {
-  const [showAnswer, setShowAnswer] = useState(false);
   const router = useRouter();
 
   const { id } = useGlobalSearchParams();
@@ -32,8 +30,7 @@ export default function Details() {
         {cardData && (
           <StudyCard
             cardData={cardData}
-            showAnswer={showAnswer}
-            setShowAnswer={setShowAnswer}
+            showAnswer={true}
           />
         )}
         <XStack justifyContent="space-between">
@@ -42,7 +39,7 @@ export default function Details() {
               href={`/vocabulary_list/${Number(id) - 1}`}
               asChild
             >
-              <Button onPress={() => setShowAnswer(false)}>Prev</Button>
+              <Button>Prev</Button>
             </Link>
           ) : (
             <View />
@@ -52,7 +49,7 @@ export default function Details() {
               href={`/vocabulary_list/${Number(id) + 1}`}
               asChild
             >
-              <Button onPress={() => setShowAnswer(false)}>Next</Button>
+              <Button>Next</Button>
             </Link>
           ) : (
             <View />

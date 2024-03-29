@@ -10,7 +10,7 @@ interface Props {
     english: string;
   };
   showAnswer: boolean;
-  setShowAnswer: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowAnswer?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function StudyCard({
@@ -26,7 +26,7 @@ export default function StudyCard({
       width="100%"
       height={340}
       alignItems="center"
-      onPress={() => setShowAnswer(!showAnswer)}
+      onPress={() => (setShowAnswer ? setShowAnswer(!showAnswer) : null)}
     >
       <Card.Header
         padded

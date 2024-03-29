@@ -15,7 +15,7 @@ import { Grammar } from "../../types";
 interface Props {
   cardData: Grammar;
   showAnswer: boolean;
-  setShowAnswer: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowAnswer?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function GrammarCard({
@@ -31,7 +31,7 @@ export default function GrammarCard({
       width="100%"
       flex={1}
       alignItems="center"
-      onPress={() => setShowAnswer(!showAnswer)}
+      onPress={() => (setShowAnswer ? setShowAnswer(!showAnswer) : null)}
     >
       <Card.Header
         padded
