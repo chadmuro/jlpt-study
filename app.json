@@ -10,7 +10,7 @@
     "icon": "./assets/icon.png",
     "name": "JLPT Study",
     "slug": "jlpt-study",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "plugins": [
       "expo-router",
       "expo-build-properties",
@@ -27,7 +27,7 @@
     "orientation": "portrait",
     "ios": {
       "bundleIdentifier": "com.chadmuro.jlptstudy",
-      "buildNumber": "2",
+      "buildNumber": "1",
       "supportsTablet": false
     }
   }
