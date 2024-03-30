@@ -17,6 +17,7 @@ import { StatusBar } from "expo-status-bar";
 import { TamaguiProvider, Text, Theme } from "tamagui";
 
 import { GrammarProvider, useGrammar } from "../contexts/grammarContext";
+import { LogsProvider, useLogs } from "../contexts/logContext";
 import { SettingsProvider, useSettings } from "../contexts/settingsContext";
 import { StudyProvider, useStudy } from "../contexts/studyContext";
 import SettingsModel from "../model/Settings";
@@ -40,7 +41,9 @@ export default function Layout() {
           <StudyProvider>
             <GrammarProvider>
               <SettingsProvider>
-                <ThemeLayoutWrapper />
+                <LogsProvider>
+                  <ThemeLayoutWrapper />
+                </LogsProvider>
               </SettingsProvider>
             </GrammarProvider>
           </StudyProvider>
@@ -54,6 +57,7 @@ function ThemeLayoutWrapper() {
   const { settings, getSettings } = useSettings();
   const { getTodaysReview, getTodaysStudy } = useStudy();
   const { getTodaysGrammarReview, getTodaysGrammarStudy } = useGrammar();
+  const { getLogs } = useLogs();
 
   const database = useDatabase();
 
@@ -64,6 +68,7 @@ function ThemeLayoutWrapper() {
       await getTodaysStudy();
       await getTodaysGrammarReview();
       await getTodaysGrammarStudy();
+      await getLogs();
 
       if (!settings) {
         await database.write(async () => {
@@ -149,6 +154,7 @@ function ThemeLayout({ settings }: { settings: SettingsModel }) {
           <Tabs.Screen
             name="stats"
             options={{
+              href: null,
               title: "Stats",
               tabBarIcon: ({ focused }) => (
                 <TrendingUp color={focused ? "red" : "$color"} />
