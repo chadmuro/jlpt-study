@@ -24,6 +24,7 @@ export default function Stats() {
         <ScrollView
           refreshControl={
             <RefreshControl
+              tintColor="red"
               refreshing={refreshing}
               onRefresh={onRefresh}
             />

@@ -47,9 +47,9 @@ const GrammarProvider = ({ children }: PropsWithChildren<unknown>) => {
     []
   );
   const [updating, setUpdating] = useState(false);
-  const today = dayjs().format("YYYY-MM-DD");
 
   async function getTodaysGrammarStudy() {
+    const today = dayjs().format("YYYY-MM-DD");
     const todaysStudy = await database
       .get<GrammarStudy>("grammar_study")
       .query(Q.where("date", today))
@@ -75,6 +75,7 @@ const GrammarProvider = ({ children }: PropsWithChildren<unknown>) => {
   }
 
   async function getTodaysGrammarReview() {
+    const today = dayjs().format("YYYY-MM-DD");
     const todaysReview = await database
       .get<GrammarReview>("grammar_reviews")
       .query(Q.where("due_date", Q.lte(today)))
@@ -101,6 +102,7 @@ const GrammarProvider = ({ children }: PropsWithChildren<unknown>) => {
       repetition,
       efactor
     );
+    const today = dayjs().format("YYYY-MM-DD");
     await getTodaysGrammarReview();
     await database.write(async () => {
       await database.get<GrammarLog>("grammar_logs").create((log) => {
@@ -123,6 +125,7 @@ const GrammarProvider = ({ children }: PropsWithChildren<unknown>) => {
   ) {
     setUpdating(true);
     await review.updateGrammarReview(dueDate, interval, repetition, efactor);
+    const today = dayjs().format("YYYY-MM-DD");
     await getTodaysGrammarReview();
     await database.write(async () => {
       await database.get<GrammarLog>("grammar_logs").create((log) => {

@@ -1,8 +1,17 @@
+import { useCallback, useState } from "react";
+import { RefreshControl } from "react-native";
 import { Info } from "@tamagui/lucide-icons";
 import { Link, useRouter } from "expo-router";
-import { Button, Circle, H2, Paragraph, View, XStack } from "tamagui";
+import {
+  Button,
+  Circle,
+  H2,
+  Paragraph,
+  ScrollView,
+  View,
+  XStack
+} from "tamagui";
 
-// import BarGraph from "../../components/BarGraph";
 import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
 import { useGrammar } from "../../contexts/grammarContext";
@@ -11,9 +20,26 @@ import { useStudy } from "../../contexts/studyContext";
 
 export default function Home() {
   const { settings } = useSettings();
-  const { study, reviewCards } = useStudy();
-  const { grammarStudy, grammarReviewCards } = useGrammar();
+  const { study, reviewCards, getTodaysReview, getTodaysStudy } = useStudy();
+  const {
+    grammarStudy,
+    grammarReviewCards,
+    getTodaysGrammarReview,
+    getTodaysGrammarStudy
+  } = useGrammar();
   const router = useRouter();
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = useCallback(async () => {
+    setRefreshing(true);
+
+    await getTodaysStudy();
+    await getTodaysReview();
+    await getTodaysGrammarStudy();
+    await getTodaysGrammarReview();
+
+    setRefreshing(false);
+  }, []);
 
   const vocabularyIds = study ? JSON.parse(study.vocabularyIds) : [];
   const totalVocabularyCount = vocabularyIds.length + reviewCards.length;
@@ -43,64 +69,69 @@ export default function Home() {
             <Info />
           </Link>
         </XStack>
-        <View>
-          <Button
-            size="$6"
-            onPress={() => handlePress("vocabulary")}
-          >
-            Vocabulary
-          </Button>
-          {totalVocabularyCount > 0 && (
-            <Circle
-              position="absolute"
-              right={0}
-              top={-10}
-              backgroundColor="red"
-              display="flex"
-              size="$4"
-              justifyContent="center"
-              alignContent="center"
+        <ScrollView
+          flex={1}
+          space="$true"
+          refreshControl={
+            <RefreshControl
+              tintColor="red"
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+            />
+          }
+        >
+          <View>
+            <Button
+              size="$6"
+              onPress={() => handlePress("vocabulary")}
             >
-              <Paragraph>{totalVocabularyCount}</Paragraph>
-            </Circle>
-          )}
-        </View>
-        <View>
-          <Button
-            size="$6"
-            onPress={() => handlePress("grammar")}
-          >
-            Grammar
-          </Button>
-          {totalGrammarCount > 0 && (
-            <Circle
-              position="absolute"
-              right={0}
-              top={-10}
-              backgroundColor="red"
-              display="flex"
-              size="$4"
-              justifyContent="center"
-              alignContent="center"
+              Vocabulary
+            </Button>
+            {totalVocabularyCount > 0 && (
+              <Circle
+                position="absolute"
+                right={10}
+                top={10}
+                backgroundColor="red"
+                display="flex"
+                size="$4"
+                justifyContent="center"
+                alignContent="center"
+              >
+                <Paragraph>{totalVocabularyCount}</Paragraph>
+              </Circle>
+            )}
+          </View>
+          <View>
+            <Button
+              size="$6"
+              onPress={() => handlePress("grammar")}
             >
-              <Paragraph>{totalGrammarCount}</Paragraph>
-            </Circle>
-          )}
-        </View>
+              Grammar
+            </Button>
+            {totalGrammarCount > 0 && (
+              <Circle
+                position="absolute"
+                right={10}
+                top={10}
+                backgroundColor="red"
+                display="flex"
+                size="$4"
+                justifyContent="center"
+                alignContent="center"
+              >
+                <Paragraph>{totalGrammarCount}</Paragraph>
+              </Circle>
+            )}
+          </View>
 
-        {/* <Button
+          {/* <Button
           size="$6"
           onPress={() => handlePress("kanji")}
         >
           Kanji
         </Button> */}
-        {/* <View
-          position="absolute"
-          bottom={20}
-          left={5}
-        >
-          <BarGraph />
-        </View> */}
+        </ScrollView>
       </MyStack>
     </SafeAreaView>
   );

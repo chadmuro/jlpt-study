@@ -45,9 +45,9 @@ const StudyProvider = ({ children }: PropsWithChildren<unknown>) => {
   const [study, setStudy] = useState<Study | null>(null);
   const [reviewCards, setReviewCards] = useState<Review[]>([]);
   const [updating, setUpdating] = useState(false);
-  const today = dayjs().format("YYYY-MM-DD");
 
   async function getTodaysStudy() {
+    const today = dayjs().format("YYYY-MM-DD");
     const todaysStudy = await database
       .get<Study>("study")
       .query(Q.where("date", today))
@@ -73,6 +73,7 @@ const StudyProvider = ({ children }: PropsWithChildren<unknown>) => {
   }
 
   async function getTodaysReview() {
+    const today = dayjs().format("YYYY-MM-DD");
     const todaysReview = await database
       .get<Review>("reviews")
       .query(Q.where("due_date", Q.lte(today)))
@@ -101,6 +102,7 @@ const StudyProvider = ({ children }: PropsWithChildren<unknown>) => {
       repetition,
       efactor
     );
+    const today = dayjs().format("YYYY-MM-DD");
     await getTodaysReview();
     await database.write(async () => {
       await database.get<Log>("logs").create((log) => {
@@ -123,6 +125,7 @@ const StudyProvider = ({ children }: PropsWithChildren<unknown>) => {
   ) {
     setUpdating(true);
     await review.updateReview(dueDate, interval, repetition, efactor);
+    const today = dayjs().format("YYYY-MM-DD");
     await getTodaysReview();
     await database.write(async () => {
       await database.get<Log>("logs").create((log) => {
