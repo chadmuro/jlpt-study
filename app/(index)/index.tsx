@@ -2,15 +2,7 @@ import { useCallback, useState } from "react";
 import { RefreshControl } from "react-native";
 import { Info } from "@tamagui/lucide-icons";
 import { Link, useRouter } from "expo-router";
-import {
-  Button,
-  Circle,
-  H2,
-  Paragraph,
-  ScrollView,
-  View,
-  XStack
-} from "tamagui";
+import { Button, Circle, H2, ScrollView, Text, View, XStack } from "tamagui";
 
 import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
@@ -98,7 +90,7 @@ export default function Home() {
                 justifyContent="center"
                 alignContent="center"
               >
-                <Paragraph>{totalVocabularyCount}</Paragraph>
+                <Text>{totalVocabularyCount}</Text>
               </Circle>
             )}
           </View>
@@ -120,7 +112,7 @@ export default function Home() {
                 justifyContent="center"
                 alignContent="center"
               >
-                <Paragraph>{totalGrammarCount}</Paragraph>
+                <Text>{totalGrammarCount}</Text>
               </Circle>
             )}
           </View>

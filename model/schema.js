@@ -1,7 +1,7 @@
 import { appSchema, tableSchema } from "@nozbe/watermelondb";
 
 export default appSchema({
-  version: 3,
+  version: 4,
   tables: [
     tableSchema({
       name: "reviews",
@@ -28,7 +28,8 @@ export default appSchema({
         { name: "theme", type: "string" },
         { name: "notification_time", type: "string" },
         { name: "first_open", type: "boolean" },
-        { name: "ask_review", type: "number" }
+        { name: "ask_review", type: "number" },
+        { name: "display_content", type: "string" }
       ]
     }),
     tableSchema({

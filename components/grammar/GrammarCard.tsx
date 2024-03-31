@@ -3,9 +3,9 @@ import {
   Card,
   H3,
   H5,
-  Paragraph,
   ScrollView,
   Separator,
+  Text,
   View,
   YStack
 } from "tamagui";
@@ -59,23 +59,23 @@ export default function GrammarCard({
                 <YStack space>
                   <YStack>
                     <H5>English</H5>
-                    <Paragraph>{cardData.english}</Paragraph>
+                    <Text>{cardData.english}</Text>
                   </YStack>
                   <YStack>
                     <H5>Background</H5>
-                    <Paragraph>{cardData.background}</Paragraph>
+                    <Text>{cardData.background}</Text>
                   </YStack>
                   <YStack>
                     <H5>Conjunction</H5>
-                    <Paragraph>{cardData.conjunction}</Paragraph>
+                    <Text>{cardData.conjunction}</Text>
                   </YStack>
                   <YStack>
                     <H5>Example</H5>
-                    <Paragraph>{cardData.sentence}</Paragraph>
+                    <Text>{cardData.sentence}</Text>
                   </YStack>
                   <YStack>
                     <H5>Translation</H5>
-                    <Paragraph>{cardData.sentence_english}</Paragraph>
+                    <Text>{cardData.sentence_english}</Text>
                   </YStack>
                 </YStack>
               </View>

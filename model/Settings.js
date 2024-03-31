@@ -9,6 +9,7 @@ export default class Settings extends Model {
   @field("notification_time") notificationTime;
   @field("first_open") firstOpen;
   @field("ask_review") askReview;
+  @field("display_content") displayContent;
 
   @writer async updateSetting(column, value) {
     await this.update((settings) => {

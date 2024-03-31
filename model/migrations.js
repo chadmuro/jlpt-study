@@ -7,6 +7,15 @@ import {
 export default schemaMigrations({
   migrations: [
     {
+      toVersion: 4,
+      steps: [
+        addColumns({
+          table: "settings",
+          columns: [{ name: "display_content", type: "string" }]
+        })
+      ]
+    },
+    {
       toVersion: 3,
       steps: [
         createTable({

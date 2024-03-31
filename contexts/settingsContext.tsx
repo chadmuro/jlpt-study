@@ -10,6 +10,7 @@ type SettingsContextType = {
   updateTheme: (value: "system" | "dark" | "light") => Promise<void>;
   updateFirstOpen: () => Promise<void>;
   updateAskReview: (reviewCount: number) => Promise<void>;
+  updateDisplayContent: (displayContent: string) => Promise<void>;
 };
 
 export const SettingsContext = createContext<SettingsContextType | undefined>(
@@ -47,12 +48,19 @@ const SettingsProvider = ({ children }: PropsWithChildren<unknown>) => {
     }
   }
 
+  async function updateDisplayContent(displayContent: string) {
+    if (settings) {
+      await settings.updateSetting("displayContent", displayContent);
+    }
+  }
+
   const value = {
     settings,
     getSettings,
     updateTheme,
     updateFirstOpen,
-    updateAskReview
+    updateAskReview,
+    updateDisplayContent
   };
 
   return (

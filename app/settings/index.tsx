@@ -4,7 +4,6 @@ import {
   ChevronRight,
   ClipboardCopy,
   Mail,
-  Palette,
   Pencil,
   X
 } from "@tamagui/lucide-icons";
@@ -15,6 +14,8 @@ import { H2, ListItem, Separator, YGroup } from "tamagui";
 import SettingsDialog from "../../components/Dialog";
 import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
+import DisplayContent from "../../components/settings/DisplayContent";
+import DisplayItem from "../../components/settings/DisplayItem";
 import ThemeContent from "../../components/settings/ThemeContent";
 import ThemeItem from "../../components/settings/ThemeItem";
 import { useSettings } from "../../contexts/settingsContext";
@@ -60,6 +61,21 @@ export default function Settings() {
               iconAfter={ChevronRight}
             />
           </YGroup.Item> */}
+        </YGroup>
+        <YGroup
+          alignSelf="center"
+          bordered
+          size="$5"
+          separator={<Separator />}
+        >
+          <YGroup.Item>
+            <SettingsDialog
+              trigger={<DisplayItem settings={settings} />}
+              content={<DisplayContent settings={settings} />}
+              title="Display study"
+              description="Show or hide vocabulary, grammar, and kanji study"
+            />
+          </YGroup.Item>
         </YGroup>
         <YGroup
           alignSelf="center"

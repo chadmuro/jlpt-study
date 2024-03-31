@@ -27,11 +27,14 @@ export default function Info() {
         marginVertical={10}
       />
       <Text fontSize={16}>
-        Vocabulary list includes over 2200 words that you will need to know to
-        pass the JLPT N2 exam.
+        The vocabulary list includes over 2200 words that you will need to know
+        to pass the JLPT N2 exam. You will study 20 new cards per day along with
+        review cards.
       </Text>
       <Text fontSize={16}>
-        You will study 20 new cards per day along with review cards.
+        The grammar list includes over 160 grammar points that you will need to
+        know to pass the JLPT N2 exam. You will study 4 new cards per day along
+        with review cards.
       </Text>
       <Text fontSize={16}>
         This application uses the supermemo spaced repetition algorithm.
