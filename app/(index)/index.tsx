@@ -1,47 +1,25 @@
-import { useCallback, useState } from "react";
-import { RefreshControl } from "react-native";
 import { Info } from "@tamagui/lucide-icons";
 import { Link, useRouter } from "expo-router";
-import { Button, Circle, H2, ScrollView, Text, View, XStack } from "tamagui";
+import { H2, XStack } from "tamagui";
 
 import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
+import TopButtons from "../../components/TopButtons";
 import { useGrammar } from "../../contexts/grammarContext";
 import { useSettings } from "../../contexts/settingsContext";
 import { useStudy } from "../../contexts/studyContext";
 
 export default function Home() {
   const { settings } = useSettings();
-  const { study, reviewCards, getTodaysReview, getTodaysStudy } = useStudy();
-  const {
-    grammarStudy,
-    grammarReviewCards,
-    getTodaysGrammarReview,
-    getTodaysGrammarStudy
-  } = useGrammar();
+  const { study, reviewCards } = useStudy();
+  const { grammarStudy, grammarReviewCards } = useGrammar();
   const router = useRouter();
-  const [refreshing, setRefreshing] = useState(false);
-
-  const onRefresh = useCallback(async () => {
-    setRefreshing(true);
-
-    await getTodaysStudy();
-    await getTodaysReview();
-    await getTodaysGrammarStudy();
-    await getTodaysGrammarReview();
-
-    setRefreshing(false);
-  }, []);
 
   const vocabularyIds = study ? JSON.parse(study.vocabularyIds) : [];
   const totalVocabularyCount = vocabularyIds.length + reviewCards.length;
 
   const grammarIds = grammarStudy ? JSON.parse(grammarStudy.grammarIds) : [];
   const totalGrammarCount = grammarIds.length + grammarReviewCards.length;
-
-  function handlePress(route: string) {
-    router.push(`/${route}`);
-  }
 
   return (
     <SafeAreaView
@@ -61,69 +39,12 @@ export default function Home() {
             <Info />
           </Link>
         </XStack>
-        <ScrollView
-          flex={1}
-          space="$true"
-          refreshControl={
-            <RefreshControl
-              tintColor="red"
-              refreshing={refreshing}
-              onRefresh={onRefresh}
-            />
-          }
-        >
-          <View>
-            <Button
-              size="$6"
-              onPress={() => handlePress("vocabulary")}
-            >
-              Vocabulary
-            </Button>
-            {totalVocabularyCount > 0 && (
-              <Circle
-                position="absolute"
-                right={10}
-                top={10}
-                backgroundColor="red"
-                display="flex"
-                size="$4"
-                justifyContent="center"
-                alignContent="center"
-              >
-                <Text>{totalVocabularyCount}</Text>
-              </Circle>
-            )}
-          </View>
-          <View>
-            <Button
-              size="$6"
-              onPress={() => handlePress("grammar")}
-            >
-              Grammar
-            </Button>
-            {totalGrammarCount > 0 && (
-              <Circle
-                position="absolute"
-                right={10}
-                top={10}
-                backgroundColor="red"
-                display="flex"
-                size="$4"
-                justifyContent="center"
-                alignContent="center"
-              >
-                <Text>{totalGrammarCount}</Text>
-              </Circle>
-            )}
-          </View>
-
-          {/* <Button
-          size="$6"
-          onPress={() => handlePress("kanji")}
-        >
-          Kanji
-        </Button> */}
-        </ScrollView>
+        <TopButtons
+          settings={settings}
+          totalVocabularyCount={totalVocabularyCount}
+          totalGrammarCount={totalGrammarCount}
+          totalKanjiCount={0}
+        />
       </MyStack>
     </SafeAreaView>
   );
