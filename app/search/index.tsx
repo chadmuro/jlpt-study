@@ -1,4 +1,4 @@
-import { Link, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import { Button, H2, XStack } from "tamagui";
 
 import { MyStack } from "../../components/MyStack";

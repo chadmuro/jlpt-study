@@ -1,5 +1,4 @@
-import { Link, useGlobalSearchParams } from "expo-router";
-import { Button, View, XStack } from "tamagui";
+import { useGlobalSearchParams } from "expo-router";
 
 import TitleWithBack from "../../../components/common/BackButtonTitle";
 import { MyStack } from "../../../components/MyStack";
@@ -22,28 +21,6 @@ export default function Details() {
             showAnswer={true}
           />
         )}
-        <XStack justifyContent="space-between">
-          {Number(id) > 1 ? (
-            <Link
-              href={`/vocabulary_list/${Number(id) - 1}`}
-              asChild
-            >
-              <Button>Prev</Button>
-            </Link>
-          ) : (
-            <View />
-          )}
-          {Number(id) < vocabulary.length ? (
-            <Link
-              href={`/vocabulary_list/${Number(id) + 1}`}
-              asChild
-            >
-              <Button>Next</Button>
-            </Link>
-          ) : (
-            <View />
-          )}
-        </XStack>
       </MyStack>
     </SafeAreaView>
   );
