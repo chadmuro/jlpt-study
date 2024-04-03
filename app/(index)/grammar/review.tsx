@@ -1,6 +1,6 @@
 import { Text } from "tamagui";
 
-import TitleWithBack from "../../../components/common/TitleWIthBack";
+import TitleWithBack from "../../../components/common/BackButtonTitle";
 import ReviewComponent from "../../../components/grammar/ReviewComponentContainer";
 import { MyStack } from "../../../components/MyStack";
 import { SafeAreaView } from "../../../components/SafeAreaView";

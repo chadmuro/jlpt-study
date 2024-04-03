@@ -1,7 +1,7 @@
 import { Link, useGlobalSearchParams } from "expo-router";
 import { Button, View, XStack } from "tamagui";
 
-import TitleWithBack from "../../../components/common/TitleWIthBack";
+import TitleWithBack from "../../../components/common/BackButtonTitle";
 import { MyStack } from "../../../components/MyStack";
 import { SafeAreaView } from "../../../components/SafeAreaView";
 import StudyCard from "../../../components/study/StudyCard";

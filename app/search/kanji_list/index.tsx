@@ -7,39 +7,36 @@ import TitleWithBack from "../../../components/common/BackButtonTitle";
 import Search from "../../../components/common/Search";
 import { MyStack } from "../../../components/MyStack";
 import { SafeAreaView } from "../../../components/SafeAreaView";
-import { vocabulary } from "../../../data/vocabulary";
-import { formatJapanese } from "../../../utils/formatJapanese";
+import { kanji } from "../../../data/kanji";
 
-export default function Vocabulary() {
-  const [searchVocabulary, setSearchVocabulary] = useState(vocabulary);
+export default function KanjiList() {
+  const [searchKanji, setSearchKanji] = useState(kanji);
   const [search, setSearch] = useState("");
 
   function handleSearch(text: string) {
     setSearch(text);
 
-    const filteredVocabulary = vocabulary.filter((vocab) => {
-      const searchParam = `${vocab.kanji} ${formatJapanese(vocab.japanese)} ${
-        vocab.english
-      }`;
+    const filteredKanji = kanji.filter((kan) => {
+      const searchParam = `${kan.kanji} ${kan.english} ${kan.onyomi} ${kan.kunyomi}`;
       return searchParam.includes(text);
     });
 
-    setSearchVocabulary(filteredVocabulary);
+    setSearchKanji(filteredKanji);
   }
 
   return (
     <SafeAreaView>
       <MyStack>
-        <TitleWithBack title="Vocabulary" />
+        <TitleWithBack title="Kanji" />
         <Search
           search={search}
           handleSearch={handleSearch}
         />
         <FlatList
-          data={searchVocabulary}
+          data={searchKanji}
           renderItem={({ item }) => (
             <Link
-              href={`/search/vocabulary_list/${item.id}`}
+              href={`/search/kanji_list/${item.id}`}
               asChild
             >
               <Pressable>

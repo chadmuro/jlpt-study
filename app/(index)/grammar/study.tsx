@@ -1,4 +1,4 @@
-import TitleWithBack from "../../../components/common/TitleWIthBack";
+import TitleWithBack from "../../../components/common/BackButtonTitle";
 import GrammarTitle from "../../../components/grammar/GrammarTitle";
 import StudyComponent from "../../../components/grammar/StudyComponentContainer";
 import { MyStack } from "../../../components/MyStack";

@@ -32,6 +32,12 @@ export default function Search() {
         >
           Grammar
         </Button>
+        <Button
+          size="$6"
+          onPress={() => handlePress("search/kanji_list")}
+        >
+          Kanji
+        </Button>
       </MyStack>
     </SafeAreaView>
   );
