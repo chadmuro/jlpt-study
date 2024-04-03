@@ -231,7 +231,7 @@ export const grammar: Grammar[] = [
     english: "not only, but also",
     background:
       "is followed by a sentence that expands group X with a group Y that is on the same ierarchy level (e.g., not only weekends, but also weekdays). Is often followed by も. May start the whole sentence. Only formal speech.",
-    conjunction: "N/ N+である/ V-た/ な-Adj+である　 +のみならず",
+    conjunction: "N/ N+である/ V-た/ な-Adj+である +のみならず",
     sentence:
       "我が社は日本国内のみならず、アメリカやヨーロッパなどでもビジネス活動を行っております。",
     sentence_english:
@@ -299,7 +299,7 @@ export const grammar: Grammar[] = [
   },
   {
     id: 27,
-    grammar: "～にしてるも～にしてるも　（にしろ/にせよ）",
+    grammar: "～にしてるも～にしてるも（にしろ/にせよ）",
     english: "whether X or Y; be it X or Y",
     background:
       "X and Y are contrastive elements and may as well be phrases or sentences. にせよ is used in written speech (with the same formality level).",
@@ -324,7 +324,7 @@ export const grammar: Grammar[] = [
     grammar: "～際に",
     english: "when",
     background: "at a point when X, Y is being done/happens/exists. Formal.",
-    conjunction: "Nの / V-う / V-た +　際（に）",
+    conjunction: "Nの / V-う / V-た + 際（に）",
     sentence:
       "こちらの会議室をご利用になる際は、受付で必要事項をご記入ください。",
     sentence_english:
@@ -335,8 +335,8 @@ export const grammar: Grammar[] = [
     grammar: "～に際して",
     english: "in the occasion of; at; prior; when",
     background:
-      "in the occasion of X, Y　is done. Formal, written. Used when describing special occasions (graduating, wedding, new business, etc). Cannot be preceeded by past tense. NB! に当たって is similar in all aspects, but is used in all types of occasions.",
-    conjunction: "N　/　V-う　+　に際して",
+      "in the occasion of X, Y is done. Formal, written. Used when describing special occasions (graduating, wedding, new business, etc). Cannot be preceeded by past tense. NB! に当たって is similar in all aspects, but is used in all types of occasions.",
+    conjunction: "N / V-う + に際して",
     sentence: "大阪に転勤するに際して、妻子は東京に残した。",
     sentence_english:
       "When I transferred to Osaka, I left my wife and children behind in Tokyo."
@@ -347,7 +347,7 @@ export const grammar: Grammar[] = [
     english: "in the occasion of; before; prior; when",
     background:
       "In the occasion of X, Y is done/happens. Formal, written. Preceeding verb is always non-past regardless of the final predicate tense. Is often preceeded by Sino-Jpn する verb (another marker of written speech).  NB! に当たって is more formal than に当り ～時 usage is wider: formal/non-formal, past/non-past ～前に is also used with non-past V only, but is (1) less formal and (2) occasion may be non-significant",
-    conjunction: "N　/　V-う　+に当り/に当たって",
+    conjunction: "N / V-う +に当り/に当たって",
     sentence: "私は就寝に当たって少量の洋酒を喫することを習慣にしている。",
     sentence_english:
       "It is my custom to drink a small amount of foreign liquor prior to going to bed."
@@ -358,7 +358,7 @@ export const grammar: Grammar[] = [
     english: "just as; as soon as; the moment",
     background:
       "The very moment X is done, Y happens. Y is either a situation not controlled by main subject, or is epxressed by intransitive verb. Focuses on suddenness. X can only be an action and cannot be a state. X can either be a verb or demonstrative adjective その NB! ～と同時に is very similar, but in addition it can be preceeded by a concurrent state, and by N and Adj",
-    conjunction: "V-た　/　V-たら　+　とたん（に）",
+    conjunction: "V-た / V-たら + とたん（に）",
     sentence: "その牛乳を飲んだら、とたんに腹が痛み出した。",
     sentence_english: "The moment I drank the milk, my stomach started to ache."
   },
@@ -369,9 +369,9 @@ export const grammar: Grammar[] = [
     background:
       "Can be used in two ways: (1) non-emotional: as soon as action X happens, action Y happens. As such it describes a habitual action or state. Verb X is always in past tense. (2) emotional: as soon as I think/thought of X, I feel Y. Verb X may be in either tense. It is the tense of verb X that states if the thought is current or it is a recollection of past thought. Stresses a swift change from X to Y",
     conjunction:
-      "(1): V-た　+　（か）と思うと/（か）と思ったら (2): V-う/V-た　+　（か）と思うと/（か）と思ったら",
+      "(1): V-た +（か）と思うと/（か）と思ったら (2): V-う/V-た +（か）と思うと/（か）と思ったら",
     sentence:
-      "（１）　赤ちゃんは今泣いたと思うと、もう笑っている。 （２a）　馬鹿にされたかと思うと、悔しい。 （２b）　会社のリストラで職を失うのではないかと思うと、気が重いです。",
+      "(1) 赤ちゃんは今泣いたと思うと、もう笑っている。 (2a) 馬鹿にされたかと思うと、悔しい。 (2b) 会社のリストラで職を失うのではないかと思うと、気が重いです。",
     sentence_english:
       "(1) Baby is crying this moment, and the next he is already laughing. (2a) When I think I was despised, I feel distressed (2b) When I think how I might be laid off because of restructuring of my company, I feel depressed"
   },
@@ -381,7 +381,7 @@ export const grammar: Grammar[] = [
     english: "just as; at that instant",
     background:
       "Just as X happens, Y happens almost simultaneously. Strong stress on 2 actions changing each other almost the same moment. Y is a real action and cannot be an intention.",
-    conjunction: "V-う/V-た　+　か　+　V-ない　+　かのうちに",
+    conjunction: "V-う/V-た + か + V-ない + かのうちに",
     sentence:
       "一郎はベッドに横になるかないかのうちに、ぐっすり眠ってしまった。",
     sentence_english:
@@ -393,7 +393,7 @@ export const grammar: Grammar[] = [
     english: "right when",
     background:
       "Right in the middle of X, Y is done/happens. Y usually expresses an unexpected hindrance to X.",
-    conjunction: "N+の/V-ている　+　最中だ",
+    conjunction: "N+の/V-ている + 最中だ",
     sentence: "スピーチの最中に、突然電気が消えた。",
     sentence_english: "Right in the middle of the speech the lights went out."
   },
@@ -403,9 +403,9 @@ export const grammar: Grammar[] = [
     english: "while; during; before",
     background:
       'while X is in effect, Y. X is usually a V of state or progressive action, or Adj, or N that expresses a time period (spring, week, day time, etc.) X as a V is always non-past, regardless of the main clause tense. X as a N can\'t be an event, such as "lesson", "meeting", etc. NB! Similar 間に refers only to a period with a clear start and end, while time period indicated by うちに may be indefinite.',
-    conjunction: "N-の/V-う/V-ている/V-ない/Adj-い/Adj-な　+　うちに",
+    conjunction: "N-の/V-う/V-ている/V-ない/Adj-い/Adj-な + うちに",
     sentence:
-      "（１）　家事は、子供が眠っているうちに、全部やってしまった。 （２）　走っているうちにお腹が痛くなった。",
+      "(1) 家事は、子供が眠っているうちに、全部やってしまった。 (2) 走っているうちにお腹が痛くなった。",
     sentence_english:
       "(1) I finished all the household chores while the kids were asleep. (2) While I was running, my stomach started to ache."
   },
@@ -415,9 +415,9 @@ export const grammar: Grammar[] = [
     english: "keep ~ing; become ~er and ~er",
     background:
       'X happens continuously or is done repeatedly, or is steadily evolving in the same direction. NB! 一方is a noun and is operated as such (一方+の/だ/です) ばかりだ is less formal and is more often used with negative changes. It also has a 2nd meaning of "He only/always laughs at me" ますます too expresses "continue to; keep ~ing", but it is operated as an Adverb だけ also means "only, always" but it can\'t replace ばかりだ in the same meaning, if it is the main clause.',
-    conjunction: "V-う　+　ばかりだ・一方だ",
+    conjunction: "V-う + ばかりだ・一方だ",
     sentence:
-      "（１）　このごろは仕事が多くて残業が増えるばかりだ。 （２）　牛や豚の病気が広がる一方なので、国中の人が心配している。",
+      "(1) このごろは仕事が多くて残業が増えるばかりだ。 (2) 牛や豚の病気が広がる一方なので、国中の人が心配している。",
     sentence_english:
       "(1) The amount of job is great and overwork continues to increase. (2) As cattle and swine diseases continue to spread, people of this country are getting anxious."
   },
@@ -427,9 +427,9 @@ export const grammar: Grammar[] = [
     english: "about to occur",
     background:
       'X is just about to occur. X is a verb in volitional form (5th base). Often used in formal ocassions, but is not limited to it. NB! ～んとする has the same meaning, but is used in written Japanese and is somewhat archaic. Is combined with 1st base of the verb. 2nd meaning of both structures is "try to do smth',
-    conjunction: "V-おう/よう　+　としている",
+    conjunction: "V-おう/よう + としている",
     sentence:
-      "（１）　駅前に３０階建ての高級マンションが完成しようとしている。 （２）　まさに輝かんとする月が雲で隠れた。",
+      "(1) 駅前に３０階建ての高級マンションが完成しようとしている。 (2) まさに輝かんとする月が雲で隠れた。",
     sentence_english:
       "(1) The top-class 30-floor high residential house nearby the station is about to be completed. (2) The moon, which was just about to shine, was concealed by the clouds."
   },
@@ -441,7 +441,7 @@ export const grammar: Grammar[] = [
       'May express (1) that a certain action is/was in progress or (2) two concurrent actions are done by the same person. May only be preceeded by a V in 2nd base form (V-ます） Is not used to describe everyday situations ("I am eating my dinner" or "I watched TV while drinking" NB! Similar V-ている cannot be used with punctual or movement verbs (帰る、開く) Similar ながら may also be preceeded by other V forms (V-ない、V-て) as well as by Adj and N. If concurrent actions are done by different persons, it is better to use V-ている間に',
     conjunction: "V-2 + つつ（ある）",
     sentence:
-      "（１）　台風が九州に接近しつつある。 （２）　タバコは体によくないとわかりつつなかなかやめられない。",
+      "(1) 台風が九州に接近しつつある。 (2) タバコは体によくないとわかりつつなかなかやめられない。",
     sentence_english:
       "(1) A typhoon is approaching Kyushu. (2) Although knowing that smoking is harmful to my health, I just cannot quit."
   },
@@ -473,8 +473,8 @@ export const grammar: Grammar[] = [
     grammar: "～次第",
     english: "as soon as; depend on",
     background:
-      'V2-次第/ VN-次第 means "as soon as", while N次第だ means "depends on". In both cases preceeding V/N is a prerequisite for the main clause. Main clause cannot be past tense.  In ～次第 formation polite verbs are used in specific form:　いらっしゃり、おっしゃり、なさり.　Formal.',
-    conjunction: "V2-次第/ VN-次第/ （Xは）N次第だ・で",
+      'V2-次第/ VN-次第 means "as soon as", while N次第だ means "depends on". In both cases preceeding V/N is a prerequisite for the main clause. Main clause cannot be past tense.  In ～次第 formation polite verbs are used in specific form: いらっしゃり、おっしゃり、なさり. Formal.',
+    conjunction: "V2-次第/ VN-次第/ (Xは) N次第だ・で",
     sentence:
       "(1) 山岸教授がいらっしゃり次第、会議を始めたいと思います。 (2) お尋ねの件は、判明次第、ご連絡申し上げます。",
     sentence_english:
@@ -558,7 +558,7 @@ export const grammar: Grammar[] = [
     english: "as far as, to the extent",
     background:
       "as far as the limits of X can go, smth is done/expected, etc. In case X is a verb, it is often in a potential form. NB! Compare with ～限り（は）, that has a different conjunction and meaning emphasis.",
-    conjunction: "N+の+限り；　V-う/V-ている+限り",
+    conjunction: "N+の+限り； V-う/V-ている+限り",
     sentence:
       "(1) 明日はいよいよ試合だ。力の限り頑張ろう。 (2) 君が知っている限りのことを全部わたしに話してほしい。",
     sentence_english:
@@ -574,7 +574,7 @@ export const grammar: Grammar[] = [
     sentence:
       "ここにあるダンボールを、車に積めるだけ積んで持って帰ってください。",
     sentence_english:
-      "Please pack into the car as many cardboards lying over there as possible and　return back."
+      "Please pack into the car as many cardboards lying over there as possible and return back."
   },
   {
     id: 51,
@@ -605,7 +605,7 @@ export const grammar: Grammar[] = [
     grammar: "～限り(は)",
     english: "so long as",
     background:
-      "As long as the X condition lasts, situation remains as is.  NB!　間 and うちに may replace it, when speaking about time intervals. Also, they can be used with i-Adjectives, while 限り（は） cannot.",
+      "As long as the X condition lasts, situation remains as is.  NB! 間 and うちに may replace it, when speaking about time intervals. Also, they can be used with i-Adjectives, while 限り（は） cannot.",
     conjunction:
       "V-う・V-ない・V-た・V-ている+限り Adj-な・Adj-である+限り N-である+限り",
     sentence:
@@ -630,7 +630,7 @@ export const grammar: Grammar[] = [
     background:
       'Basically means "without questioning". May be used with multiple preceeding nouns w/o using such particles as や or と. In advertising materials, を may be dropped. Can become the final predicate in the form of を問わない/を問いません. Is often used with such nouns as 男女、内外、有無 etc. In most cases is interchangeable with に関わらず、に関係なく、によらず. Conjunctions are multiple, and use N, V and Adjectives in various combinations. Below are only some expamples.',
     conjunction:
-      "N1({、/　と/や}N2)+を問わず XかYか+を問わず, where X&Y - contrastive non-past N,V, Adj Xaff+Xneg+を問わず X+Y+を問わず, where X&Y - antonymic non-past Adj",
+      "N1({、/と/や}N2)+を問わず XかYか+を問わず, where X&Y - contrastive non-past N,V, Adj Xaff+Xneg+を問わず X+Y+を問わず, where X&Y - antonymic non-past Adj",
     sentence:
       "(1) 年内は平日、休日を問わず、全店朝9時から夜8時まで営業しております。 (2) この競技にはプロアマを問わず参加が可能だ。",
     sentence_english:
@@ -666,7 +666,7 @@ export const grammar: Grammar[] = [
     grammar: "～はともかく（として）",
     english: "if we put aside X; omitting X",
     background:
-      'Speaker would like to shift the stress from X point in the subordinate clause to another point in the main clause, as X is not that important. "Not minding X, Y',
+      "Speaker would like to shift the stress from X point in the subordinate clause to another point in the main clause, as X is not that important. Not minding X, Y",
     conjunction:
       "N+(particle)+はともかく（として） Adj-な・N-な・V-う+の+はともかく（として）",
     sentence: "この店は、店の雰囲気はともかく、料理の味は最高だ。",
@@ -738,7 +738,7 @@ export const grammar: Grammar[] = [
     background:
       'Rhetorical question marker that shows a strong negation or disagreement. In colloquial speech changes to もんか for men and もんですか for women. NB! ものか may have an absolutely different meaning of "I wonder if" or "I wish that", in this case it is a real question marker, that may become embedded. In addition, surrounding verbs indicate a potential or change.',
     conjunction: "V-う・Adj-い・Adj-な+ものか",
-    sentence: "A:　黙って帰ったら彼に悪いだるう。 B:　構うもんか。",
+    sentence: "A: 黙って帰ったら彼に悪いだるう。 B: 構うもんか。",
     sentence_english:
       "A: It's not right if we go home without saying a word to him, right? B: Who cares? (lit: I definitely care not)"
   },
@@ -1077,7 +1077,7 @@ export const grammar: Grammar[] = [
     grammar: "～がたい",
     english: "cannot, unable to",
     background:
-      'An auxillary adjective that expresses that for smb it is virtually impossible to do smth. Written or formal only. Comes only with verbs that require an agent.  NB! similar expressions are にくい、辛い. Their difference is (1) stylistic: にくい and　辛い can also be used in spoken language; (2) they can mean "hard to do, but not necessarily impossible"; (3) にくい can also be used with intransitive verbs; (4) づらい is used when the action in focus is physically or psychologically difficult for the agent and for this reason indicates an undesirable situation',
+      'An auxillary adjective that expresses that for smb it is virtually impossible to do smth. Written or formal only. Comes only with verbs that require an agent.  NB! similar expressions are にくい、辛い. Their difference is (1) stylistic: にくい and 辛い can also be used in spoken language; (2) they can mean "hard to do, but not necessarily impossible"; (3) にくい can also be used with intransitive verbs; (4) づらい is used when the action in focus is physically or psychologically difficult for the agent and for this reason indicates an undesirable situation',
     conjunction: "V2+がたい",
     sentence: "留学中、自分の国では得がたい経験をたくさんした。",
     sentence_english:
@@ -1340,7 +1340,7 @@ export const grammar: Grammar[] = [
     grammar: "～とみえる",
     english: "seems that X",
     background:
-      "Based on what the speaker observes for another party, an assumed judgment is made. May be either main clause or sub-clause predicate.　Preceding X may be any part of speech in default form",
+      "Based on what the speaker observes for another party, an assumed judgment is made. May be either main clause or sub-clause predicate. Preceding X may be any part of speech in default form",
     conjunction: "普通形+とみえる",
     sentence:
       "欲しい物はなかったとみえて、客は何も買わずすぐ店をでてしまった。",
@@ -1515,7 +1515,7 @@ export const grammar: Grammar[] = [
     grammar: "～ものではない・～ものだ",
     english: "should not; should",
     background:
-      'Expresses that X should not be (or should be) bc either it goes against social norm, or it is impossible as the result is foreseeably poor, or smb naturally cannot do smth. In two latter cases V in potential form is used. ものだ has other different meanings as well. Should not be used when addressing people of higher position. NB! as "shouldn\'t" may be replaced by べきではない or V-てはいけない, 1st is weaker and 2nd is stronger NB2! as "naturally can\'t" may be replaced by 当然だ　or 当たり前だ, both of which mean "smth is a matter of course',
+      'Expresses that X should not be (or should be) bc either it goes against social norm, or it is impossible as the result is foreseeably poor, or smb naturally cannot do smth. In two latter cases V in potential form is used. ものだ has other different meanings as well. Should not be used when addressing people of higher position. NB! as "shouldn\'t" may be replaced by べきではない or V-てはいけない, 1st is weaker and 2nd is stronger NB2! as "naturally can\'t" may be replaced by 当然だ or 当たり前だ, both of which mean "smth is a matter of course',
     conjunction: "V-う・V-ない+ものだ V-う+ものではない",
     sentence: "日本では、お見舞いの時は鉢植えの花はあげないものだ。",
     sentence_english:
@@ -1541,7 +1541,7 @@ export const grammar: Grammar[] = [
       'Rhetorical question marker that expressess strong negative intention or disagreement. Literally means "can X be true at all?". In male colloquial speech changes to もんか, in female - to もんですか',
     conjunction: "V-う・Adj-い+ものか Adj-な・N+な+ものか",
     sentence:
-      "A:　みんな、あの政治家は信頼できるって言っているよ。 B:　分かるもんか。",
+      "A: みんな、あの政治家は信頼できるって言っているよ。 B: 分かるもんか。",
     sentence_english:
       "A: Everyone is saying, that politician may be relied upon. B: How do they know? (or: they can't know for sure)"
   },
@@ -1550,7 +1550,7 @@ export const grammar: Grammar[] = [
     grammar: "～てしかたがない・～てたまらない・～てしょうがない・～てならない",
     english: "cannot help doing X, cannot control X",
     background:
-      "Is used when the speaker describes the situations smb can't control. This includes emorions, bodily reactions (e.g. sneeze), sensations (ache, smells, etc.) spontaneous thoughts, etc. The majority of such situations are negative, but positive ones aren't uncommon. When the subject is not in the 1st person, structure is followed by evidentiality markers (ようだ、らしい, etc.) NB!　てたまらない is especially preferred when speaking about bodily reactions and cannot be used when speaking about feelings or thoughts. NB2! てならない is preferred when speaking about feelings and bodily reactions.",
+      "Is used when the speaker describes the situations smb can't control. This includes emorions, bodily reactions (e.g. sneeze), sensations (ache, smells, etc.) spontaneous thoughts, etc. The majority of such situations are negative, but positive ones aren't uncommon. When the subject is not in the 1st person, structure is followed by evidentiality markers (ようだ、らしい, etc.) NB! てたまらない is especially preferred when speaking about bodily reactions and cannot be used when speaking about feelings or thoughts. NB2! てならない is preferred when speaking about feelings and bodily reactions.",
     conjunction: "V-て仕方がない Adj-くて仕方がない Adj-で仕方がない",
     sentence:
       "赤ちゃんはお母さんがいないと不安でたまらないらしく、泣きだした。",
