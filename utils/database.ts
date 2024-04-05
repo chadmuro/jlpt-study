@@ -4,6 +4,9 @@ import SQLiteAdapter from "@nozbe/watermelondb/adapters/sqlite";
 import GrammarLog from "../model/GrammarLog";
 import GrammarReview from "../model/GrammarReview";
 import GrammarStudy from "../model/GrammarStudy";
+import KanjiLog from "../model/KanjiLog";
+import KanjiReview from "../model/KanjiReview";
+import KanjiStudy from "../model/KanjiStudy";
 import Log from "../model/Log";
 import migrations from "../model/migrations";
 import Review from "../model/Review";
@@ -36,7 +39,10 @@ const database = new Database({
     Log,
     GrammarStudy,
     GrammarReview,
-    GrammarLog
+    GrammarLog,
+    KanjiStudy,
+    KanjiReview,
+    KanjiLog
   ]
 });
 

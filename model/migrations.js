@@ -7,6 +7,43 @@ import {
 export default schemaMigrations({
   migrations: [
     {
+      toVersion: 5,
+      steps: [
+        createTable({
+          name: "kanji_study",
+          columns: [
+            { name: "date", type: "string", isOptional: false },
+            { name: "kanji_ids", type: "string" }
+          ]
+        }),
+        createTable({
+          name: "kanji_reviews",
+          columns: [
+            { name: "kanji_id", type: "number", isIndexed: true },
+            { name: "due_date", type: "string" },
+            { name: "updated_at", type: "number", isOptional: false },
+            { name: "interval", type: "number" },
+            { name: "repetition", type: "number" },
+            { name: "efactor", type: "number" }
+          ]
+        }),
+        createTable({
+          name: "kanji_logs",
+          columns: [
+            { name: "date", type: "string", isOptional: false },
+            {
+              name: "kanji_id",
+              type: "number",
+              isOptional: false,
+              isIndexed: true
+            },
+            { name: "study_type", type: "string" },
+            { name: "grade", type: "number" }
+          ]
+        })
+      ]
+    },
+    {
       toVersion: 4,
       steps: [
         addColumns({
