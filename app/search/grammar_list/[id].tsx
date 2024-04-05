@@ -9,7 +9,7 @@ import { grammar } from "../../../data/grammar";
 export default function Details() {
   const { id } = useGlobalSearchParams();
 
-  const cardData = grammar.find((vocab) => vocab.id === Number(id));
+  const cardData = grammar.find((gram) => gram.id === Number(id));
 
   return (
     <SafeAreaView>

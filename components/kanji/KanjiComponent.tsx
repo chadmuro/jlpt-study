@@ -1,20 +1,20 @@
 import { View } from "tamagui";
 
-import { Grammar } from "../../types";
+import { Kanji } from "../../types";
 import { SuperMemoGrade } from "../../utils/supermemo";
 import StudyButtons from "../StudyButtons";
 
-import GrammarCard from "./GrammarCard";
+import KanjiCard from "./KanjiCard";
 
 interface Props {
-  cardData: Grammar;
+  cardData: Kanji;
   showAnswer: boolean;
   setShowAnswer: React.Dispatch<React.SetStateAction<boolean>>;
   updateStudy: (grade: SuperMemoGrade) => Promise<void>;
   isUpdating: boolean;
 }
 
-export default function GrammarComponent({
+export default function KanjiComponent({
   cardData,
   showAnswer,
   setShowAnswer,
@@ -26,7 +26,7 @@ export default function GrammarComponent({
       gap="$4"
       flex={1}
     >
-      <GrammarCard
+      <KanjiCard
         cardData={cardData}
         showAnswer={showAnswer}
         setShowAnswer={setShowAnswer}
