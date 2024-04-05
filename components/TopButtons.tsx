@@ -37,7 +37,7 @@ const TopButtons = ({
 
   const showVocabulary = displayStudy.includes("vocabulary");
   const showGrammar = displayStudy.includes("grammar");
-  // const showKanji = displayStudy.includes("kanji");
+  const showKanji = displayStudy.includes("kanji");
 
   const onRefresh = useCallback(async () => {
     setRefreshing(true);
@@ -70,86 +70,78 @@ const TopButtons = ({
         />
       }
     >
-      {displayStudy.map((study) => {
-        if (study === "vocabulary") {
-          return (
-            <View key={study}>
-              <Button
-                size="$6"
-                onPress={() => handlePress("vocabulary")}
-              >
-                Vocabulary
-              </Button>
-              {totalVocabularyCount > 0 && (
-                <Circle
-                  position="absolute"
-                  right={10}
-                  top={10}
-                  backgroundColor="red"
-                  display="flex"
-                  size="$4"
-                  justifyContent="center"
-                  alignContent="center"
-                >
-                  <Text>{totalVocabularyCount}</Text>
-                </Circle>
-              )}
-            </View>
-          );
-        } else if (study === "grammar") {
-          return (
-            <View key={study}>
-              <Button
-                size="$6"
-                onPress={() => handlePress("grammar")}
-              >
-                Grammar
-              </Button>
-              {totalGrammarCount > 0 && (
-                <Circle
-                  position="absolute"
-                  right={10}
-                  top={10}
-                  backgroundColor="red"
-                  display="flex"
-                  size="$4"
-                  justifyContent="center"
-                  alignContent="center"
-                >
-                  <Text>{totalGrammarCount}</Text>
-                </Circle>
-              )}
-            </View>
-          );
-        } else if (study === "kanji") {
-          return (
-            <View key={study}>
-              <Button
-                size="$6"
-                onPress={() => handlePress("kanji")}
-              >
-                Kanji
-              </Button>
-              {totalKanjiCount > 0 && (
-                <Circle
-                  position="absolute"
-                  right={10}
-                  top={10}
-                  backgroundColor="red"
-                  display="flex"
-                  size="$4"
-                  justifyContent="center"
-                  alignContent="center"
-                >
-                  <Text>{totalKanjiCount}</Text>
-                </Circle>
-              )}
-            </View>
-          );
-        } else {
-          return null;
-        }
-      })}
+      {showVocabulary && (
+        <View>
+          <Button
+            size="$6"
+            onPress={() => handlePress("vocabulary")}
+          >
+            Vocabulary
+          </Button>
+          {totalVocabularyCount > 0 && (
+            <Circle
+              position="absolute"
+              right={10}
+              top={10}
+              backgroundColor="red"
+              display="flex"
+              size="$4"
+              justifyContent="center"
+              alignContent="center"
+            >
+              <Text>{totalVocabularyCount}</Text>
+            </Circle>
+          )}
+        </View>
+      )}
+      {showGrammar && (
+        <View>
+          <Button
+            size="$6"
+            onPress={() => handlePress("grammar")}
+          >
+            Grammar
+          </Button>
+          {totalGrammarCount > 0 && (
+            <Circle
+              position="absolute"
+              right={10}
+              top={10}
+              backgroundColor="red"
+              display="flex"
+              size="$4"
+              justifyContent="center"
+              alignContent="center"
+            >
+              <Text>{totalGrammarCount}</Text>
+            </Circle>
+          )}
+        </View>
+      )}
+      {showKanji && (
+        <View>
+          <Button
+            size="$6"
+            onPress={() => handlePress("kanji")}
+          >
+            Kanji
+          </Button>
+          {totalKanjiCount > 0 && (
+            <Circle
+              position="absolute"
+              right={10}
+              top={10}
+              backgroundColor="red"
+              display="flex"
+              size="$4"
+              justifyContent="center"
+              alignContent="center"
+            >
+              <Text>{totalKanjiCount}</Text>
+            </Circle>
+          )}
+        </View>
+      )}
     </ScrollView>
   );
 };
