@@ -6,6 +6,7 @@ import { MyStack } from "../../components/MyStack";
 import { SafeAreaView } from "../../components/SafeAreaView";
 import TopButtons from "../../components/TopButtons";
 import { useGrammar } from "../../contexts/grammarContext";
+import { useKanji } from "../../contexts/kanjiContext";
 import { useSettings } from "../../contexts/settingsContext";
 import { useStudy } from "../../contexts/studyContext";
 
@@ -13,6 +14,7 @@ export default function Home() {
   const { settings } = useSettings();
   const { study, reviewCards } = useStudy();
   const { grammarStudy, grammarReviewCards } = useGrammar();
+  const { kanjiStudy, kanjiReviewCards } = useKanji();
   const router = useRouter();
 
   const vocabularyIds = study ? JSON.parse(study.vocabularyIds) : [];
@@ -20,6 +22,9 @@ export default function Home() {
 
   const grammarIds = grammarStudy ? JSON.parse(grammarStudy.grammarIds) : [];
   const totalGrammarCount = grammarIds.length + grammarReviewCards.length;
+
+  const kanjiIds = kanjiStudy ? JSON.parse(kanjiStudy.kanjiIds) : [];
+  const totalKanjiCount = kanjiIds.length + kanjiReviewCards.length;
 
   return (
     <SafeAreaView
@@ -43,7 +48,7 @@ export default function Home() {
           settings={settings}
           totalVocabularyCount={totalVocabularyCount}
           totalGrammarCount={totalGrammarCount}
-          totalKanjiCount={0}
+          totalKanjiCount={totalKanjiCount}
         />
       </MyStack>
     </SafeAreaView>

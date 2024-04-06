@@ -5,6 +5,7 @@ import { useRouter } from "expo-router";
 import { Button, Circle, ScrollView, Text, View } from "tamagui";
 
 import { useGrammar } from "../contexts/grammarContext";
+import { useKanji } from "../contexts/kanjiContext";
 import { useStudy } from "../contexts/studyContext";
 import Settings from "../model/Settings";
 
@@ -29,6 +30,7 @@ const TopButtons = ({
   const router = useRouter();
   const { getTodaysReview, getTodaysStudy } = useStudy();
   const { getTodaysGrammarReview, getTodaysGrammarStudy } = useGrammar();
+  const { getTodaysKanjiReview, getTodaysKanjiStudy } = useKanji();
 
   let displayStudy = ["vocabulary", "grammar", "kanji"];
   if (settings.displayContent) {
@@ -49,6 +51,10 @@ const TopButtons = ({
     if (showGrammar) {
       await getTodaysGrammarStudy();
       await getTodaysGrammarReview();
+    }
+    if (showKanji) {
+      await getTodaysKanjiStudy();
+      await getTodaysKanjiReview();
     }
 
     setRefreshing(false);

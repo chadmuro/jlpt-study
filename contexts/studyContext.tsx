@@ -78,9 +78,7 @@ const StudyProvider = ({ children }: PropsWithChildren<unknown>) => {
       .get<Review>("reviews")
       .query(Q.where("due_date", Q.lte(today)))
       .fetch();
-
     const reviews = shuffleArray(todaysReview);
-
     setReviewCards(reviews);
   }
 
