@@ -1597,7 +1597,7 @@ export const grammar: Grammar[] = [
     background:
       "Is used to express a strong, sincere, but a more or less general wish or desire. Is not used for requests or any specific wishes.",
     conjunction: "V2+たいものだ V-て・V-ないで+ほしいものだ",
-    sentence: "今度こそ実験あ成功して欲しいものだ。",
+    sentence: "今度こそ実験は成功して欲しいものだ。",
     sentence_english:
       "This very time I really wish for the experiment to be a success."
   }
