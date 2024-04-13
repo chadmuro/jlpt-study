@@ -1,39 +1,25 @@
-import { ArrowLeft } from "@tamagui/lucide-icons";
-import { useRouter } from "expo-router";
-import { Button, H3, Text, XStack } from "tamagui";
-
+import TitleWithBack from "../../../components/common/BackButtonTitle";
+import KanjiTitle from "../../../components/kanji/KanjiTitle";
+import StudyComponent from "../../../components/kanji/StudyComponentContainer";
 import { MyStack } from "../../../components/MyStack";
 import { SafeAreaView } from "../../../components/SafeAreaView";
-import StudyComponent from "../../../components/study/StudyComponentContainer";
-import StudyTitle from "../../../components/study/StudyTitle";
-import { useStudy } from "../../../contexts/studyContext";
+import { useKanji } from "../../../contexts/kanjiContext";
 
-export default function Study() {
-  const router = useRouter();
-  const { study, updating } = useStudy();
+export default function KanjiStudy() {
+  const { kanjiStudy, updating } = useKanji();
 
   return (
     <SafeAreaView>
       <MyStack>
-        <Text>Kanji study</Text>
-        {/* <XStack
-          alignItems="center"
-          space="$2"
-        >
-          <Button
-            icon={ArrowLeft}
-            onPress={router.back}
-          />
-          <H3>Study</H3>
-        </XStack>
-        <StudyTitle
-          study={study}
+        <TitleWithBack title="Kanji Study" />
+        <KanjiTitle
+          study={kanjiStudy}
           text="cards remaining"
         />
         <StudyComponent
-          study={study}
+          study={kanjiStudy}
           isUpdating={updating}
-        /> */}
+        />
       </MyStack>
     </SafeAreaView>
   );

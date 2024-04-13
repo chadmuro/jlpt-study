@@ -1,32 +1,20 @@
-import { ArrowLeft } from "@tamagui/lucide-icons";
-import { useRouter } from "expo-router";
-import { Button, H3, Text, XStack } from "tamagui";
+import { Text } from "tamagui";
 
+import TitleWithBack from "../../../components/common/BackButtonTitle";
+import ReviewComponent from "../../../components/kanji/ReviewComponentContainer";
 import { MyStack } from "../../../components/MyStack";
 import { SafeAreaView } from "../../../components/SafeAreaView";
-import ReviewComponent from "../../../components/study/ReviewComponentContainer";
-import { useStudy } from "../../../contexts/studyContext";
+import { useKanji } from "../../../contexts/kanjiContext";
 
-export default function Review() {
-  const router = useRouter();
-  const { reviewCards } = useStudy();
+export default function KanjiReview() {
+  const { kanjiReviewCards } = useKanji();
 
   return (
     <SafeAreaView>
       <MyStack>
-        <Text>Kanji review</Text>
-        {/* <XStack
-          alignItems="center"
-          space="$2"
-        >
-          <Button
-            icon={ArrowLeft}
-            onPress={router.back}
-          />
-          <H3>Review</H3>
-        </XStack>
-        <Text>{reviewCards.length} cards remaining</Text>
-        <ReviewComponent reviews={reviewCards} /> */}
+        <TitleWithBack title="Kanji Review" />
+        <Text>{kanjiReviewCards.length} cards remaining</Text>
+        <ReviewComponent reviews={kanjiReviewCards} />
       </MyStack>
     </SafeAreaView>
   );
