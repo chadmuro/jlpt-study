@@ -3,6 +3,7 @@ import { Q } from "@nozbe/watermelondb";
 import { useDatabase } from "@nozbe/watermelondb/react";
 import dayjs from "dayjs";
 
+import { vocabulary } from "../data/vocabulary";
 import Log from "../model/Log";
 import Review from "../model/Review";
 import Study from "../model/Study";
@@ -60,7 +61,11 @@ const StudyProvider = ({ children }: PropsWithChildren<unknown>) => {
     const allReviews = await database.get<Review>("reviews").query().fetch();
     const allReviewIds = allReviews.map((review) => review.vocabularyId);
 
-    const newStudyIds = generateRandomNumbers(20, allReviewIds, 2273);
+    const newStudyIds = generateRandomNumbers(
+      20,
+      allReviewIds,
+      vocabulary.length
+    );
 
     await database.write(async () => {
       const newStudy = await database.get<Study>("study").create((study) => {

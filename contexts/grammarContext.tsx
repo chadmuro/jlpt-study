@@ -3,6 +3,7 @@ import { Q } from "@nozbe/watermelondb";
 import { useDatabase } from "@nozbe/watermelondb/react";
 import dayjs from "dayjs";
 
+import { grammar } from "../data/grammar";
 import GrammarLog from "../model/GrammarLog";
 import GrammarReview from "../model/GrammarReview";
 import GrammarStudy from "../model/GrammarStudy";
@@ -62,7 +63,7 @@ const GrammarProvider = ({ children }: PropsWithChildren<unknown>) => {
       .query()
       .fetch();
     const allReviewIds = allReviews.map((review) => review.grammarId);
-    const newStudyIds = generateRandomNumbers(4, allReviewIds, 138);
+    const newStudyIds = generateRandomNumbers(4, allReviewIds, grammar.length);
     await database.write(async () => {
       const newStudy = await database
         .get<GrammarStudy>("grammar_study")

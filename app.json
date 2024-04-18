@@ -27,7 +27,7 @@
     "orientation": "portrait",
     "ios": {
       "bundleIdentifier": "com.chadmuro.jlptstudy",
-      "buildNumber": "1",
+      "buildNumber": "2",
       "supportsTablet": false
     }
   }

@@ -3,6 +3,7 @@ import { Q } from "@nozbe/watermelondb";
 import { useDatabase } from "@nozbe/watermelondb/react";
 import dayjs from "dayjs";
 
+import { kanji } from "../data/kanji";
 import KanjiLog from "../model/KanjiLog";
 import KanjiReview from "../model/KanjiReview";
 import KanjiStudy from "../model/KanjiStudy";
@@ -60,7 +61,7 @@ const KanjiProvider = ({ children }: PropsWithChildren<unknown>) => {
       .query()
       .fetch();
     const allReviewIds = allReviews.map((review) => review.kanjiId);
-    const newStudyIds = generateRandomNumbers(8, allReviewIds, 367);
+    const newStudyIds = generateRandomNumbers(8, allReviewIds, kanji.length);
     await database.write(async () => {
       const newStudy = await database
         .get<KanjiStudy>("kanji_study")
