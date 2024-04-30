@@ -770,7 +770,7 @@ export const grammar: Grammar[] = [
     english: "when it comes to X, Y; once I say X, Y",
     background:
       "Used when the speaker turns from the initial subject to another - either via association or memory, or when the speaker wants so say something more important related to the subject. In case of the second option, formation often looks like XといえばXけど...",
-    conjunction: 'Cited word"+といえば Adj-だ・N-だ・Adj-い+といえば',
+    conjunction: "Cited word+といえば Adj-だ・N-だ・Adj-い+といえば",
     sentence:
       "(1) このコーヒー、ハワイのお生産ですか。ハワイといえば、幸子さんが来月ハワイで結婚式をするんだそうですよ。 (2) 松本さんのうちのお嬢さん、かわいいといえばかわいいけど、ちょっとわがままね。",
     sentence_english:
@@ -929,7 +929,7 @@ export const grammar: Grammar[] = [
     sentence:
       "日本語学習者は、日本に行かないことには日本語を自然に話せるようには難しいだろう。",
     sentence_english:
-      "If a Jaanese language learner doesn't go to Japan, it will be difficult for them to learn to speak Japanese naturally."
+      "If a Japanese language learner doesn't go to Japan, it will be difficult for them to learn to speak Japanese naturally."
   },
   {
     id: 81,
@@ -1256,7 +1256,7 @@ export const grammar: Grammar[] = [
   },
   {
     id: 109,
-    grammar: "～ずじまいだ’",
+    grammar: "～ずじまいだ",
     english: "end up not doing smth",
     background:
       "Despite the speaker's initial intention, they missed the chance or proper timing (NB! this detail) to complete the planned action and ended up not doing X. ず here comes from negative V form in old Jpn, so する will turn to せずじまいだ Informal.",
